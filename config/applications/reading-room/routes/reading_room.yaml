@@ -1,0 +1,11 @@
+app_reading_room_read_book:
+    path: /read-book/{productSlug}
+    controller: App\Controller\ReadingRoom\ReadingRoomController::readBookAction
+    defaults:
+        productSlug: ''
+        
+app_reading_room_read:
+    path: /read-book-{id}
+    controller: App\Controller\ReadingRoom\ReadBookController::read
+
+

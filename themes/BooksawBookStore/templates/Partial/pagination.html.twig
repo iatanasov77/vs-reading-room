@@ -1,0 +1,9 @@
+{%- extends '@Pagerfanta/twitter_bootstrap5.html.twig' -%}
+
+{%- block pager_widget -%}
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {{- block('pager') -}}
+        </ul>
+    </nav>
+{%- endblock pager_widget -%}

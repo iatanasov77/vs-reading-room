@@ -1,0 +1,47 @@
+ <div class="tab-content">
+                    
+    <div id="all-genre" data-tab-content class="active">
+    
+        {% for productsRow in products | batch( 4 ) %}
+            <div class="row">
+
+                {% for product in productsRow %}
+                    
+                    {% if product.pictures.first %}
+                        {% set productPicture = path( 'vs_cms_images_filesystem_get_file', { file: picturesPath ~ '/' ~ product.pictures.first.path } ) %}
+                    {% else %}
+                        {% set productPicture = '/build/bootstrap-shop-theme/images/products/6.jpg' %}
+                    {% endif %}
+                    
+                    <div class="col-md-3">
+                        <div class="product-item">
+                            <a href="{{ path( 'vs_catalog_catalog_product_show', {'categorySlug': 'latest', 'productSlug': product.slug} ) }}">
+                                <figure class="product-style">
+                                    <img src="{{ productPicture }}" alt="{{ product.name }}" class="product-item">
+                                    {#
+                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
+                                        Add to Cart
+                                    </button>
+                                    #}
+                                </figure>
+                                <figcaption>
+                                    <h3>{{ product.name }}</h3>
+                                    <span>Adam Silber</span>
+                                    <div class="item-price">$ 40.00</div>
+                                </figcaption>
+                            </a>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+                
+            </div>
+        {% endfor %}
+
+    </div>
+    
+</div>
+
+{% if products.haveToPaginate() %}
+    {{ pagerfanta( products, null, { 'proximity': 10 } ) }}
+{% endif %}

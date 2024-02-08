@@ -1,0 +1,12 @@
+framework:
+    assets:
+        packages:
+            default:
+                json_manifest_path: '%kernel.project_dir%/public/reading-room/build/default/manifest.json'
+            booksaw-book-store:
+                json_manifest_path: '%kernel.project_dir%/public/shared_assets/build/booksaw-book-store/manifest.json'
+webpack_encore:
+    output_path: '%kernel.project_dir%/public/reading-room/build/default'
+    builds:
+        defaultConfig: '%kernel.project_dir%/public/reading-room/build/default'
+        BooksawBookStore: '%kernel.project_dir%/public/shared_assets/build/booksaw-book-store'

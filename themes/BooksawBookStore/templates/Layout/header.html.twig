@@ -1,0 +1,36 @@
+<header id="header">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-2">
+                <div class="main-logo">
+                    <a href="{{ path( 'app_home' ) }}">
+                        <img src="{{ asset('/build/booksaw-book-store/images/main-logo.png') }}" alt="logo">
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-10">
+                <nav id="navbar">
+                    <div class="main-menu stellarnav">
+                        <ul class="menu-list">
+                            {{ knp_menu_render('mainApplication', {'template': 'Menu/main-menu.html.twig'}) }}
+                            
+                            {% if app.request.attributes.get( '_route' ) == 'app_home' %}
+                                <li class="menu-item"><a href="#featured-books" class="nav-link">Featured</a></li>
+                                <li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
+                            {% endif %}
+                        </ul>
+
+                        <div class="hamburger">
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</header>

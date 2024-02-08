@@ -1,0 +1,6 @@
+
+{% if app.request.attributes.get( '_route' ) != "app_reading_room_read_book" %}
+    {% include 'Layout/top-content.html.twig' %}
+{% endif %}
+
+{% include 'Layout/header.html.twig' %}

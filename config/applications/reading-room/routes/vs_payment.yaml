@@ -1,0 +1,13 @@
+app_vs_payment_checkout:
+    resource: "@VSPaymentBundle/Resources/config/routing/checkout.yaml"
+    prefix: /
+
+vs_payment_show_credit_card_form:
+    path: /credit-card/{formAction}
+    controller: App\Controller\ReadingRoom\CreditCardController::showCreditCardFormAction
+    defaults:
+        formAction: ''
+    options:
+        expose: true
+
+

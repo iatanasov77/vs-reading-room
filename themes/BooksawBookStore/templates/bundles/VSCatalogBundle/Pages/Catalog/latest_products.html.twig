@@ -1,0 +1,49 @@
+{% extends "base.html.twig" %}
+                            
+{% block content %}
+    <section id="popular-books" class="bookshelf py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+    
+                    <div class="section-header align-center">
+                        <h2 class="section-title">
+                            {{ 'reading_room.template.catalog_books' | trans( {},'ReadingRoom' ) }}
+                        </h2>
+                    </div>
+    
+                    <ul class="tabs">
+                        <li class="tab btnCategory"
+                            id="cat-all_genre"
+                            data-url="{{ path( 'vs_catalog_catalog_latest_products' ) }}"
+                        >
+                            {{ 'reading_room.template.all_genre' | trans( {},'ReadingRoom' ) }}
+                        </li>
+                        {% for cat in categories %}
+                            {% if cat.products | length %}
+                                <li class="tab btnCategory"
+                                    id="cat-{{ cat.code }}"
+                                    data-url="{{ path( 'vs_catalog_catalog_category_products', {'categorySlug': cat.code} ) }}"
+                                >
+                                    {{ cat.name }}
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+    
+                    <div id="ProductsPageContainer">
+                        {% include '@VSCatalog/Pages/Catalog/partial/products-page.html.twig' %}
+                    </div>
+    
+                </div><!--inner-tabs-->
+    
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {{ encore_entry_script_tags( 'js/catalog', null, 'BooksawBookStore' ) }}
+{% endblock %}

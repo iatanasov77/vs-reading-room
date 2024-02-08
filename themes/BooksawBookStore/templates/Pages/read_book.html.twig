@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ book.name }}{% endblock %}
+
+{% block content %}
+    <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
+        <div id="ReadBookContainer"
+            class="justify-content-center ReadBookContainer"
+            data-BookUrl="{{ path( 'app_reading_room_read', {'id': 1} ) }}"
+        >     
+            <app-pdf-viewer></app-pdf-viewer>
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/read-book', null, 'BooksawBookStore' ) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {{ encore_entry_script_tags( 'js/read-book', null, 'BooksawBookStore'  ) }}
+{% endblock %}
