@@ -15,4 +15,9 @@ sylius_resource:
         paginate: 10
     
     resources:
+        vs_reading_room.reading_room_settings:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\ReadingRoomSettings
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
 

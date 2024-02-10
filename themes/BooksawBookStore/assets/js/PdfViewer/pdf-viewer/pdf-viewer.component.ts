@@ -16,14 +16,30 @@ export class PdfViewerComponent implements OnInit
 
     pdfUrl: String;
     
+    /**
+     * pdfjs Viewer Settings 
+     */
+    openFile: Boolean;
+    viewBookmark: Boolean;
+    download: Boolean;
+    print: Boolean;
+    
     constructor()
     {
-        this.pdfUrl = '';
+        this.pdfUrl         = '';
+        this.openFile       = false;
+        this.viewBookmark   = false;
+        this.download       = false;
+        this.print          = false;
     }
     
     ngOnInit(): void
     {
-        this.pdfUrl = $( '#ReadBookContainer' ).attr( 'data-BookUrl' );
+        this.pdfUrl         = $( '#ReadBookContainer' ).attr( 'data-BookUrl' );
+        this.openFile       = $( '#ReadBookContainer' ).attr( 'data-openFile' );
+        this.viewBookmark   = $( '#ReadBookContainer' ).attr( 'data-viewBookmark' );
+        this.download       = $( '#ReadBookContainer' ).attr( 'data-download' );
+        this.print          = $( '#ReadBookContainer' ).attr( 'data-print' );
     }
     
     public testBeforePrint(): void

@@ -1,0 +1,9 @@
+vs_reading_room_settings:
+    resource: |
+        alias: vs_reading_room.reading_room_settings
+        except: ['show']
+        path: /reading-room/reading-room-settings
+        templates: "admin-panel/Pages/ReadingRoomSettings"
+    type: sylius.resource
+    options:
+        expose: true

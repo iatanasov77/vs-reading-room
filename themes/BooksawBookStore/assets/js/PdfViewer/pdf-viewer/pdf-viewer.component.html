@@ -7,10 +7,10 @@
                     viewerId="MyID"
                     
                     zoom="auto"
-                    [openFile]="false"
-					[viewBookmark]="false"
-					[download]="false"
-					[print]="false"
+                    openFile="{{ openFile }}"
+					viewBookmark="{{ viewBookmark }}"
+					download="{{ download }}"
+					print="{{ print }}"
                     
                     (onDocumentLoad)="testPagesLoaded($event)"
                     (onPageChange)="testPageChange($event)"

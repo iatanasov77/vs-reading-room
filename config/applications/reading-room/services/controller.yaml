@@ -175,6 +175,7 @@ services:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
+            - '@app_reading_room'
             - '@doctrine'
             - '@vs_catalog.repository.product_category'
             - '@vs_catalog.repository.product'
@@ -187,6 +188,8 @@ services:
         arguments:
             - '@doctrine'
             - '@vs_catalog.repository.product'
+            - '@vs_application.app_pictures_uploader.filesystem'
+            - '%vs_application.filemanager_shared_media_gaufrette.app_pictures%'
             - '%kernel.project_dir%'
         calls:
             - [ setContainer, [ '@service_container' ] ]

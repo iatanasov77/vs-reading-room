@@ -1,6 +1,24 @@
 reading_room:
+    form:
+        reading_room_settings:
+            settings_key: Settings Key
+            ng2_pdfjs_viewer_settings: Angular PDFJS Viewer Settings
+            open_file: Show/hide open file button.
+            view_bookmark: Show/hide bookmark button.
+            download: Show/hide download button.
+            print: Show/hide print button.
+            
+            settings_key_help: Used to load different Settings in Different Application Environements. ( Set it in .env File )
+        
     template:
+        admin_menu_title: Reading Room
         catalog_books: Catalog Books
         all_genre: All Genre
+        read_book: Read Book
+        items_index_row_settings_key: Settings Key
+        page_title_reading_room_settings_listing: Reading Room Settings
+        page_title_reading_room_settings_create: Create a Settings
+        page_title_reading_room_settings_update: Update Settings
+        page_title_reading_room_settings_details: Settings Details
 
 

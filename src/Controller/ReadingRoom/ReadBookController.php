@@ -7,6 +7,8 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Gaufrette\Filesystem as GaufretteFilesystem;
+use Vankosoft\CatalogBundle\Component\Product;
 
 class ReadBookController extends AbstractController
 {
@@ -18,41 +20,47 @@ class ReadBookController extends AbstractController
     /** @var RepositoryInterface **/
     private $productRepository;
     
+    /** @var GaufretteFilesystem */
+    private $localFilesystem;
+    
+    /** @var string **/
+    private $productFilesDir;
+    
     /** @var string **/
     private $projectRootDir;
     
     public function __construct(
         ManagerRegistry $doctrine,
         RepositoryInterface $productRepository,
+        GaufretteFilesystem $localFilesystem,
+        string $productFilesDir,
         string $projectRootDir
     ) {
         $this->doctrine             = $doctrine;
         $this->productRepository    = $productRepository;
+        $this->localFilesystem      = $localFilesystem;
+        $this->productFilesDir      = $productFilesDir;
         $this->projectRootDir       = $projectRootDir;
     }
     
-    /**
-     * Read a video file from storage dir
-     *
-     * examples: https://ourcodeworld.com/articles/read/329/how-to-send-a-file-as-response-from-a-controller-in-symfony-3
-     */
     public function read( $id, Request $request ): Response
     {
-        $publicResourcesFolderPath  = $this->projectRootDir . '/docs/TestBooks/';
-        $filename                   = "Shogun.pdf";
-        $originalName               = 'Shogun.pdf';
-        $filePath                   = $publicResourcesFolderPath . $filename;
+        $book           = $this->productRepository->find( $id );
+        $bookFiles      = $book->getFiles();
+        $contentFile    = $bookFiles[Product::PRODUCT_FILE_TYPE_CONTENT];
+        $contentSize    = $this->localFilesystem->size( $contentFile->getPath() );
         
-        $response   = new StreamedResponse( function() use ( $filePath )
+        $filePath                   = $this->productFilesDir . '/' . $contentFile->getPath();
+        $response   = new StreamedResponse( function() use ( $filePath, $contentSize )
         {
             $outputStream   = \fopen( 'php://output', 'wb' );
             $fileStream     = \readfile( $filePath );
             
-            while ( ! feof( $fileStream ) ) \fwrite( $outputStream, \fread( $fileStream, 1000000 ) );
+            while ( ! feof( $fileStream ) ) \fwrite( $outputStream, \fread( $fileStream, $contentSize ) );
         });
         
-        $response->headers->set( 'Content-Type', 'application/pdf' );
-        $response->headers->set( 'Content-Length', \filesize( $filePath ) );
+        $response->headers->set( 'Content-Type', $contentFile->getType() );
+        $response->headers->set( 'Content-Length', $contentSize );
         
         return $response;
     }

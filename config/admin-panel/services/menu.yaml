@@ -3,15 +3,22 @@ parameters:
     #vs_application.menu.config_file: "%kernel.project_dir%/config/admin-panel/packages/vs_application.yaml"
     
     # If You create Any Custom Menue, add it to menus array to can use for breadcrumbs
-    #vs_application.main_menus: ['profileMenu', 'mainSystemMenu', 'mainCmsMenu']
+    vs_application.main_menus:
+        - 'profileMenu'
+        - 'mainSystemMenu'
+        - 'mainCmsMenu'
+        - 'mainUsersSubscriptionsMenu'
+        - 'mainPaymentMenu'
+        - 'mainCatalogMenu'
+        - 'mainReadingRoomMenu'
 
 services:
     # Custom Menus
     ######################################################
-#    app.main_menu_custom:
-#        autowire: false
-#        class: Knp\Menu\MenuItem
-#        factory: ["@vs_app.menu_builder", mainMenu]
-#        arguments: ["@knp_menu.factory", 'mainCustomMenu']
-#        tags:
-#            - { name: knp_menu.menu, alias: mainCustom }
+    vs_reading_room.main_menu_reading_room:
+        autowire: false
+        class: Knp\Menu\MenuItem
+        factory: ["@vs_app.menu_builder", mainMenu]
+        arguments: ["@knp_menu.factory", 'mainReadingRoomMenu']
+        tags:
+            - { name: knp_menu.menu, alias: mainReadingRoom }
