@@ -26,7 +26,15 @@
                     <div class="product-detail">
                         <span>{{ product.categories.first.name }}</span>
                         <h1>{{ product.name }}</h1>
-                        <h4><a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug} ) }}">Read Book</a></h4>
+                        
+                    {% if 'product_content' in product.files | keys %}
+                        <h4>
+                            <a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug} ) }}">
+                                {{ 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) }}
+                            </a>
+                        </h4>
+                    {% endif %}
+                        
                         <div class="rating-container d-flex align-items-center text-warning mb-4">
                             <svg width="32" height="32">
                               <use xlink:href="#star-solid"></use>

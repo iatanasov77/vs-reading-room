@@ -2,5 +2,6 @@ reading_room:
     template:
         catalog_books: Catalog Books
         all_genre: All Genre
+        read_book: Read Book
 
 
