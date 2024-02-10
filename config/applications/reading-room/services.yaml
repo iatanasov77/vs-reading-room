@@ -6,6 +6,7 @@ imports:
     - { resource: services/menu.yaml }
     - { resource: services/uploader.yaml }
     - { resource: services/widgets.yaml }
+    - { resource: services/reading_room.yaml }
     
 parameters:
     locale: 'en_US'

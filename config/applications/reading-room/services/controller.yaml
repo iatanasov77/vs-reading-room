@@ -175,6 +175,7 @@ services:
         tags: ['controller.service_arguments']
         autowire: true
         arguments:
+            - '@app_reading_room'
             - '@doctrine'
             - '@vs_catalog.repository.product_category'
             - '@vs_catalog.repository.product'

@@ -1,8 +1,8 @@
 vs_application:
     menu:
-        blog: Блог
-        snippets: Снипети
-        
-        admin_panel: Админ Панел
+        reading_room_settings: Reading Room Settings
+        list_reading_room_settings: List Reading Room Settings
+        create_new_reading_room_setting: Create Reading Room Settings
+        edit_reading_room_setting: Edit Reading Room Settings
 
 

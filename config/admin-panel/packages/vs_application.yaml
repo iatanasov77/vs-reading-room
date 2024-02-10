@@ -559,6 +559,28 @@ vs_application:
                         routeParameters:
                           id: int
                         display: false
+                        
+        mainReadingRoomMenu:
+            settings:
+                name: vs_application.menu.reading_room_settings
+                uri: "javascript:;"
+                attributes:
+                    iconClass: icon_genius
+                    breadcrumb_route: vs_reading_room_reading_room_settings_index
+                childs:
+                    list_settings:
+                        name: vs_application.menu.list_reading_room_settings
+                        route: vs_reading_room_reading_room_settings_index
+                    create_settings:
+                        name: vs_application.menu.create_new_reading_room_setting
+                        route: vs_reading_room_reading_room_settings_create
+                        display: true
+                    update_settings:
+                        name: vs_application.menu.edit_reading_room_setting
+                        route: vs_reading_room_reading_room_settings_update
+                        routeParameters:
+                          id: int
+                        display: false
         
         profileMenu:
             contact:

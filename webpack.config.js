@@ -9,6 +9,14 @@ const adminPanelConfig  = require( themePath + '/webpack.config' );
 //=================================================================================================
 
 /**
+ *  AdminPanel Cusstom Entries
+ */
+Encore.reset();
+const adminPanelCusstomEntriesConfig = require('./assets/admin-panel/webpack.config');
+
+//=================================================================================================
+
+/**
  *  BooksawBookStore Theme
  */
 Encore.reset();
@@ -19,5 +27,6 @@ const applicationBooksawBookStoreTheme = require('./themes/BooksawBookStore/webp
 
 module.exports = [
     adminPanelConfig,
+    adminPanelCusstomEntriesConfig,
     applicationBooksawBookStoreTheme,
 ];
