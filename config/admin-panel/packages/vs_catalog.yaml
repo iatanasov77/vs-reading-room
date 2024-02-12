@@ -27,8 +27,5 @@ vs_catalog:
         product_association:
             classes:
                 model: App\Entity\Catalog\ProductAssociation
-#         service_association:
-#             classes:
-#                 model: App\Entity\Catalog\ServiceAssociation
 
 
