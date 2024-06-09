@@ -3,60 +3,32 @@
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="VRR_ReadingRoomSettings")
- */
+#[ORM\Entity]
+#[ORM\Table(name: "VRR_ReadingRoomSettings")]
 class ReadingRoomSettings implements ResourceInterface
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
+    /** @var int */
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private $id;
     
-    /**
-     * @ORM\Column(name="settings_key", type="string", length=32, nullable=false)
-     */
+    /** @var string */
+    #[ORM\Column(name: "settings_key", type: "string", length: 32)]
     private $settingsKey;
     
-    /**
-     * Setting for 'ng2-pdfjs-viewer' Component
-     * 
-     * @var bool
-     *
-     * @ORM\Column(name="open_file", type="boolean", options={"default":"0", "comment":"Setting for 'ng2-pdfjs-viewer' Component"})
-     */
+    /** @var bool */
+    #[ORM\Column(name: "open_file", type: "boolean", options: ["default" => 0, "comment" => "Setting for 'ng2-pdfjs-viewer' Component"])]
     private $openFile = false;
     
-    /**
-     * Setting for 'ng2-pdfjs-viewer' Component
-     *
-     * @var bool
-     *
-     * @ORM\Column(name="view_bookmark", type="boolean", options={"default":"0", "comment":"Setting for 'ng2-pdfjs-viewer' Component"})
-     */
+    /** @var bool */
+    #[ORM\Column(name: "view_bookmark", type: "boolean", options: ["default" => 0, "comment" => "Setting for 'ng2-pdfjs-viewer' Component"])]
     private $viewBookmark = false;
     
-    /**
-     * Setting for 'ng2-pdfjs-viewer' Component
-     *
-     * @var bool
-     *
-     * @ORM\Column(name="download", type="boolean", options={"default":"0", "comment":"Setting for 'ng2-pdfjs-viewer' Component"})
-     */
+    /** @var bool */
+    #[ORM\Column(name: "download", type: "boolean", options: ["default" => 0, "comment" => "Setting for 'ng2-pdfjs-viewer' Component"])]
     private $download = false;
     
-    /**
-     * Setting for 'ng2-pdfjs-viewer' Component
-     *
-     * @var bool
-     *
-     * @ORM\Column(name="print", type="boolean", options={"default":"0", "comment":"Setting for 'ng2-pdfjs-viewer' Component"})
-     */
+    /** @var bool */
+    #[ORM\Column(name: "print", type: "boolean", options: ["default" => 0, "comment" => "Setting for 'ng2-pdfjs-viewer' Component"])]
     private $print = false;
     
     public function getId()
