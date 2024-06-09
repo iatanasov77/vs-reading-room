@@ -9,7 +9,7 @@ use Vankosoft\ApplicationBundle\Component\Application\Kernel as BaseKernel;
 
 class ReadingRoomKernel extends BaseKernel
 {
-    const VERSION   = '0.2.1';
+    const VERSION   = '1.10.4';
     const APP_ID    = 'reading-room';
     
     /**
