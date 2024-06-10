@@ -2,22 +2,22 @@
 
 node ( label: 'php-host' ) {
     String[] environments       = ["production", "staging"]
-    def HOST_PREFIX             = 'guitarpro-'
-    def APP_HOST                = 'guitarpro.vankosoft.org'
+    def HOST_PREFIX             = 'reading-room-'
+    def APP_HOST                = 'reading-room.vankosoft.org'
     def BUILD_ENVIRONMENT
     def BRANCH_NAME
     def DB_BACKUP
     def REMOTE_DIR
     
-    final PHP_BIN               = '/usr/bin/php74'
+    final PHP_BIN               = '/usr/bin/php82'
     
     final GIT_CREDENTIALS_ID    = 'github-iatanasov77';
-    final GIT_URI               = 'github.com/iatanasov77/vs-web-guitarpro.git'
+    final GIT_URI               = 'github.com/iatanasov77/vs-reading-room.git'
     final GIT_REPO_URL          = "https://${GIT_URI}"
     def GIT_REPO_WITH_CRED;
     
     def MYSQL_CREDENTIALS_ID    = 'vankosoft-mysql';
-    def MYSQL_DATABASE_PREFIX   = 'WebGuitarPro_';
+    def MYSQL_DATABASE_PREFIX   = 'ReadingRoom_';
     def APP_MYSQL_USER;
     def APP_MYSQL_PASSWORD;
     def APP_MYSQL_DATABASE;
@@ -25,8 +25,8 @@ node ( label: 'php-host' ) {
     
     def CONFIG_TEMPLATE;
     def FTP_HOST                = 'ftp://164.138.221.242';
-    def FTP_CREDENTIALS_ID      = 'guitarpro-ftp';
-    def APP_DIR                 = '/opt/VankosoftProjects/WebGuitarPro';
+    def FTP_CREDENTIALS_ID      = 'readingroom-ftp';
+    def APP_DIR                 = '/opt/VankosoftProjects/ReadingRoom';
     def APP_FTP_USER;
     def APP_FTP_PASSWORD;
     def APP_FTP_URL;
@@ -101,6 +101,7 @@ node ( label: 'php-host' ) {
     stage( 'Build Application' ) {
         sh """
             export COMPOSER_HOME='/home/vagrant/.composer';
+            export COMPOSER_ALLOW_SUPERUSER=1;
             export NODE_OPTIONS=--max-old-space-size=4096
             /usr/local/bin/phing install-${BUILD_ENVIRONMENT} -verbose -debug
         """
@@ -160,12 +161,15 @@ ENDSSH
                             migrationCode=\$?   # Capture migration return code
                             
                             ${PHP_BIN} -d memory_limit=-1 bin/console cache:clear
-                            ${PHP_BIN} -d memory_limit=-1 bin/web-guitar-pro cache:clear
+                            ${PHP_BIN} -d memory_limit=-1 bin/reading-room cache:clear
                             
                             #${PHP_BIN} -d memory_limit=-1 bin/console vankosoft:maintenance --unset-maintenance
                             
                             #SETUP APPLICATION PERMISSIONS
                             chmod -R 0777 ${REMOTE_DIR}
+                            
+                            ${PHP_BIN} -d memory_limit=-1 bin/console vankosoft:install:info update
+                            ${PHP_BIN} -d memory_limit=-1 bin/console vankosoft:load-widgets
                             
                             exit \$migrationCode
 ENDSSH
@@ -182,10 +186,13 @@ ENDSSH
                             migrationCode=\$?   # Capture migration return code
                             
                             ${PHP_BIN} -d memory_limit=-1 bin/console cache:clear
-                            ${PHP_BIN} -d memory_limit=-1 bin/web-guitar-pro cache:clear
+                            ${PHP_BIN} -d memory_limit=-1 bin/reading-room cache:clear
                             
                             #SETUP APPLICATION PERMISSIONS
                             chmod -R 0777 ${REMOTE_DIR}
+                            
+                            ${PHP_BIN} -d memory_limit=-1 bin/console vankosoft:install:info update
+                            ${PHP_BIN} -d memory_limit=-1 bin/console vankosoft:load-widgets
                             
                             exit \$migrationCode
 ENDSSH
