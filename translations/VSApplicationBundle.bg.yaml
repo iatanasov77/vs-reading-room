@@ -1,5 +1,8 @@
 vs_application:
     menu:
+        list_reading_room_applications: Reading Room Applications
+        create_new_reading_room_application: Create New Reading Room Application
+        edit_reading_room_application: Edit Reading Room Application
         reading_room_settings: Reading Room Settings
         list_reading_room_settings: List Reading Room Settings
         create_new_reading_room_setting: Create Reading Room Settings

@@ -1,6 +1,12 @@
 reading_room:
     form:
+        settings: Settings
+        reading_room_settings_label: Reading Room Settings
+        reading_room_settings_placeholder: '-- Choose a Reading Room Settings --'
+            
         reading_room_settings:
+            application: Application
+            application_placeholder: '-- Select an Application --'
             settings_key: Settings Key
             ng2_pdfjs_viewer_settings: Angular PDFJS Viewer Settings
             open_file: Show/hide open file button.
@@ -16,6 +22,9 @@ reading_room:
         all_genre: All Genre
         read_book: Read Book
         items_index_row_settings_key: Settings Key
+        page_title_reading_room_application_listing: Reading Room Applications
+        page_title_reading_room_application_update: Update Reading Room Application
+        page_title_reading_room_application_create: Create Reading Room Application
         page_title_reading_room_settings_listing: Reading Room Settings
         page_title_reading_room_settings_create: Create a Settings
         page_title_reading_room_settings_update: Update Settings

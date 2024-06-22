@@ -1,3 +1,11 @@
+vs_reading_room_applications:
+    resource: |
+        alias: vs_reading_room.reading_room_application
+        except: ['show', 'delete']
+        path: /reading-room/reading-room-applications
+        templates: "admin-panel/pages/ReadingRoomApplications"
+    type: sylius.resource
+
 vs_reading_room_settings:
     resource: |
         alias: vs_reading_room.reading_room_settings

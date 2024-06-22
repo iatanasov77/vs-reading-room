@@ -11,6 +11,10 @@ class ReadingRoomSettings implements ResourceInterface
     #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
     private $id;
     
+    /** @var ReadingRoomApplication */
+    #[ORM\OneToMany(targetEntity: "ReadingRoomApplication", mappedBy: "settings")]
+    private $readingRoomApplication;
+    
     /** @var string */
     #[ORM\Column(name: "settings_key", type: "string", length: 32)]
     private $settingsKey;
@@ -34,6 +38,18 @@ class ReadingRoomSettings implements ResourceInterface
     public function getId()
     {
         return $this->id;
+    }
+    
+    public function getReadingRoomApplication()
+    {
+        return $this->readingRoomApplication;
+    }
+    
+    public function setReadingRoomApplication($readingRoomApplication)
+    {
+        $this->readingRoomApplication  = $readingRoomApplication;
+        
+        return $this;
     }
     
     public function getSettingsKey()

@@ -1,0 +1,55 @@
+{% extends "@VSApplication/layout.html.twig" %}
+
+{# Import Macros #}
+{% import "@VSApplication/Macros/alerts.html.twig" as alerts %}
+{% from "@VSApplication/Macros/pagination.html.twig" import pagination %}
+
+{# Override Blocs #}
+{% block title %}{{ parent() }} :: {{ 'reading_room.template.page_title_reading_room_application_listing' | trans( {},'ReadingRoom' ) }}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'reading_room.template.page_title_reading_room_application_listing' | trans( {},'ReadingRoom' ) }}{% endblock %}
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <table class="table table-striped table-advance table-hover vsTableSortable">
+                <thead class="table-light">
+                    <tr>
+                        <th></th>
+                        <th data-sortable="true" data-field="title">{{ 'vs_application.template.items_index_row_title' | trans( {},'VSApplicationBundle' ) }}</th>
+                        <th>{{ 'reading_room.form.settings' | trans( {},'ReadingRoom' ) }}</th>
+                        <th width="150">{{ 'vs_application.template.items_index_row_action' | trans( {},'VSApplicationBundle' ) }}</th>
+                    </tr>
+                </thead>
+                <tbody id="storagesContainer">
+                    {% for app in applications %}
+                        <tr>
+                            <td>{{ loop.index }}</td>
+                            
+                            <td>{{ app.title }}</td>
+                            <td>{% if app.readingRoomApplication %}{{ app.readingRoomApplication.settings.settingsKey }}{% endif %}</td>
+                            
+                            <td>
+                                <div class="btn-group">
+                                    {% if app.readingRoomApplication %}
+                                    	<a class="btn btn-primary"
+                                    	   href="{{ path('vs_reading_room_reading_room_application_update', {'id': app.readingRoomApplication.id}) }}?applicationCode={{ app.code }}"
+                                    	   title="{{ 'vs_application.template.items_index_row_action_edit' | trans( {},'VSApplicationBundle' ) }}"   
+                                        >
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-primary"
+                                           href="{{ path('vs_reading_room_reading_room_application_create') }}?applicationCode={{ app.code }}"
+                                           title="{{ 'vs_application.template.items_index_row_action_create' | trans( {},'VSApplicationBundle' ) }}"   
+                                        >
+                                            <i class="fas fa-store"></i>
+                                        </a>
+                                    {% endif %}
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

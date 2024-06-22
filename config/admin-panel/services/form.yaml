@@ -19,7 +19,14 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-        
+    
+    vs_reading_room.resources.reading_room_application.form:
+        class: App\Form\ReadingRoomApplicationForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_reading_room.model.reading_room_application.class%'
+    
     vs_reading_room.resources.reading_room_settings.form:
         class: App\Form\ReadingRoomSettingsForm
         tags:

@@ -696,6 +696,19 @@ vs_application:
                     iconClass: icon_genius
                     breadcrumb_route: vs_reading_room_reading_room_settings_index
                 childs:
+                    list_applications:
+                        name: vs_application.menu.list_reading_room_applications
+                        route: vs_reading_room_reading_room_application_index
+                    create_application:
+                        name: vs_application.menu.create_new_reading_room_application
+                        route: vs_reading_room_reading_room_application_create
+                        display: false
+                    update_application:
+                        name: vs_application.menu.edit_reading_room_application
+                        route: vs_reading_room_reading_room_application_update
+                        routeParameters:
+                          id: int
+                        display: false
                     list_settings:
                         name: vs_application.menu.list_reading_room_settings
                         route: vs_reading_room_reading_room_settings_index
