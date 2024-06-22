@@ -34,5 +34,14 @@ services:
         arguments:
             - '%vs_reading_room.model.reading_room_settings.class%'
 
-
-
+    # Override VS Catalog Bundle Product Form
+    vs_catalog.resources.product.form:
+        class: App\Form\BookForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_catalog.model.product.class%'
+            - '@request_stack'
+            - '@vs_application.repository.locale'
+            - '%vs_catalog.model.product_category.class%'
+            - '%vs_payment.model.currency.class%'

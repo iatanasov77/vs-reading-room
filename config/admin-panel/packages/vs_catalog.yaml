@@ -3,6 +3,7 @@ vs_catalog:
         product:
             classes:
                 model: App\Entity\Catalog\Product
+                form: App\Form\BookForm
         product_picture:
             classes:
                 model: App\Entity\Catalog\ProductPicture
