@@ -1,0 +1,5 @@
+vs_payment:
+    template:
+        product_create_title: Create New Book
+        product_update_title: Edit Book
+        product_details: Book details
