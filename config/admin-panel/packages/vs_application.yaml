@@ -635,6 +635,32 @@ vs_application:
                         routeParameters:
                           id: int
                         display: false
+                    genre_list:
+                        name: vs_application.menu.list_books_genres
+                        route: vs_reading_room_book_genre_index
+                    genre_create:
+                        name: vs_application.menu.create_book_genre
+                        route: vs_reading_room_book_genre_create
+                        display: true
+                    genre_update:
+                        name: vs_application.menu.edit_book_genre
+                        route: vs_reading_room_book_genre_update
+                        routeParameters:
+                          id: int
+                        display: false
+                    author_list:
+                        name: vs_application.menu.list_authors
+                        route: vs_reading_room_book_author_index
+                    author_create:
+                        name: vs_application.menu.create_new_author
+                        route: vs_reading_room_book_author_create
+                        display: true
+                    author_update:
+                        name: vs_application.menu.edit_author
+                        route: vs_reading_room_book_author_update
+                        routeParameters:
+                          id: int
+                        display: false
                         
             pricing_plans:
                 name: vs_application.menu.pricing_plans

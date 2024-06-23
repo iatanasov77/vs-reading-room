@@ -14,6 +14,11 @@ parameters:
     vs_cms.form.toc_page.ckeditor_toolbar: devpage_toolbar
     vs_cms.form.toc_page.ckeditor_extraPlugins: 'liststyle, font, justify, codesnippet, lightbox'
     vs_cms.form.toc_page.ckeditor_removeButtons: ''
+    
+    # Paid Services Form Options
+    ##########################################################
+    vs_users_subscriptions.form.payed_service.ckeditor_allowedContent: true # Disable Advanced Content Filter
+    vs_users_subscriptions.form.payed_service.ckeditor_extraAllowedContent:  'a(*); div(*); p(*); h2(*);'
 
 services:
     _defaults:
@@ -34,6 +39,33 @@ services:
         arguments:
             - '%vs_reading_room.model.reading_room_settings.class%'
 
+    vs_reading_room.resources.book_genre.form:
+        class: App\Form\BookGenreForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_reading_room.model.book_genre.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
+    
+    vs_reading_room.resources.book_author.form:
+        class: App\Form\BookAuthorForm
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_reading_room.model.book_author.class%'
+            - '@vs_application.repository.locale'
+            - '@request_stack'
+            - '%vs_catalog.model.product.class%'
+            - '%vs_reading_room.model.book_genre.class%'
+            
+    vs_reading_room.resources.book_author_photo.form:
+        class: App\Form\Type\BookAuthorPhotoType
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_reading_room.model.book_author_photo.class%'
+    
     # Override VS Catalog Bundle Product Form
     vs_catalog.resources.product.form:
         class: App\Form\BookForm
@@ -45,3 +77,5 @@ services:
             - '@vs_application.repository.locale'
             - '%vs_catalog.model.product_category.class%'
             - '%vs_payment.model.currency.class%'
+            - '%vs_reading_room.model.book_genre.class%'
+            - '%vs_reading_room.model.book_author.class%'

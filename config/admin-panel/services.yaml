@@ -1,10 +1,10 @@
 imports:
     - { resource: services/menu.yaml }
-    - { resource: services/api_controller.yaml }
     - { resource: services/controller.yaml }
     - { resource: services/form.yaml }
     - { resource: services/uploader.yaml }
     - { resource: services/widgets.yaml }
+    - { resource: services/reading_room.yaml }
 
 # This file is the entry point to configure your own services.
 # Files in the packages/ subdirectory configure your dependencies.
@@ -17,7 +17,7 @@ parameters:
     applicationIcon: 'build/default/images/superman.svg'
     applicationCompany: 'vs_application.template.vankosoft_application'
     applicationTitle: 'vs_application.template.super_admin_panel'
-    hasTopSearch: true
+    hasTopSearch: false
     
     vs_application.version: !php/const App\AdminPanelKernel::VERSION
     vs_application.public_dir: "%kernel.project_dir%/public/admin-panel"

@@ -30,5 +30,25 @@ sylius_resource:
                 repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
                 controller: App\Controller\AdminPanel\ReadingRoomSettingsController
                 form:       App\Form\ReadingRoomSettingsForm
-
-
+                
+        vs_reading_room.book_author:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\BookAuthor
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+                controller: App\Controller\AdminPanel\BookAuthorController
+                form:       App\Form\BookAuthorForm
+                
+        vs_reading_room.book_author_photo:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\BookAuthorPhoto
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+                
+        vs_reading_room.book_genre:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\BookGenre
+                repository: App\Repository\GenresRepository
+                controller: App\Controller\AdminPanel\BookGenreController
+                form:       App\Form\BookGenreForm

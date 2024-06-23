@@ -15,6 +15,8 @@ use Vankosoft\CatalogBundle\Model\Traits\UserSubscriptionAwareEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
+use App\Entity\Catalog\Product;
+
 #[ORM\Entity]
 #[ORM\Table(name: "VSUM_Users")]
 class User extends BaseUser implements
@@ -28,11 +30,17 @@ class User extends BaseUser implements
     use CustomerEntity;
     use UserSubscriptionAwareEntity;
     
+    /** @var Collection */
+    #[ORM\OneToMany(targetEntity: Product::class, mappedBy: "user", indexBy: "id")]
+    private $submittedBooks;
+    
     public function __construct()
     {
         $this->newsletterSubscriptions  = new ArrayCollection();
         $this->orders                   = new ArrayCollection();
         $this->pricingPlanSubscriptions = new ArrayCollection();
+        
+        $this->submittedBooks           = new ArrayCollection();
         
         parent::__construct();
     }
@@ -44,5 +52,10 @@ class User extends BaseUser implements
     {
         /* Use RolesCollection */
         return $this->getRolesFromCollection();
+    }
+    
+    public function getSubmittedBooks(): Collection
+    {
+        return $this->submittedBooks;
     }
 }

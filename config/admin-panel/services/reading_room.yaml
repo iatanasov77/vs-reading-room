@@ -1,0 +1,10 @@
+parameters:
+    vs_reading_room.book-genres.taxonomy_code: 'book-genres'
+    
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+

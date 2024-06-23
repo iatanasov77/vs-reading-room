@@ -8,7 +8,7 @@ use App\Entity\ReadingRoomApplication;
 #[ORM\Table(name: "VSAPP_Applications")]
 class Application extends BaseApplication
 {
-    /** @var VideoPlatformApplication */
+    /** @var ReadingRoomApplication */
     #[ORM\OneToOne(targetEntity: ReadingRoomApplication::class, mappedBy: "application")]
     private $readingRoomApplication;
     

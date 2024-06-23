@@ -27,3 +27,20 @@ sylius_resource:
                 model:      App\Entity\ReadingRoomSettings
                 repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
 
+        vs_reading_room.book_author:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\BookAuthor
+                repository: App\Repository\AuthorsRepository
+                
+        vs_reading_room.book_author_photo:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\BookAuthorPhoto
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+                
+        vs_reading_room.book_genre:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\BookGenre
+                repository: App\Repository\GenresRepository
