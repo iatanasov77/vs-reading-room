@@ -1,0 +1,102 @@
+<?php namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Sylius\Component\Resource\Model\ResourceInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonDescendentInterface;
+use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentEntity;
+
+#[ORM\Entity]
+#[ORM\Table(name: "VRR_BookCategories")]
+class BookCategory implements ResourceInterface, TaxonDescendentInterface
+{
+    use TaxonDescendentEntity;
+    
+    /** @var int */
+    #[ORM\Id, ORM\Column(type: "integer"), ORM\GeneratedValue(strategy: "IDENTITY")]
+    private $id;
+    
+    /** @var BookCategory */
+    #[ORM\ManyToOne(targetEntity: "BookCategory", inversedBy: "children", cascade: ["all"])]
+    private $parent;
+    
+    /** @var Collection|BookCategory[] */
+    #[ORM\OneToMany(targetEntity: "BookCategory", mappedBy: "parent", cascade: ["persist", "remove"], orphanRemoval: true)]
+    private $children;
+    
+    /** @var Collection|Book[] */
+    #[ORM\ManyToMany(targetEntity: "Book", mappedBy: "categories")]
+    #[ORM\OrderBy(["updatedAt" => "DESC"])]
+    private $books;
+    
+    public function __construct()
+    {
+        $this->children = new ArrayCollection();
+        $this->books    = new ArrayCollection();
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getParent(): ?BookCategory
+    {
+        return $this->parent;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setParent(?BookCategory $parent): BookCategory
+    {
+        $this->parent = $parent;
+        
+        return $this;
+    }
+    
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+    
+    /**
+     * @return Collection|Book[]
+     */
+    public function getBooks(): Collection
+    {
+        return $this->books;
+    }
+    
+    public function addBook( Book $book ): BookCategory
+    {
+        if ( ! $this->books->contains( $book ) ) {
+            $this->books[] = $book;
+            $book->addCategory( $this );
+        }
+        
+        return $this;
+    }
+    
+    public function removeBook( Book $book ): BookCategory
+    {
+        if ( $this->books->contains( $book ) ) {
+            $this->books->removeElement( $book );
+            $book->removeCategory( $this );
+        }
+        
+        return $this;
+    }
+    
+    public function __toString()
+    {
+        return $this->taxon ? $this->taxon->getName() : '';
+    }
+}

@@ -1,0 +1,154 @@
+{% import "@VSApplication/Macros/form.html.twig" as vs_form %}
+{% import "@VSApplication/Macros/tree.html.twig" as vs_tree %}
+
+<div class="card">
+    <h5 class="card-header">{{ 'vs_payment.template.product_details' | trans( {},'VSPaymentBundle' ) }}</h5>
+    <div class="card-body">
+        
+        {% if formErrors is defined %}
+            {{ vs_form.errors( formErrors ) }}     
+        {% endif %}
+
+        <div id="pageFormContainer" data-pageId="{{ item.id }}">
+            {% if( item.id ) %}
+                {% set action = path( 'vs_catalog_product_update', {'id': item.id} ) %}
+                {% set method = "PUT" %}
+            {% else %}
+                {% set action = path( 'vs_catalog_product_create' ) %}
+                {% set method = "POST" %}
+            {% endif %}
+            {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'action': action, 'method': method }) }}
+                {{ form_widget( form.tagsInputWhitelist, { 'value' : productTags | join(',') } ) }}
+                {{ form_widget( form.productCategories ) }}
+                {{ form_widget( form.bookAuthors ) }}
+                {{ form_widget( form.bookGenres ) }}
+            
+                <label class="custom-control custom-checkbox">  
+                    <input type="checkbox" id="book_form_enabled"
+                        class="custom-control-input form-check-input"
+                        name="book_form[enabled]"
+                        value="{{ item.enabled }}"
+                        {% if item.enabled %}checked="checked"{% endif %}
+                    />
+                    <span class="custom-control-label">{{ 'vs_payment.form.active' | trans( {},'VSPaymentBundle' ) }}</span>
+                </label>
+                
+                <div class="form-group">
+                    {{ form_label(form.locale, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.locale, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                {% include '@VSCatalog/Pages/Products/partial/product_form_category.html.twig' %}
+                
+                <div class="form-group">
+                    {{ form_label(form.name, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_label(form.description, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_label(form.inStock, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.inStock, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                <fieldset class="border border-dark rounded p-3 fieldset-product-pictures mb-3">
+                    <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.pictures' | trans( {},'VSCatalogBundle' ) }}</legend>
+                    
+                    <div class="attributesContainer"
+                        data-prototype="{% apply escape %}{% include '@VSCatalog/Pages/Products/partial/add-picture-prototype.html.twig' with {'form': form.pictures.vars.prototype} %}{% endapply %}"
+                    > 
+                        {% for pictureForm in form.pictures %}
+                            {% include '@VSCatalog/Pages/Products/partial/add-picture-prototype.html.twig' with {'form': pictureForm} %}
+                        {% endfor %}
+                    </div>
+                </fieldset>
+                
+                <fieldset class="border border-dark rounded p-3 fieldset-product-files mb-3">
+                    <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.files' | trans( {},'VSCatalogBundle' ) }}</legend>
+                    
+                    <div class="attributesContainer"
+                        data-prototype="{% apply escape %}{% include '@VSCatalog/Pages/Products/partial/add-file-prototype.html.twig' with {'form': form.files.vars.prototype} %}{% endapply %}"
+                    > 
+                        {% for fileForm in form.files %}
+                            {% include '@VSCatalog/Pages/Products/partial/add-file-prototype.html.twig' with {'form': fileForm} %}
+                        {% endfor %}
+                    </div>
+                </fieldset>
+                
+                <fieldset class="border border-dark rounded p-3 fieldset-custom-data">
+                    <legend class="w-auto float-none ps-2 pe-2">{{ 'reading_room.form.product.custom-data' | trans( {},'ReadingRoom' ) }}</legend>
+                    
+                    <div class="form-group">
+                        {{ form_label(form.genres, null, {
+                            'label_attr': {'class': 'col-form-label'}
+                            }) 
+                        }}
+                        
+                        {{ form_widget(form.genres, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form_label(form.authors, null, {
+                            'label_attr': {'class': 'col-form-label'}
+                            }) 
+                        }}
+                        
+                        {{ form_widget(form.authors, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                </fieldset>
+            
+                <div class="row">&nbsp;</div>
+                
+                <div class="form-group">
+                    {{ form_label(form.price, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_label(form.currency, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.currency, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form_label(form.tags, null, {
+                        'label_attr': {'class': 'col-form-label'}
+                        }) 
+                    }}
+                    
+                    {{ form_widget(form.tags, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                
+                {{ vs_form.buttons( form ) }}
+            {{ form_end(form, {'render_rest': false}) }}
+        </div>
+    </div>
+</div>

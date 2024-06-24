@@ -1,6 +1,14 @@
 reading_room:
     form:
+        locale: Locale
+        name: Name
+        settings: Settings
+        reading_room_settings_label: Reading Room Settings
+        reading_room_settings_placeholder: '-- Choose a Reading Room Settings --'
+        
         reading_room_settings:
+            application: Application
+            application_placeholder: '-- Select an Application --'
             settings_key: Settings Key
             ng2_pdfjs_viewer_settings: Angular PDFJS Viewer Settings
             open_file: Show/hide open file button.
@@ -8,7 +16,24 @@ reading_room:
             download: Show/hide download button.
             print: Show/hide print button.
             
-            settings_key_help: Used to load different Settings in Different Application Environements. ( Set it in .env File )
+            settings_key_help: Used to load different Settings in Different Application Environements.
+            
+        author:
+            name: Author Name
+            description: Description
+            books: Author Books
+            books_placeholder: '-- Select Author Books --'
+            photos: Author Photos
+            data: Author Data
+            genres: Author Genres
+            genres_placeholder: '-- Select Author Genres --'
+            
+        product:
+            custom-data: Custom Data
+            genres: Book Genres
+            genres_placeholder: '-- Select Book Genres --'
+            authors: Book Authors
+            authors_placeholder: '-- Select Book Authors --'
         
     template:
         admin_menu_title: Reading Room
@@ -16,9 +41,21 @@ reading_room:
         all_genre: All Genre
         read_book: Read Book
         items_index_row_settings_key: Settings Key
+        page_title_reading_room_application_listing: Reading Room Applications
+        page_title_reading_room_application_update: Update Reading Room Application
+        page_title_reading_room_application_create: Create Reading Room Application
         page_title_reading_room_settings_listing: Reading Room Settings
         page_title_reading_room_settings_create: Create a Settings
         page_title_reading_room_settings_update: Update Settings
         page_title_reading_room_settings_details: Settings Details
-
+        list_book_genres: Book Genres
+        page_title_book_genre_create: Create New Book Genre
+        page_title_book_genre_update: Edit Book Genre
+        page_title_book_genre_details: Book Genre Details
+        list_authors: Book Authors
+        page_title_author_create: Create New Author
+        page_title_author_update: Edit Author
+        page_title_author_details: Book Author Details
+        items_index_row_photos: Photos
+        items_index_row_books: Books
 

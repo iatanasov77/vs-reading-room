@@ -1,5 +1,20 @@
 vs_application:
     menu:
+        # Override VS_PaymentBundle Translations
+        catalog_products: Books
+        create_catalog_product: Create Book
+        edit_catalog_product: Edit Book
+        
+        list_books_genres: Book Genres
+        create_book_genre: Create New Genre
+        edit_book_genre: Edit Genre
+        list_authors: Book Authors
+        create_new_author: Create New Author
+        edit_author: Edit Author
+        
+        list_reading_room_applications: Reading Room Applications
+        create_new_reading_room_application: Create New Reading Room Application
+        edit_reading_room_application: Edit Reading Room Application
         reading_room_settings: Reading Room Settings
         list_reading_room_settings: List Reading Room Settings
         create_new_reading_room_setting: Create Reading Room Settings

@@ -1,6 +1,4 @@
 vs_catalog:
-    latest_products_limit: 6
-
     resources:
         product:
             classes:
@@ -29,8 +27,5 @@ vs_catalog:
         product_association:
             classes:
                 model: App\Entity\Catalog\ProductAssociation
-#         service_association:
-#             classes:
-#                 model: App\Entity\Catalog\ServiceAssociation
 
 

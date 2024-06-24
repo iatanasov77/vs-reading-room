@@ -1,6 +1,3 @@
-parameters:
-    reading_room_settings_slug: '%env(READING_ROOM_SETTINGS)%'
-    
 services:
     _defaults:
         autowire: true
@@ -10,7 +7,6 @@ services:
         class: App\Component\ReadingRoom
         public: true
         arguments:
-            - '%reading_room_settings_slug%'
-            - '@vs_reading_room.repository.reading_room_settings'
+            - '@vs_application.context.application'
 
 

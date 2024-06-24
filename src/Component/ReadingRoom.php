@@ -1,6 +1,6 @@
 <?php namespace App\Component;
 
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Vankosoft\ApplicationBundle\Component\Context\ApplicationContextInterface;
 use App\Entity\ReadingRoomSettings;
 use App\Component\Exception\ReadingRoomSettingsException;
 
@@ -10,15 +10,14 @@ final class ReadingRoom
     private $readingRoomSettings;
     
     public function __construct(
-        string $settingsKey,
-        RepositoryInterface $readingRoomSettingsRepository
+        ApplicationContextInterface $applicationContext
     ) {
-        $readingRoomSettings          = $readingRoomSettingsRepository->findOneBy( ['settingsKey' => $settingsKey] );
+        $readingRoomSettings    = $applicationContext->getApplication()->getReadingRoomApplication();
         if ( ! $readingRoomSettings ) {
-            throw new ReadingRoomSettingsException( 'Reading Room Settings Key: "' . $settingsKey . '" Not Found !!!' );
+            throw new ReadingRoomSettingsException( 'Reading Room Settings IS NOT Configured for this Application !!!"' );
         }
         
-        $this->readingRoomSettings  = $readingRoomSettings;
+        $this->readingRoomSettings    = $readingRoomSettings->getSettings();
     }
     
     public function settings(): ReadingRoomSettings

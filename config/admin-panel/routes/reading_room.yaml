@@ -1,3 +1,11 @@
+vs_reading_room_applications:
+    resource: |
+        alias: vs_reading_room.reading_room_application
+        except: ['show', 'delete']
+        path: /reading-room/reading-room-applications
+        templates: "admin-panel/Pages/ReadingRoomApplications"
+    type: sylius.resource
+
 vs_reading_room_settings:
     resource: |
         alias: vs_reading_room.reading_room_settings
@@ -5,5 +13,52 @@ vs_reading_room_settings:
         path: /reading-room/reading-room-settings
         templates: "admin-panel/Pages/ReadingRoomSettings"
     type: sylius.resource
+    options:
+        expose: true
+
+vs_reading_room_book_genre:
+    resource: |
+        alias: vs_reading_room.book_genre
+        except: ['show']
+        path: /reading-room/book-genres
+        templates: "admin-panel/Pages/BookGenres"
+    type: sylius.resource
+        
+vs_reading_room_book_author:
+    resource: |
+        alias: vs_reading_room.book_author
+        except: ['show']
+        path: /reading-room/authors
+        templates: "admin-panel/Pages/BookAuthors"
+        form:
+            options:
+                ckeditor_uiColor: '%vs_users_subscriptions.form.payed_service.ckeditor_uiColor%'
+                ckeditor_toolbar: '%vs_users_subscriptions.form.payed_service.ckeditor_toolbar%'
+                ckeditor_extraPlugins: '%vs_users_subscriptions.form.payed_service.ckeditor_extraPlugins%'
+                ckeditor_removeButtons: '%vs_users_subscriptions.form.payed_service.ckeditor_removeButtons%'
+                ckeditor_allowedContent: '%vs_users_subscriptions.form.payed_service.ckeditor_allowedContent%'
+                ckeditor_extraAllowedContent: '%vs_users_subscriptions.form.payed_service.ckeditor_extraAllowedContent%'
+    type: sylius.resource
+    options:
+        expose: true
+
+vs_reading_room_book_author_index:
+    path: /reading-room/authors/
+    methods: [GET]
+    defaults:
+        _controller: vs_reading_room.controller.book_author::indexAction
+        _sylius:
+            paginate: 10
+            sortable: true
+            sorting:
+                updatedAt: desc
+            filterable: true
+            template: "admin-panel/Pages/BookAuthors/index.html.twig"
+    options:
+        expose: true
+        
+vs_reading_room_authors_form_in_locale:
+    path: /author-actions/get-form/{locale}/{itemId}
+    controller: App\Controller\AdminPanel\AuthorExtController::getForm
     options:
         expose: true

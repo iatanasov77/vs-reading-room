@@ -1,0 +1,52 @@
+{% extends "@VSApplication/layout.html.twig" %}
+
+{% if( item.id ) %}
+	{% set pageTitle = 'vs_payment.template.product_update_title' | trans( {},'VSPaymentBundle' ) %}
+{% else %}
+	{% set pageTitle = 'vs_payment.template.product_create_title' | trans( {},'VSPaymentBundle' ) %}
+{% endif %}
+
+{% block title %}{{ parent() }} :: {{ pageTitle}}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {% if(item.id) %}{{ pageTitle}}: {{ item.name }}{% else %}{{ pageTitle}}{% endif %}{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <nav>
+                <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-product-details-tab" data-bs-toggle="tab" data-bs-target="#nav-product-details" href="#nav-product-details" role="tab" aria-controls="nav-product-details" aria-selected="true">
+                        {{ 'vs_catalog.template.details' | trans( {},'VSCatalogBundle' ) }}
+                    </a>
+                {% if item.id %}
+                    <a class="nav-item nav-link" id="nav-product-associations-tab" data-bs-toggle="tab" data-bs-target="#nav-product-associations" href="#nav-product-associations" role="tab" aria-controls="nav-product-associations" aria-selected="false">
+                        {{ 'vs_catalog.template.associations' | trans( {},'VSCatalogBundle' ) }}
+                    </a>
+                {% endif %}
+                </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="nav-product-details" role="tabpanel" aria-labelledby="nav-product-details-tab">
+                    {% include '@VSCatalog/Pages/Products/partial/product_form.html.twig' %}
+		        </div>
+		    {% if item.id %}
+		        <div class="tab-pane fade" id="nav-product-associations" role="tabpanel" aria-labelledby="nav-product-associations-tab">
+                    {% include '@VSCatalog/Pages/Products/partial/product_associations_form.html.twig' %}
+		        </div>
+		    {% endif %}
+		    </div>
+		</div>
+    </div>
+{% endblock content %}
+
+{% block head_styles %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/products-edit', null, 'CustomEntries' ) }}
+{% endblock %}
+
+{% block body_scripts %}
+    {{ parent() }}
+   
+    {{ encore_entry_script_tags( 'js/products-edit', null, 'CustomEntries' ) }}
+{% endblock %}
+

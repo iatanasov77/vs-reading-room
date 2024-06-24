@@ -3,8 +3,23 @@ services:
         autowire: true
         autoconfigure: true
         
+    Vankosoft\CatalogBundle\Controller\ProductController:
+        autowire: false
+        public: true
+        
+    App\Controller\AdminPanel\BooksController:
+        autowire: false
+        public: true
+    
     App\Controller\AdminPanel\DefaultController:
         tags: ['controller.service_arguments']
 
     App\Controller\Application\DebugController:
         tags: ['controller.service_arguments']
+        
+    App\Controller\AdminPanel\AuthorExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@doctrine'
+            - '@vs_reading_room.repository.book_author'

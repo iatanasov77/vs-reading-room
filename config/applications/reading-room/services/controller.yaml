@@ -110,6 +110,7 @@ services:
             - '@doctrine'
             - '@vs_catalog.repository.product_category'
             - '@vs_catalog.repository.product'
+            - '@vs_reading_room.repository.book_genre'
             - '%vs_catalog.latest_products_limit%'
     
     App\Controller\ReadingRoom\CreditCardController:
@@ -159,6 +160,7 @@ services:
             - '@vs_catalog.repository.product'
             - '%vs_catalog.latest_products_limit%'
             - '@doctrine'
+            - '@vs_reading_room.repository.book_genre'
         calls:
             - [ setContainer, [ '@service_container' ] ]
             

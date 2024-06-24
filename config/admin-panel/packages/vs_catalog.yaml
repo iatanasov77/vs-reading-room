@@ -3,6 +3,8 @@ vs_catalog:
         product:
             classes:
                 model: App\Entity\Catalog\Product
+                controller: App\Controller\AdminPanel\BooksController
+                form: App\Form\BookForm
         product_picture:
             classes:
                 model: App\Entity\Catalog\ProductPicture
@@ -27,8 +29,5 @@ vs_catalog:
         product_association:
             classes:
                 model: App\Entity\Catalog\ProductAssociation
-#         service_association:
-#             classes:
-#                 model: App\Entity\Catalog\ServiceAssociation
 
 

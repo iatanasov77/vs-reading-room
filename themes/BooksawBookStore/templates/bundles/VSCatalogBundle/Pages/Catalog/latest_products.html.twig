@@ -19,13 +19,13 @@
                         >
                             {{ 'reading_room.template.all_genre' | trans( {},'ReadingRoom' ) }}
                         </li>
-                        {% for cat in categories %}
-                            {% if cat.products | length %}
+                        {% for genre in genres %}
+                            {% if genre.books | length %}
                                 <li class="tab btnCategory"
-                                    id="cat-{{ cat.code }}"
-                                    data-url="{{ path( 'vs_catalog_catalog_category_products', {'categorySlug': cat.code} ) }}"
+                                    id="cat-{{ genre.code }}"
+                                    data-url="{{ path( 'vs_catalog_catalog_category_products', {'categorySlug': genre.code} ) }}"
                                 >
-                                    {{ cat.name }}
+                                    {{ genre.name }}
                                 </li>
                             {% endif %}
                         {% endfor %}

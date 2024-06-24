@@ -3,6 +3,8 @@
 
     <head>
         <title>{% block title %}{{ applicationTitle }}{% endblock %}</title>
+        <link rel="shortcut icon" type="image/png" href="{{ asset( '/build/booksaw-book-store/images/client-image5.png' ) }}" />
+        
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +13,7 @@
         <meta name="author" content="">
         <meta name="keywords" content="">
         <meta name="description" content="">
-    
+        
         {% block stylesheets %}
             {{ encore_entry_link_tags( 'css/app', null, 'BooksawBookStore' ) }}
             {{ encore_entry_link_tags( 'js/app', null, 'BooksawBookStore' ) }}

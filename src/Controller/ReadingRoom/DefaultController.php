@@ -27,6 +27,9 @@ class DefaultController extends AbstractController
     
     /** @var RepositoryInterface */
     private $productRepository;
+    
+    /** @var RepositoryInterface */
+    private $genresRepository;
 	
 	/** @var int */
     private $latestProductsLimit;
@@ -37,6 +40,7 @@ class DefaultController extends AbstractController
         ManagerRegistry $doctrine,
         RepositoryInterface $categoryRepository,
         RepositoryInterface $productRepository,
+        RepositoryInterface $genresRepository,
         int $latestProductsLimit = 6
     ) {
         $this->applicationContext   = $applicationContext;
@@ -45,6 +49,7 @@ class DefaultController extends AbstractController
         $this->doctrine             = $doctrine;
         $this->categoryRepository   = $categoryRepository;
         $this->productRepository    = $productRepository;
+        $this->genresRepository     = $genresRepository;
 		
 		$this->latestProductsLimit  = $latestProductsLimit;
     }
@@ -59,6 +64,7 @@ class DefaultController extends AbstractController
             'categories'        => $this->categoryRepository->findAll(),
             'featuredProducts'  => $featuredProducts,
             'latestProducts'    => $latestProducts,
+            'genres'            => $this->genresRepository->findAll(),
         ] ) );
     }
     
