@@ -27,6 +27,13 @@ reading_room:
             data: Author Data
             genres: Author Genres
             genres_placeholder: '-- Select Author Genres --'
+            
+        product:
+            custom-data: Custom Data
+            genres: Book Genres
+            genres_placeholder: '-- Select Book Genres --'
+            authors: Book Authors
+            authors_placeholder: '-- Select Book Authors --'
         
     template:
         admin_menu_title: Reading Room

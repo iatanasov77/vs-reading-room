@@ -48,26 +48,37 @@ class BookForm extends ProductForm
 //         $builder->remove( 'price' );
 //         $builder->remove( 'currency' );
 
+        $entity = $builder->getData();
         $builder
+            ->add( 'bookAuthors', HiddenType::class, [
+                'mapped'    => false,
+                'data'      => \json_encode( $entity->getAuthors()->getKeys() )
+            ])
+            
+            ->add( 'bookGenres', HiddenType::class, [
+                'mapped'    => false,
+                'data'      => \json_encode( $entity->getGenres()->getKeys() )
+            ])
+            
             ->add( 'genres', EntityType::class, [
-                'label'                 => 'vs_vvp.form.actor.genres',
-                'translation_domain'    => 'VanzVideoPlayer',
+                'label'                 => 'reading_room.form.product.genres',
+                'translation_domain'    => 'ReadingRoom',
                 'multiple'              => true,    // Multiple Can be Changed in Template
                 'required'              => false,
                 //'mapped'                => false,
-                'placeholder'           => 'vs_vvp.form.actor.genres_placeholder',
+                'placeholder'           => 'reading_room.form.product.genres_placeholder',
                 
                 'class'                 => $this->bookGenreClass,
                 'choice_label'          => 'name'
             ])
             
             ->add( 'authors', EntityType::class, [
-                'label'                 => 'vs_vvp.form.book.authors',
-                'translation_domain'    => 'VanzVideoPlayer',
+                'label'                 => 'reading_room.form.product.authors',
+                'translation_domain'    => 'ReadingRoom',
                 'multiple'              => true,    // Multiple Can be Changed in Template
                 'required'              => false,
                 //'mapped'                => false,
-                'placeholder'           => 'vs_vvp.form.book.authors_placeholder',
+                'placeholder'           => 'reading_room.form.product.authors_placeholder',
                 
                 'class'                 => $this->bookAuthorClass,
                 'choice_label'          => 'name'

@@ -20,11 +20,13 @@
             {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'action': action, 'method': method }) }}
                 {{ form_widget( form.tagsInputWhitelist, { 'value' : productTags | join(',') } ) }}
                 {{ form_widget( form.productCategories ) }}
+                {{ form_widget( form.bookAuthors ) }}
+                {{ form_widget( form.bookGenres ) }}
             
                 <label class="custom-control custom-checkbox">  
-                    <input type="checkbox" id="product_form_enabled"
+                    <input type="checkbox" id="book_form_enabled"
                         class="custom-control-input form-check-input"
-                        name="product_form[enabled]"
+                        name="book_form[enabled]"
                         value="{{ item.enabled }}"
                         {% if item.enabled %}checked="checked"{% endif %}
                     />
@@ -81,7 +83,7 @@
                     </div>
                 </fieldset>
                 
-                <fieldset class="border border-dark rounded p-3 fieldset-product-files">
+                <fieldset class="border border-dark rounded p-3 fieldset-product-files mb-3">
                     <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.files' | trans( {},'VSCatalogBundle' ) }}</legend>
                     
                     <div class="attributesContainer"
@@ -91,6 +93,29 @@
                             {% include '@VSCatalog/Pages/Products/partial/add-file-prototype.html.twig' with {'form': fileForm} %}
                         {% endfor %}
                     </div>
+                </fieldset>
+                
+                <fieldset class="border border-dark rounded p-3 fieldset-custom-data">
+                    <legend class="w-auto float-none ps-2 pe-2">{{ 'reading_room.form.product.custom-data' | trans( {},'ReadingRoom' ) }}</legend>
+                    
+                    <div class="form-group">
+                        {{ form_label(form.genres, null, {
+                            'label_attr': {'class': 'col-form-label'}
+                            }) 
+                        }}
+                        
+                        {{ form_widget(form.genres, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
+                    <div class="form-group">
+                        {{ form_label(form.authors, null, {
+                            'label_attr': {'class': 'col-form-label'}
+                            }) 
+                        }}
+                        
+                        {{ form_widget(form.authors, {'attr': {'class': 'form-control'}}) }}
+                    </div>
+                    
                 </fieldset>
             
                 <div class="row">&nbsp;</div>
