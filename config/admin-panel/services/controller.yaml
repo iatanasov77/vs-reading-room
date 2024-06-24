@@ -3,6 +3,14 @@ services:
         autowire: true
         autoconfigure: true
         
+    Vankosoft\CatalogBundle\Controller\ProductController:
+        autowire: false
+        public: true
+        
+    App\Controller\AdminPanel\BooksController:
+        autowire: false
+        public: true
+    
     App\Controller\AdminPanel\DefaultController:
         tags: ['controller.service_arguments']
 

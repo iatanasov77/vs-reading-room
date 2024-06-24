@@ -60,9 +60,12 @@ services:
             - '../../src/Entity/'
             - '../../src/Form/'
             - '../../src/Tests/'
-            - '../../src/Controller/'
+            - '../../src/Controller/AdminPanel/'
+            - '../../src/Controller/Application/'
+            - '../../src/Controller/ReadingRoom/'
             - '../../src/Widgets/'
             - '../../src/AdminPanelKernel.php'
+            - '../../vendor/vankosoft/catalog-bundle/lib/Controller/ProductController.php'
         autowire: true
     
     # add more service definitions when explicit configuration is needed
