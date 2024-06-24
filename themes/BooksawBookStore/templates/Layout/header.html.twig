@@ -4,8 +4,11 @@
 
             <div class="col-md-2">
                 <div class="main-logo">
-                    <a href="{{ path( 'app_home' ) }}">
+                    <a href="{{ path( 'app_home' ) }}" class="layout-link">
+                        {#
                         <img src="{{ asset('/build/booksaw-book-store/images/main-logo.png') }}" alt="logo">
+                        #}
+                        <span class="header-title">{{ applicationTitle }}</span>
                     </a>
                 </div>
             </div>

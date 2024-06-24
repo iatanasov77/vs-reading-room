@@ -123,8 +123,10 @@
                     <div class="row">
 
                         <div class="col-md-6">
-                            <p>© 2022 All rights reserved. Free HTML Template by <a
-                                    href="https://www.templatesjungle.com/" target="_blank">TemplatesJungle</a></p>
+                            <p>
+                                &copy; 2024{% if "now" | date( "U" ) > '2024-12-31'|date('U') %} - {{ "now" | date( "Y" ) }}{% endif %} 
+                                <a href="http://vankosoft.org/" target="_blank" class="layout-link">VankoSoft</a>
+                            </p>
                         </div>
 
                         <div class="col-md-6">

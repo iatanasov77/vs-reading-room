@@ -8,7 +8,7 @@
                 {% for product in productsRow %}
                     
                     {% if product.pictures.first %}
-                        {% set productPicture = path( 'vs_cms_images_filesystem_get_file', { file: picturesPath ~ '/' ~ product.pictures.first.path } ) %}
+                        {% set productPicture = product.pictures.first.path | imagine_filter( 'index_page_thumbnail' ) %}
                     {% else %}
                         {% set productPicture = '/build/bootstrap-shop-theme/images/products/6.jpg' %}
                     {% endif %}
@@ -26,8 +26,17 @@
                                 </figure>
                                 <figcaption>
                                     <h3>{{ product.name }}</h3>
-                                    <span>Adam Silber</span>
-                                    <div class="item-price">$ 40.00</div>
+                                    <span>
+                                        {% for author in product.authors %}
+                                            {{ author.name }}{% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </span><br />
+                                    <span>
+                                        {% for genre in product.genres %}
+                                            {{ genre.name }}{% if not loop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </span>
+                                    <div class="item-price">{{ product.price }} {{ product.currencyCode | vs_currency_symbol }}</div>
                                 </figcaption>
                             </a>
                         </div>

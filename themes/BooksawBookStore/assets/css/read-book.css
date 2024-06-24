@@ -40,3 +40,14 @@
     }
 }
 
+.layout-link {
+    color: #000000 !important;
+}
+
+.header-title {
+    font-size: 3em;
+    font-weight: 500;
+    line-height: 1;
+    position: relative;
+    white-space: nowrap !important;
+}

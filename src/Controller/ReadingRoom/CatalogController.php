@@ -15,15 +15,20 @@ class CatalogController extends BaseCatalogController
     /** @var ManagerRegistry **/
     private $doctrine;
     
+    /** @var RepositoryInterface */
+    private $genresRepository;
+    
     public function __construct(
         RepositoryInterface $productCategoryRepository,
         RepositoryInterface $productRepository,
         int $latestProductsLimit,
-        ManagerRegistry $doctrine
+        ManagerRegistry $doctrine,
+        RepositoryInterface $genresRepository
     ) {
         parent::__construct( $productCategoryRepository, $productRepository, $latestProductsLimit );
         
-        $this->doctrine	= $doctrine;
+        $this->doctrine	        = $doctrine;
+        $this->genresRepository = $genresRepository;
     }
     
     public function latestProductsAction( Request $request ): Response
@@ -49,13 +54,14 @@ class CatalogController extends BaseCatalogController
             'products'      => $resources,
             'shoppingCart'  => $this->getShoppingCart( $request ),
             'categories'    => $categories,
+            'genres'        => $this->genresRepository->findAll(),
         ]);
     }
     
     public function categoryProductsAction( $categorySlug, Request $request ): Response
     {
-        $category   = $this->productCategoryRepository->findByTaxonCode( $categorySlug );
-        $products   = $category->getProducts()->getValues();
+        $genre      = $this->genresRepository->findByTaxonCode( $categorySlug );
+        $products   = $genre->getBooks()->getValues();
         
         $resources  = new Pagerfanta( new ArrayAdapter( $products ) );
         //$resources->setMaxPerPage( 2 );
