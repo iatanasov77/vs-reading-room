@@ -11,6 +11,11 @@ knp_gaufrette:
         vs_application_app_pictures:
             local:
                 directory: "%vs_application.filemanager_shared_media_gaufrette.app_pictures%"
+        vs_application_slider:
+            local:
+                directory: "%vs_cms.filemanager_shared_media_gaufrette.slider%"
+                create: true
+        
     filesystems:
         vs_application_profile:
             adapter: "%vs_cms.gaufrette.profile.filesystem%"
@@ -18,3 +23,5 @@ knp_gaufrette:
             adapter: "%vs_cms.gaufrette.filemanager.filesystem%"
         vs_application_app_pictures:
             adapter: "%vs_application.gaufrette.app_pictures.filesystem%"
+        vs_application_slider:
+            adapter: "%vs_cms.gaufrette.slider.filesystem%"

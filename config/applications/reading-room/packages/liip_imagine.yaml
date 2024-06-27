@@ -46,3 +46,9 @@ liip_imagine:
             filters:
                 thumbnail: { size: [145, 224], mode: outbound }
                 background: { size: [149, 228], position: center, color: '#000000' }
+                
+        home_page_slider:
+            quality: 75
+            filters:
+                thumbnail: { size: [395, 572], mode: outbound }
+                background: { size: [399, 576], position: center, color: '#000000' }

@@ -108,6 +108,8 @@ services:
             - '@vs_application.context.application'
             - '@twig'
             - '@doctrine'
+            - '@vs_cms.repository.slider'
+            - '%vs_cms.filemanager_shared_media_gaufrette.slider%'
             - '@vs_catalog.repository.product_category'
             - '@vs_catalog.repository.product'
             - '@vs_reading_room.repository.book_genre'
