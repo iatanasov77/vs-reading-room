@@ -1,6 +1,6 @@
 vs_application:
     template:
-        vankosoft_application: Reading Room
+        vankosoft_application: VankSoft Reading Room
         super_admin_panel: Admin Panel
         
     menu:

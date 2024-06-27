@@ -1,6 +1,6 @@
 vs_application:
     template:
-        vankosoft_application: Читалня
+        vankosoft_application: ВанкоСофт Читалня
         super_admin_panel: Админ Апанел
         
     menu:

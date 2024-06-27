@@ -36,6 +36,7 @@ reading_room:
             authors_placeholder: '-- Select Book Authors --'
         
     template:
+        application_title: Reading Room
         admin_menu_title: Reading Room
         catalog_books: Catalog Books
         all_genre: All Genre

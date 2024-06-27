@@ -12,7 +12,7 @@ parameters:
     locale: 'en_US'
 
     vankosoft_host: '%env(HOST)%'
-    applicationTitle: 'Reading Room'
+    applicationTitle: 'reading_room.template.application_title'
     
     vs_application.version: !php/const App\ReadingRoomKernel::VERSION
     vs_application.public_dir: "%kernel.project_dir%/public/reading-room"
