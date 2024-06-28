@@ -38,6 +38,10 @@ reading_room:
     template:
         application_title: Читалня
         admin_menu_title: Reading Room
+        contact_us: Contact us
+        get_in_touch: Get in Touch
+        get_in_touch_description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
+        send_a_message: Send A Message
         catalog_books: Catalog Books
         all_genre: All Genre
         read_book: Read Book
