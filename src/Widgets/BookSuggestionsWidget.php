@@ -6,6 +6,7 @@ use Vankosoft\ApplicationBundle\EventListener\Event\WidgetEvent;
 
 use Symfony\Component\HttpFoundation\RequestStack;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Vankosoft\CatalogBundle\Component\AssociationStrategy;
 use App\Component\ReadingRoom;
 
@@ -43,7 +44,7 @@ class BookSuggestionsWidget implements WidgetLoaderInterface
     {
         $request    = $this->requestStack->getMainRequest();
         //$request    = $this->requestStack->getCurrentRequest();
-        $bookSlug   = $request->attributes->get( 'slug' );
+        $bookSlug   = $request->attributes->get( 'productSlug' );
         
         /** @var Widget */
         $widgetContainer    = $event->getWidgetContainer();
@@ -66,11 +67,14 @@ class BookSuggestionsWidget implements WidgetLoaderInterface
     private function getBookSuggestions( $bookSlug )
     {
         $book                   = $this->booksRepository->findOneBy( ['slug' => $bookSlug] );
-        $suggestionsStrategy    = $this->readingRoom->getSuggestionsStrategy();
+        $suggestionsStrategy    = $this->readingRoom->getSuggestionsStrategy()->getAssociationStrategy();
         
         switch ( $suggestionsStrategy ) {
             case AssociationStrategy::STRATEGY_SIMILAR:
-                
+                $bookSuggestions    = new ArrayCollection();
+                foreach ( $book->getGenres() as $genre ) {
+                    $bookSuggestions = new ArrayCollection( $bookSuggestions->toArray() + $genre->getBooks()->toArray() ); 
+                }
                 break;
             case AssociationStrategy::STRATEGY_RANDOM:
             default:
