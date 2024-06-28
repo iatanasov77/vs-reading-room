@@ -47,6 +47,8 @@ parameters:
     vs_cms.filemanager_shared_media_artgris: '%kernel.project_dir%/public/shared_media/artgris'
     vs_cms.filemanager_shared_media_gaufrette.slider: "%kernel.project_dir%/public/shared_media/gaufrette/slider"
 
+    vs_application_slider_photo_description: '395 x 572'
+    
     vs_application.taxon_repository_throw_exception: false
     
 services:

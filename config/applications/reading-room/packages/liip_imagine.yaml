@@ -13,6 +13,7 @@ liip_imagine:
                     - "%kernel.project_dir%/public/shared_media/gaufrette/filemanager"
                     - "%kernel.project_dir%/public/shared_media/artgris"
                     - '%kernel.project_dir%/public/shared_media/gaufrette/app_pictures'
+                    - '%kernel.project_dir%/public/shared_media/gaufrette/slider'
 
     resolvers:
         default:

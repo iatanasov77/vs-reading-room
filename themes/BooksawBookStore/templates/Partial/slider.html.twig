@@ -11,7 +11,17 @@
                 
                     {% for item in sliderItems %}
                         <div class="slider-item">
-                            {{ item.description | raw }}
+                            <div class="banner-content">
+                                <h2 class="banner-title">{{ item.title }}</h2>
+                                {{ item.description | raw }}
+                                
+                                <div class="btn-wrap">
+                                    <a href="{{ item.url }}" class="btn btn-outline-accent btn-accent-arrow">Read More
+                                        <i class="icon icon-ns-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div><!--banner-content-->
+                            <img src="{{ item.photo.path | imagine_filter( 'home_page_slider' ) }}" alt="banner" class="banner-image">
                         </div><!--slider-item-->
                     {% endfor %}
                     
