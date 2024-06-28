@@ -19,3 +19,11 @@ services:
             - '@vs_catalog.repository.product_category'
         tags:
             - { name: kernel.event_listener, event: widget.start, method: builder }
+            
+    App\Widgets\BookSuggestionsWidget:
+        arguments:
+            - '@request_stack'
+            - '@vs_catalog.repository.product'
+            - '@app_reading_room'
+        tags:
+            - { name: kernel.event_listener, event: widget.start, method: builder }

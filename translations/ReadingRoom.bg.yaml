@@ -15,8 +15,9 @@ reading_room:
             view_bookmark: Show/hide bookmark button.
             download: Show/hide download button.
             print: Show/hide print button.
-            
             settings_key_help: Used to load different Settings in Different Application Environements.
+            book_suggestions_strategy: Book Suggestions Strategy
+            book_suggestions_strategy_placeholder: '-- Select Book Suggestions Strategy --'
             
         author:
             name: Author Name

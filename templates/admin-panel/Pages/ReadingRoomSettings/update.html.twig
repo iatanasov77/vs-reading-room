@@ -43,6 +43,15 @@
                             <p>{{ 'reading_room.form.reading_room_settings.settings_key_help'  | trans( {},'ReadingRoom' ) }}</p>
                         </div>
                         
+                        <div class="form-group">
+                            {{ form_label(form.bookSuggestionsAssociationType, null, {
+                                'label_attr': {'class': 'col-form-label'}
+                                }) 
+                            }}
+                            
+                            {{ form_widget(form.bookSuggestionsAssociationType, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        
                     </div>
                         
                 	<h5 class="card-header sub-header">{{ 'reading_room.form.reading_room_settings.ng2_pdfjs_viewer_settings'  | trans( {},'ReadingRoom' ) }}</h5>

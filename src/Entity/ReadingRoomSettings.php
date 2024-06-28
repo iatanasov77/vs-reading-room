@@ -2,6 +2,7 @@
 
 use Doctrine\ORM\Mapping as ORM;
 use Sylius\Component\Resource\Model\ResourceInterface;
+use App\Entity\Catalog\AssociationType;
 
 #[ORM\Entity]
 #[ORM\Table(name: "VRR_ReadingRoomSettings")]
@@ -14,6 +15,11 @@ class ReadingRoomSettings implements ResourceInterface
     /** @var ReadingRoomApplication */
     #[ORM\OneToMany(targetEntity: "ReadingRoomApplication", mappedBy: "settings")]
     private $readingRoomApplication;
+    
+    /** @var AssociationType */
+    #[ORM\ManyToOne(targetEntity: AssociationType::class)]
+    #[ORM\JoinColumn(name: "book_suggestions_association_type_id", referencedColumnName: "id", nullable: true)]
+    private $bookSuggestionsAssociationType;
     
     /** @var string */
     #[ORM\Column(name: "settings_key", type: "string", length: 32)]
@@ -48,6 +54,18 @@ class ReadingRoomSettings implements ResourceInterface
     public function setReadingRoomApplication($readingRoomApplication)
     {
         $this->readingRoomApplication  = $readingRoomApplication;
+        
+        return $this;
+    }
+    
+    public function getBookSuggestionsAssociationType()
+    {
+        return $this->bookSuggestionsAssociationType;
+    }
+    
+    public function setBookSuggestionsAssociationType($bookSuggestionsAssociationType)
+    {
+        $this->bookSuggestionsAssociationType  = $bookSuggestionsAssociationType;
         
         return $this;
     }
