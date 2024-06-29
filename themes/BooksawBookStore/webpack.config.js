@@ -54,12 +54,11 @@ Encore
         from: './themes/BooksawBookStore/assets/vendor/booksaw-book-store-html-template/images',
         to: 'images/[path][name].[ext]',
     })
-    /*
+    
     .copyFiles({
-        from: './themes/BootstrapShopTheme/assets/images',
+        from: './themes/BooksawBookStore/assets/images',
         to: 'images/[path][name].[ext]',
     })
-    */
     
     /**
      * Add Entries
