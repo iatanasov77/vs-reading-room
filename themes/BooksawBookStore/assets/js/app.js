@@ -2,7 +2,8 @@ const $ = require( 'jquery' );
 global.$ = $;
 window.$ = $;
 
-require( 'bootstrap' );
+const bootstrap = require( 'bootstrap' );
+window.bootstrap = bootstrap;
 
 require( './includes/vs_cookieconsent.js' );
 

@@ -48,24 +48,21 @@
     {% include '@VSCatalog/Pages/Catalog/partial/discover_section.html.twig' %}
     #}
     
-    <section id="related-products" class="bookshelf pb-5 mb-5">
-        <div class="container">
-            <div class="section-header align-center">
-                <div class="title">
-                    <span>Related Products</span>
-                </div>
-                <h2 class="section-title">You may also like</h2>
-            </div>
-        </div>
+    {{ vs_widget_render( 'books-discover-section', ['book-suggestions'] ) }}
+    
+{% endblock %}
 
-        <div class="container">
-            <div class="row">
-                <div class="inner-content">
-                    <div class="product-list" data-aos="fade-up">
-                        {{ vs_widget_render( 'books-discover-section', ['book-suggestions'] ) }}
-                    </div>
-                </div><!--inner-content-->
-            </div>
-        </div>
-    </section>
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/show-book', null, 'BooksawBookStore' ) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    <<script type="text/javascript">
+        var productSlug = '{{ app.request.get( 'productSlug' ) }}';
+    </script>
+    {{ encore_entry_script_tags( 'js/show-book', null, 'BooksawBookStore'  ) }}
 {% endblock %}

@@ -1,30 +1,20 @@
-<div class="grid product-grid">
-
-    {% for suggest in widget.params.bookSuggestions %}
-        {% if suggest.getPicture( 'product_thumbnail' ) %}
-            {% set bookThumbnail = suggest.getPicture( 'product_thumbnail' ) %}
-        {% endif %}
-    
-        <div class="product-item">
-            <figure class="product-style">
-                <img src="{{ bookThumbnail.path | imagine_filter( 'index_page_thumbnail' ) }}" alt="Books" class="product-item">
-                {#
-                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
-                    Add to Cart
-                </button>
-                #}
-            </figure>
-            
-            <figcaption>
-                <h3>{{ suggest.name }}</h3>
-                <span>Armor Ramsey</span>
-                {#
-                <div class="item-price">
-                    <span class="prev-price">$ 50.00</span>$ 40.00
-                </div>
-                #}
-            </figcaption>
+<section id="related-products" class="bookshelf pb-5 mb-5">
+    <div class="container">
+        <div class="section-header align-center">
+            <div class="title">
+                <span>{{ 'reading_room.template.related_products' | trans( {},'ReadingRoom' ) }}</span>
+            </div>
+            <h2 class="section-title">{{ 'reading_room.template.you_may_also_like' | trans( {},'ReadingRoom' ) }}</h2>
         </div>
-    {% endfor %}
-    
-</div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="inner-content">
+                <div class="product-list">
+                    <div class="grid product-grid" id="bookSuggestionsContainer"></div>
+                </div>
+            </div><!--inner-content-->
+        </div>
+    </div>
+</section>

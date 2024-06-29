@@ -8,4 +8,8 @@ app_reading_room_read:
     path: /read-book-{id}
     controller: App\Controller\ReadingRoom\ReadBookController::read
 
-
+app_reading_room_book_suggestions:
+    path: /widgets-callbacks/book-suggestions/{productSlug}
+    controller: App\Controller\ReadingRoom\WidgetsCallbacksController::getBookSuggestionsAction
+    options:
+        expose: true
