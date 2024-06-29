@@ -1,3 +1,20 @@
+1.2.0	|	Release date: **29.06.2024**
+============================================
+* New Features:
+  - Override Some Application Bundle Translations.
+  - Translate Application Title
+  - Create Home Page Slider.
+  - Improve Home Page Slider.
+  - Improve Book Show Page.
+  - Add Widget for Book Sugestions.
+  - Create Book Suggestions Callback Loader.
+  - Create Language Switch Widget.
+* Bug-Fixes:
+  - Some Fix.
+  - Fix a Doctrine Migration.
+  - Fix Contact Form.
+
+
 1.1.0	|	Release date: **24.06.2024**
 ============================================
 * New Features and Improvements:
