@@ -6,8 +6,10 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use App\Entity\ReadingRoomSettings;
+use App\Entity\Catalog\AssociationType;
 
 class ReadingRoomSettingsForm extends AbstractForm
 {
@@ -19,6 +21,15 @@ class ReadingRoomSettingsForm extends AbstractForm
             ->add( 'settingsKey', TextType::class, [
                 'label'                 => 'reading_room.form.reading_room_settings.settings_key',
                 'translation_domain'    => 'ReadingRoom',
+            ])
+            
+            ->add( 'bookSuggestionsAssociationType', EntityType::class, [
+                'required'              => false,
+                'label'                 => 'reading_room.form.reading_room_settings.book_suggestions_strategy',
+                'translation_domain'    => 'ReadingRoom',
+                'class'                 => AssociationType::class,
+                'choice_label'          => 'name',
+                'placeholder'           => 'reading_room.form.reading_room_settings.book_suggestions_strategy_placeholder'
             ])
             
             ->add( 'openFile', CheckboxType::class, [

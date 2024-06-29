@@ -12,16 +12,21 @@ final class ReadingRoom
     public function __construct(
         ApplicationContextInterface $applicationContext
     ) {
-        $readingRoomSettings    = $applicationContext->getApplication()->getReadingRoomApplication();
-        if ( ! $readingRoomSettings ) {
+        $readingRoomApplication     = $applicationContext->getApplication()->getReadingRoomApplication();
+        if ( ! $readingRoomApplication ) {
             throw new ReadingRoomSettingsException( 'Reading Room Settings IS NOT Configured for this Application !!!"' );
         }
         
-        $this->readingRoomSettings    = $readingRoomSettings->getSettings();
+        $this->readingRoomSettings  = $readingRoomApplication->getSettings();
     }
     
     public function settings(): ReadingRoomSettings
     {
         return $this->readingRoomSettings;
+    }
+    
+    public function getSuggestionsStrategy()
+    {
+        return $this->readingRoomSettings->getBookSuggestionsAssociationType();
     }
 }

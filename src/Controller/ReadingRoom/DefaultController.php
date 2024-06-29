@@ -3,6 +3,7 @@
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Twig\Environment;
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -23,6 +24,9 @@ class DefaultController extends AbstractController
     private $doctrine;
     
     /** @var RepositoryInterface */
+    private $sliderRepository;
+    
+    /** @var RepositoryInterface */
     private $categoryRepository;
     
     /** @var RepositoryInterface */
@@ -38,6 +42,8 @@ class DefaultController extends AbstractController
         ApplicationContextInterface $applicationContext,
         Environment $templatingEngine,
         ManagerRegistry $doctrine,
+        RepositoryInterface $sliderRepository,
+        string $sliderPhotosDir,
         RepositoryInterface $categoryRepository,
         RepositoryInterface $productRepository,
         RepositoryInterface $genresRepository,
@@ -47,6 +53,9 @@ class DefaultController extends AbstractController
         $this->templatingEngine     = $templatingEngine;
 
         $this->doctrine             = $doctrine;
+        $this->sliderRepository     = $sliderRepository;
+        $this->sliderPhotosDir      = $sliderPhotosDir;
+        
         $this->categoryRepository   = $categoryRepository;
         $this->productRepository    = $productRepository;
         $this->genresRepository     = $genresRepository;
@@ -59,7 +68,14 @@ class DefaultController extends AbstractController
 		$featuredProducts   = $this->productRepository->getFeaturedProducts();
         $latestProducts     = $this->productRepository->findBy( [], ['updatedAt' => 'DESC'], $this->latestProductsLimit );
 		
+        $homePageSlider         = $this->sliderRepository->findBySlug( 'home-page-slider' );
+        if ( ! $homePageSlider ) {
+            throw new NotFoundHttpException( 'Home Page Slider Not Found !!!' );
+        }
+        
         return new Response( $this->templatingEngine->render( $this->getTemplate(), [
+            'sliderItems'           => $homePageSlider->getPublicItems(),
+            'sliderPhotosDir'       => $this->sliderPhotosDir,
             'shoppingCart'      => $this->getShoppingCart( $request ),
             'categories'        => $this->categoryRepository->findAll(),
             'featuredProducts'  => $featuredProducts,

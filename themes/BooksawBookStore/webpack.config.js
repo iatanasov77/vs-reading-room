@@ -54,12 +54,11 @@ Encore
         from: './themes/BooksawBookStore/assets/vendor/booksaw-book-store-html-template/images',
         to: 'images/[path][name].[ext]',
     })
-    /*
+    
     .copyFiles({
-        from: './themes/BootstrapShopTheme/assets/images',
+        from: './themes/BooksawBookStore/assets/images',
         to: 'images/[path][name].[ext]',
     })
-    */
     
     /**
      * Add Entries
@@ -68,6 +67,7 @@ Encore
     .addEntry( 'js/app', './themes/BooksawBookStore/assets/js/app.js' )
     
     .addEntry( 'js/catalog', './themes/BooksawBookStore/assets/js/pages/catalog.js' )
+    .addEntry( 'js/show-book', './themes/BooksawBookStore/assets/js/pages/show-book.js' )
     
     //.addEntry( 'js/read-book', './themes/BooksawBookStore/assets/js/pages/read-book.js' )
     .addEntry( 'js/read-book', './themes/BooksawBookStore/assets/js/PdfViewer/index.js' )

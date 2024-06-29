@@ -24,56 +24,19 @@
 
                 <div class="col-md-7 pl-5">
                     <div class="product-detail">
-                        <span>{{ product.categories.first.name }}</span>
                         <h1>{{ product.name }}</h1>
                         
-                    {% if 'product_content' in product.files | keys %}
-                        <h4>
-                            <a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug} ) }}">
-                                {{ 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) }}
-                            </a>
-                        </h4>
-                    {% endif %}
+                        {% if 'product_content' in product.files | keys %}
+                            <h4>
+                                <a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug} ) }}">
+                                    {{ 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) }}
+                                </a>
+                            </h4>
+                        {% endif %}
                         
-                        <div class="rating-container d-flex align-items-center text-warning mb-4">
-                            <svg width="32" height="32">
-                              <use xlink:href="#star-solid"></use>
-                            </svg>
-                            <svg width="32" height="32">
-                              <use xlink:href="#star-solid"></use>
-                            </svg>
-                            <svg width="32" height="32">
-                              <use xlink:href="#star-solid"></use>
-                            </svg>
-                            <svg width="32" height="32">
-                              <use xlink:href="#star-outline"></use>
-                            </svg>
-                            <svg width="32" height="32">
-                              <use xlink:href="#star-outline"></use>
-                            </svg>
+                        <div class="mt-3">
+                            {{ product.description | raw }}
                         </div>
-                        
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                            consequat.
-                        </p>
-                        <p>
-                            Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-
-                        {#
-                        <p><span class="price colored fs-4">$45.00</span></p>
-
-                        <div class="d-flex gap-3">
-                            <input type="number" name="age" id="age" class="m-0 text-center" min="1" max="12" step="1" value="1">
-                            <button type="submit" name="add-to-cart" value="27545" class="button m-0">Add to cart</button>
-                        </div>
-                        #}
-
                     </div>
                 </div>
 
@@ -81,266 +44,25 @@
         </div>
     </section>
     
-    <section class="product-tabs mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="tabs-listing">
-                    <nav>
-                        <div class="nav nav-tabs d-flex justify-content-center" id="nav-tab" role="tablist">
-                            <button class="nav-link active text-uppercase px-5 py-3" id="nav-home-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab"
-                                aria-controls="nav-home" aria-selected="true">Description</button>
-                            <button class="nav-link text-uppercase px-5 py-3" id="nav-information-tab"
-                                data-bs-toggle="tab" data-bs-target="#nav-information" type="button" role="tab"
-                                aria-controls="nav-information" aria-selected="false">Additional information</button>
-                            <button class="nav-link text-uppercase px-5 py-3" id="nav-shipping-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-shipping" type="button" role="tab" aria-controls="nav-shipping"
-                                aria-selected="false">Shipping & Return</button>
-                            <button class="nav-link text-uppercase px-5 py-3" id="nav-review-tab" data-bs-toggle="tab"
-                                data-bs-target="#nav-review" type="button" role="tab" aria-controls="nav-review"
-                                aria-selected="false">Reviews</button>
-                        </div>
-                    </nav>
-                    <div class="tab-content py-5" id="nav-tabContent">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                            aria-labelledby="nav-home-tab">
-                            <h5>Product Description</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
-                                mattis eros.
-                                Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit, posuere
-                                a, pede. Donec
-                                nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean
-                                dignissim
-                                pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec
-                                consectetuer ligula
-                                vulputate sem tristique cursus.
-                            <ul>
-                                <li>Donec nec justo eget felis facilisis fermentum.</li>
-                                <li>Suspendisse urna viverra non, semper suscipit pede.</li>
-                                <li>Aliquam porttitor mauris sit amet orci.</li>
-                            </ul> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat
-                            mattis
-                            eros. Nullam malesuada erat ut turpis. Suspendisse urna viverra non, semper suscipit,
-                            posuere a, pede.
-                            Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci.
-                            Aenean dignissim
-                            pellentesque felis. Phasellus ultrices nulla quis nibh. Quisque a lectus. Donec consectetuer
-                            ligula
-                            vulputate sem tristique cursus. </p>
-                        </div>
-                        <div class="tab-pane fade" id="nav-information" role="tabpanel"
-                            aria-labelledby="nav-information-tab">
-                            <h5>It is Comfortable and Best</h5>
-                            <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                                nulla
-                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                                deserunt mollit
-                                anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu
-                                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia
-                                deserunt mollit anim id est laborum.</p>
-                        </div>
-                        <div class="tab-pane fade" id="nav-shipping" role="tabpanel" aria-labelledby="nav-shipping-tab">
-                            <h5>Returns Policy</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce eros justo, accumsan non
-                                dui sit amet.
-                                Phasellus semper volutpat mi sed imperdiet. Ut odio lectus, vulputate non ex non, mattis
-                                sollicitudin
-                                purus. Mauris consequat justo a enim interdum, in consequat dolor accumsan. Nulla
-                                iaculis diam purus,
-                                ut vehicula leo efficitur at.</p>
-                            <p>Interdum et malesuada fames ac ante ipsum primis in faucibus. In blandit nunc enim, sit
-                                amet pharetra
-                                erat aliquet ac.</p>
-                            <h5>Shipping</h5>
-                            <p>Pellentesque ultrices ut sem sit amet lacinia. Sed nisi dui, ultrices ut turpis pulvinar.
-                                Sed
-                                fringilla ex eget lorem consectetur, consectetur blandit lacus varius. Duis vel
-                                scelerisque elit, et
-                                vestibulum metus. Integer sit amet tincidunt tortor. Ut lacinia ullamcorper massa, a
-                                fermentum arcu
-                                vehicula ut. Ut efficitur faucibus dui Nullam tristique dolor eget turpis consequat
-                                varius. Quisque a
-                                interdum augue. Nam ut nibh mauris.</p>
-                        </div>
-                        <div class="tab-pane fade" id="nav-review" role="tabpanel" aria-labelledby="nav-review-tab">
-                            <div class="review-box review-style1 d-flex">
-                                <div class="review-item d-flex">
-                                    <div class="row g-4">
-                                        <div class="col-md-3">
-                                            <div class="image-holder">
-                                                <img src="images/review-image1.jpg" alt="review"
-                                                    class="rounded-circle img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="review-content">
-                                                <div class="rating-container text-warning d-flex align-items-center">
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-solid"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-solid"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-solid"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-outline"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-outline"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="review-header">
-                                                    <span class="author-name">Tom Johnson</span>
-                                                    <span class="review-date">– 07/05/2022</span>
-                                                </div>
-                                                <p>Vitae tortor condimentum lacinia quis vel eros donec ac. Nam at
-                                                    lectus urna duis convallis
-                                                    convallis</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-item d-flex">
-                                    <div class="row g-4">
-                                        <div class="col-md-3">
-                                            <div class="image-holder">
-                                                <img src="images/review-image2.jpg" alt="review"
-                                                    class="rounded-circle img-fluid">
-                                            </div>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="review-content">
-                                                <div class="rating-container text-warning d-flex align-items-center">
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-solid"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-solid"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-solid"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-outline"></use>
-                                                    </svg>
-                                                    <svg width="32" height="32">
-                                                        <use xlink:href="#star-outline"></use>
-                                                    </svg>
-                                                </div>
-                                                <div class="review-header">
-                                                    <span class="author-name">Jenny Willis</span>
-                                                    <span class="review-date">– 07/05/2022</span>
-                                                </div>
-                                                <p>Vitae tortor condimentum lacinia quis vel eros donec ac. Nam at
-                                                    lectus urna duis convallis
-                                                    convallis</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    {#
+    {% include '@VSCatalog/Pages/Catalog/partial/discover_section.html.twig' %}
+    #}
     
-    <section id="related-products" class="bookshelf pb-5 mb-5">
-        <div class="container">
-            <div class="section-header align-center">
-                <div class="title">
-                    <span>Related Products</span>
-                </div>
-                <h2 class="section-title">You may also like</h2>
-            </div>
-        </div>
+    {{ vs_widget_render( 'books-discover-section', ['book-suggestions'] ) }}
+    
+{% endblock %}
 
-        <div class="container">
-            <div class="row">
-                <div class="inner-content">
-                    <div class="product-list" data-aos="fade-up">
-                        <div class="grid product-grid">
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="images/product-item5.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                        Cart</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>Simple way of piece life</h3>
-                                    <span>Armor Ramsey</span>
-                                    <div class="item-price">
-                                        <span class="prev-price">$ 50.00</span>$ 40.00
-                                    </div>
-                            </div>
-                            </figcaption>
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/show-book', null, 'BooksawBookStore' ) }}
+{% endblock %}
 
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="images/product-item6.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                        Cart</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>Great travel at desert</h3>
-                                    <span>Sanchit Howdy</span>
-                                    <div class="item-price">
-                                        <span class="prev-price">$ 30.00</span>$ 38.00
-                                    </div>
-                            </div>
-                            </figcaption>
-
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="images/product-item7.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                        Cart</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>The lady beauty Scarlett</h3>
-                                    <span>Arthur Doyle</span>
-                                    <div class="item-price">
-                                        <span class="prev-price">$ 35.00</span>$ 45.00
-                                    </div>
-                            </div>
-                            </figcaption>
-
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="images/product-item8.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                        Cart</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>Once upon a time</h3>
-                                    <span>Klien Marry</span>
-                                    <div class="item-price">
-                                        <span class="prev-price">$ 25.00</span>$ 35.00
-                                    </div>
-                            </div>
-                            </figcaption>
-
-                            <div class="product-item">
-                                <figure class="product-style">
-                                    <img src="images/product-item2.jpg" alt="Books" class="product-item">
-                                    <button type="button" class="add-to-cart" data-product-tile="add-to-cart">Add to
-                                        Cart</button>
-                                </figure>
-                                <figcaption>
-                                    <h3>Simple way of piece life</h3>
-                                    <span>Armor Ramsey</span>
-                                    <div class="item-price">$ 40.00</div>
-                                </figcaption>
-                            </div>
-                        </div><!--grid-->
-                    </div>
-                </div><!--inner-content-->
-            </div>
-        </div>
-    </section>
+{% block javascripts %}
+    {{ parent() }}
+    
+    <<script type="text/javascript">
+        var productSlug = '{{ app.request.get( 'productSlug' ) }}';
+    </script>
+    {{ encore_entry_script_tags( 'js/show-book', null, 'BooksawBookStore'  ) }}
 {% endblock %}

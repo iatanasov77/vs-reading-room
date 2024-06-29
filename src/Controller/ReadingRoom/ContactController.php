@@ -42,10 +42,11 @@ class ContactController extends BaseContactController
             'contactEmail'      => $this->params['contactEmail'],
             'showAddress'       => $this->params['showAddress'],
             'showPhone'         => $this->params['showPhone'],
+            'showMap'           => $this->params['showMap'],
             'googleMap'         => $this->params['googleMap'],
             'googleLargeMap'    => $this->params['googleLargeMap'],
             
-            'shoppingCart'      => $this->getShoppingCart( $request ),
+            //'shoppingCart'      => $this->getShoppingCart( $request ),
         ]);
     }
 }

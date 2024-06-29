@@ -1,6 +1,9 @@
 vs_application:
+    template:
+        vankosoft_application: ВанкоСофт Читалня
+        super_admin_panel: Админ Апанел
+        
     menu:
-        # Override VS_PaymentBundle Translations
         catalog_products: Books
         create_catalog_product: Create Book
         edit_catalog_product: Edit Book

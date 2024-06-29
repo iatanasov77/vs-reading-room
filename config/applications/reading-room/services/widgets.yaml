@@ -13,9 +13,20 @@ services:
         tags:
             - { name: kernel.event_listener, event: widget.start, method: builder }
             
+    App\Widgets\ApplicationMenuLocalesWidget:
+        arguments:
+            - '@request_stack'
+            - '@vs_application.repository.locale'
+        tags:
+            - { name: kernel.event_listener, event: widget.start, method: builder }
+    
     App\Widgets\SidebarCategoriesWidget:
         arguments:
             - '@request_stack'
             - '@vs_catalog.repository.product_category'
+        tags:
+            - { name: kernel.event_listener, event: widget.start, method: builder }
+            
+    App\Widgets\BookSuggestionsWidget:
         tags:
             - { name: kernel.event_listener, event: widget.start, method: builder }

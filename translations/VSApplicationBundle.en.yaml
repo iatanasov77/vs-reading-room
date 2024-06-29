@@ -1,6 +1,9 @@
 vs_application:
+    template:
+        vankosoft_application: VankSoft Reading Room
+        super_admin_panel: Admin Panel
+        
     menu:
-        # Override VS_PaymentBundle Translations
         catalog_products: Books
         create_catalog_product: Create Book
         edit_catalog_product: Edit Book
