@@ -34,6 +34,6 @@ const applicationBooksawBookStoreTheme = require('./themes/BooksawBookStore/webp
 module.exports = [
     adminPanelConfig,
     adminPanelCusstomEntriesConfig,
-    adminPanelVelzonConfig,
+    //adminPanelVelzonConfig,
     applicationBooksawBookStoreTheme,
 ];
