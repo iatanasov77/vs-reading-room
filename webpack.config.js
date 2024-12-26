@@ -17,6 +17,12 @@ const adminPanelCusstomEntriesConfig = require('./assets/admin-panel/webpack.con
 //=================================================================================================
 
 /**
+ *  AdminPanel Velzon Theme
+ */
+Encore.reset();
+const adminPanelVelzonConfig    = require( './themes/AdminPanel_VelzonChild/webpack.config' );
+
+/**
  *  BooksawBookStore Theme
  */
 Encore.reset();
@@ -28,5 +34,6 @@ const applicationBooksawBookStoreTheme = require('./themes/BooksawBookStore/webp
 module.exports = [
     adminPanelConfig,
     adminPanelCusstomEntriesConfig,
+    //adminPanelVelzonConfig,
     applicationBooksawBookStoreTheme,
 ];
