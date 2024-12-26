@@ -1,3 +1,11 @@
+1.2.1	|	Release date: **26.12.2024**
+============================================
+* New Features:
+  - Update Back-End and Front-End Dependencies.
+* Bug-Fixes:
+  - Fix Langauage Switcher.
+
+
 1.2.0	|	Release date: **29.06.2024**
 ============================================
 * New Features:
