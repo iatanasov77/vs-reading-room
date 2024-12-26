@@ -1,3 +1,11 @@
+1.2.2	|	Release date: **26.12.2024**
+============================================
+* New Features:
+  - Update Jenkinsfile for Updated Hosting Server.
+  - Add Admin Panel Velzon Theme.
+  - Add Default Admin Theme Custom Entries.
+
+
 1.2.1	|	Release date: **26.12.2024**
 ============================================
 * New Features:
