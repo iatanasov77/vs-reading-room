@@ -78,7 +78,7 @@ Encore.configureDefinePlugin( ( options ) => {
 });
 
 const config = Encore.getWebpackConfig();
-config.name = 'applicationBootstrapShopTheme';
+config.name = 'applicationBooksawBookStoreTheme';
 
 config.resolve.extensions = ['.ts', '.js'];
 

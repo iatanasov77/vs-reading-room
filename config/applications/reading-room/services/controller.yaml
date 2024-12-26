@@ -21,6 +21,10 @@ services:
         exclude:
             - '../../../../src/Controller/ReadingRoom/ProductController.php'
     
+    App\Controller\Application\DefaultController:
+        tags: ['controller.service_arguments']
+        autowire: true
+    
     App\Controller\ReadingRoom\ContactController:
         tags: ['controller.service_arguments']
         autowire: true
