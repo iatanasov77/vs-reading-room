@@ -37,7 +37,7 @@ reading_room:
             authors_placeholder: '-- Select Book Authors --'
         
     template:
-        application_title: Reading Room
+        application_title: VankoSoft Reading Room
         admin_menu_title: Reading Room
         contact_us: Contact us
         get_in_touch: Get in Touch
