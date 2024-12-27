@@ -3,7 +3,8 @@ vs_reading_room_applications:
         alias: vs_reading_room.reading_room_application
         except: ['show', 'delete']
         path: /reading-room/reading-room-applications
-        templates: "admin-panel/Pages/ReadingRoomApplications"
+        #templates: "admin-panel/Pages/ReadingRoomApplications"
+        templates: "Pages/ReadingRoomApplications"
     type: sylius.resource
 
 vs_reading_room_settings:
@@ -11,7 +12,8 @@ vs_reading_room_settings:
         alias: vs_reading_room.reading_room_settings
         except: ['show']
         path: /reading-room/reading-room-settings
-        templates: "admin-panel/Pages/ReadingRoomSettings"
+        #templates: "admin-panel/Pages/ReadingRoomSettings"
+        templates: "Pages/ReadingRoomSettings"
     type: sylius.resource
     options:
         expose: true
@@ -21,7 +23,8 @@ vs_reading_room_book_genre:
         alias: vs_reading_room.book_genre
         except: ['show']
         path: /reading-room/book-genres
-        templates: "admin-panel/Pages/BookGenres"
+        #templates: "admin-panel/Pages/BookGenres"
+        templates: "Pages/BookGenres"
     type: sylius.resource
         
 vs_reading_room_book_author:
@@ -29,7 +32,8 @@ vs_reading_room_book_author:
         alias: vs_reading_room.book_author
         except: ['show']
         path: /reading-room/authors
-        templates: "admin-panel/Pages/BookAuthors"
+        #templates: "admin-panel/Pages/BookAuthors"
+        templates: "Pages/BookAuthors"
         form:
             options:
                 ckeditor_uiColor: '%vs_users_subscriptions.form.payed_service.ckeditor_uiColor%'
@@ -53,7 +57,8 @@ vs_reading_room_book_author_index:
             sorting:
                 updatedAt: desc
             filterable: true
-            template: "admin-panel/Pages/BookAuthors/index.html.twig"
+            #template: "admin-panel/Pages/BookAuthors/index.html.twig"
+            template: "Pages/BookAuthors/index.html.twig"
     options:
         expose: true
         
