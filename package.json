@@ -70,7 +70,13 @@
         
         "@analytics/google-analytics": "^1.0.5",
         "analytics": "^0.8.1",
-        "@types/dlv": "^1.0.0"
+        "@types/dlv": "^1.0.0",
+        
+        "particles.js": "^2.0",
+        "feather-icons": "^4.29",
+        "node-waves": "^0.7",
+        "simplebar": "^6.2",
+        "choices.js": "^10.2"
     },
     "devDependencies": {
         "@symfony/webpack-encore": "^5.0",

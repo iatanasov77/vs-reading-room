@@ -1,3 +1,11 @@
+1.2.3	|	Release date: **27.12.2024**
+============================================
+* New Features:
+  - Add Custom Pages into AdminPanel_VelzonChild Theme.
+* Bug-Fixes:
+  - Fix Application Themes Config.
+
+
 1.2.2	|	Release date: **26.12.2024**
 ============================================
 * New Features:

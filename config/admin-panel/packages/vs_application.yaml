@@ -67,7 +67,7 @@ vs_application:
                 name: vs_application.menu.dashboard
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-dashboard-2-line
                     breadcrumb_route: vs_application_dashboard
                 childs:
                     locales:
@@ -78,7 +78,7 @@ vs_application:
                 name: vs_application.menu.settings
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-settings-5-line
                     breadcrumb_route: vs_application_settings_index
                 childs:
                     locales:
@@ -92,7 +92,7 @@ vs_application:
                         name: vs_application.menu.edit_locale
                         route: vs_application_locale_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     cookie_consent_translations:
                         name: vs_application.menu.cookie_consent_translations
@@ -105,7 +105,7 @@ vs_application:
                         name: vs_application.menu.edit_cookie_consent_translation
                         route: vs_application_cookie_consent_translation_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     tags_whitelist_contexts:
                         name: vs_application.menu.tags_whitelist_contexts
@@ -118,7 +118,7 @@ vs_application:
                         name: vs_application.menu.edit_tags_whitelist_context
                         route: vs_application_tags_whitelist_context_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     settings:
                         name: vs_application.menu.preferences
@@ -128,7 +128,7 @@ vs_application:
                 name: vs_application.menu.widgets
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-honour-line
                     breadcrumb_route: vs_application_widget_ext_index
                 childs:
                     list_widget_groups:
@@ -142,7 +142,7 @@ vs_application:
                         name: vs_application.menu.update_widget_group
                         route: vs_application_widget_group_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     list_widgets:
                         name: vs_application.menu.list_widgets
@@ -155,17 +155,17 @@ vs_application:
                         name: vs_application.menu.update_widget
                         route: vs_application_widget_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     widgets_registry:
                         name: vs_application.menu.widgets_registry
                         route: vs_application_widget_ext_index
-                    
+            
             taxonomy:
                 name: vs_application.menu.taxonomy
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-file-list-3-line
                     breadcrumb_route: vs_application_taxonomy_index
                 childs:
                     list:
@@ -179,13 +179,13 @@ vs_application:
                         name: vs_application.menu.edit_taxonomy
                         route: vs_application_taxonomy_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
             user_management:
                 name: vs_application.menu.user_management
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-account-circle-line
                     breadcrumb_route: vs_users_users_index
                 childs:
                     users_list:
@@ -198,7 +198,7 @@ vs_application:
                         name: vs_application.menu.update_user
                         route: vs_users_users_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
                     user_roles_list:
@@ -211,7 +211,7 @@ vs_application:
                         name: vs_application.menu.update_role
                         route: vs_users_user_roles_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
             #########################################################################
@@ -221,7 +221,7 @@ vs_application:
                 name: vs_application.menu.project_issues
                 uri: "javascript:;"
                 attributes:
-                    iconClass: pie-chart
+                    iconClass: ri-rocket-line
                     breadcrumb_route: vs_application_project_issues_index
                 childs:
                     list_issues:
@@ -230,13 +230,13 @@ vs_application:
                     create_issues:
                         name: vs_application.menu.create_issue
                         route: vs_application_project_issues_create
-            
+                        
         mainCmsMenu:
             cms:
                 name: vs_application.menu.static_pages
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-pages-line
                     breadcrumb_route: vs_cms_pages_index
                 childs:
                     list:
@@ -250,7 +250,7 @@ vs_application:
                         name: vs_application.menu.edit_page
                         route: vs_cms_pages_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
                     category_list:
@@ -264,14 +264,14 @@ vs_application:
                         name: vs_application.menu.edit_page_category
                         route: vs_cms_page_categories_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
             cms_toc:
                 name: vs_application.menu.table_of_contents
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-stack-line
                     breadcrumb_route: vs_cms_document_index
                 childs:
                     list:
@@ -285,7 +285,7 @@ vs_application:
                         name: vs_application.menu.edit_document
                         route: vs_cms_document_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     category_list:
                         name: vs_application.menu.document_categories
@@ -298,14 +298,14 @@ vs_application:
                         name: vs_application.menu.edit_document_category
                         route: vs_cms_document_categories_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
             website_elements:
                 name: vs_application.menu.website_elements
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-pencil-ruler-2-line
                 childs:
                     faq_list:
                         name: vs_application.menu.frequently_asked_questions
@@ -318,7 +318,7 @@ vs_application:
                         name: vs_application.menu.update_question
                         route: vs_cms_helpcenter_question_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     quick_links_list:
                         name: vs_application.menu.quick_links_list
@@ -331,7 +331,7 @@ vs_application:
                         name: vs_application.menu.quick_links_update
                         route: vs_cms_quick_link_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     sliders_list:
                         name: vs_application.menu.sliders_list
@@ -344,7 +344,7 @@ vs_application:
                         name: vs_application.menu.sliders_update
                         route: vs_cms_slider_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     banner_places_list:
                         name: vs_application.menu.banner_places_list
@@ -357,14 +357,14 @@ vs_application:
                         name: vs_application.menu.banner_places_update
                         route: vs_cms_banner_place_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
             
             filemanager_vankosoft:
                 name: vs_application.menu.vankoSoft_file_manager
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-stack-line
                     breadcrumb_route: vs_cms_file_manager_index
                 childs:
                     list_filemanagers:
@@ -379,14 +379,14 @@ vs_application:
                         name: vs_application.menu.edit_filemanager
                         route: "vs_cms_file_manager_update"
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
             
             filemanager_artgris:
                 name: vs_application.menu.artgris_file_manager
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-stack-line
                     breadcrumb_route: vs_cms_filemanager_artgris_list
                 childs:
                     browse:
@@ -396,13 +396,13 @@ vs_application:
                     upload:
                         name: vs_application.menu.upload_a_file
                         route: vs_cms_filemanager_artgris_upload
-                        
+        
         mainUsersSubscriptionsMenu:
             newsletter:
                 name: vs_application.menu.newsletter
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-share-line
                     breadcrumb_route: vs_users_subscriptions_mailchimp_audiences_index
                 childs:
                     mailchimp_audiences_list:
@@ -416,7 +416,7 @@ vs_application:
                 name: vs_application.menu.paid_services
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-map-pin-line
                     breadcrumb_route: vs_users_subscriptions_payed_service_index
                 childs:
                     paid_services_index:
@@ -429,7 +429,7 @@ vs_application:
                         name: vs_application.menu.edit_a_paid_service
                         route: vs_users_subscriptions_payed_service_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
         
         mainPaymentMenu:
@@ -437,7 +437,7 @@ vs_application:
                 name: vs_application.menu.gateways_payment_methods
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-secure-payment-line
                     breadcrumb_route: vs_payment_gateway_config_index
                 childs:
                     ####################################
@@ -469,7 +469,7 @@ vs_application:
                         name: vs_application.menu.edit_a_payment_method
                         route: vs_payment_methods_config
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
                     ################################
@@ -483,7 +483,7 @@ vs_application:
                 name: vs_application.menu.currencies
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-currency-fill
                     breadcrumb_route: vs_payment_currency_index
                 childs:
                     currency_index:
@@ -496,7 +496,7 @@ vs_application:
                         name: vs_application.menu.edit_currency
                         route: vs_payment_currency_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     exchange_rate_index:
                         name: vs_application.menu.exchange_rates
@@ -508,14 +508,14 @@ vs_application:
                         name: vs_application.menu.edit_exchange_rate
                         route: vs_payment_exchange_rate_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
             customers:
                 name: vs_application.menu.customers
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-customer-service-2-line
                     breadcrumb_route: vs_payment_customer_group_index
                 childs:
                     customer_group_index:
@@ -528,14 +528,14 @@ vs_application:
                         name: vs_application.menu.edit_customer_group
                         route: vs_payment_customer_group_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                 
             promotions:
                 name: vs_application.menu.discounts_coupouns
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-gift-line
                     breadcrumb_route: vs_payment_currency_index
                 childs:
                     promotion_index:
@@ -548,39 +548,39 @@ vs_application:
                         name: vs_application.menu.edit_promotion
                         route: vs_payment_promotion_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     promotion_coupon_index:
                         name: vs_application.menu.promotion_coupons_listing
                         route: vs_payment_promotion_coupon_index
                         routeParameters:
-                          promotionId: int
+                            promotionId: int
                         display: false
                     promotion_coupon_generate:
                         name: vs_application.menu.generate_promotion_coupon
                         route: vs_payment_promotion_coupon_generate
                         routeParameters:
-                          promotionId: int
+                            promotionId: int
                         display: false
                     promotion_coupon_create:
                         name: vs_application.menu.create_promotion_coupon
                         route: vs_payment_promotion_coupon_create
                         routeParameters:
-                          promotionId: int
+                            promotionId: int
                         display: false
                     promotion_coupon_update:
                         name: vs_application.menu.edit_promotion_coupon
                         route: vs_payment_promotion_coupon_update
                         routeParameters:
-                          id: int
-                          promotionId: int
+                            id: int
+                            promotionId: int
                         display: false
                     
             orders_and_payments:
                 name: vs_application.menu.orders_and_payments
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-list-ordered-2
                     breadcrumb_route: vs_payment_order_index
                 childs:
                     orders:
@@ -593,7 +593,7 @@ vs_application:
                         name: vs_application.menu.show_payment_details
                         route: vs_payment_payment_show
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     pricing_plan_subscriptions:
                         name: vs_application.menu.pricing_plan_subscriptions
@@ -603,7 +603,7 @@ vs_application:
                 name: vs_application.menu.developement
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-code-s-slash-line
                     breadcrumb_route: app_home
                 childs:
                     orders:
@@ -618,7 +618,7 @@ vs_application:
                 name: vs_application.menu.catalog
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-store-3-line
                     breadcrumb_route: vs_catalog_product_index
                 childs:
                     catalog_category_index:
@@ -631,7 +631,7 @@ vs_application:
                         name: vs_application.menu.edit_catalog_category
                         route: vs_catalog_product_category_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     catalog_product_index:
                         name: vs_application.menu.catalog_products
@@ -643,7 +643,7 @@ vs_application:
                         name: vs_application.menu.edit_catalog_product
                         route: vs_catalog_product_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     genre_list:
                         name: vs_application.menu.list_books_genres
@@ -656,7 +656,7 @@ vs_application:
                         name: vs_application.menu.edit_book_genre
                         route: vs_reading_room_book_genre_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     author_list:
                         name: vs_application.menu.list_authors
@@ -669,14 +669,14 @@ vs_application:
                         name: vs_application.menu.edit_author
                         route: vs_reading_room_book_author_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
             pricing_plans:
                 name: vs_application.menu.pricing_plans
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-service-fill
                     breadcrumb_route: vs_catalog_pricing_plan_index
                 childs:
                     pricing_plan_category_index:
@@ -689,7 +689,7 @@ vs_application:
                         name: vs_application.menu.edit_pricing_plan_category
                         route: vs_catalog_pricing_plan_category_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     pricing_plan_index:
                         name: vs_application.menu.pricing_plans_listing
@@ -701,14 +701,14 @@ vs_application:
                         name: vs_application.menu.edit_pricing_plan
                         route: vs_catalog_pricing_plan_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
             associations:
                 name: vs_application.menu.associations
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-contract-left-right-line
                     breadcrumb_route: vs_catalog_association_type_index
                 childs:
                     association_type_index:
@@ -721,7 +721,7 @@ vs_application:
                         name: vs_application.menu.edit_association_type
                         route: vs_catalog_association_type_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                         
         mainReadingRoomMenu:
@@ -729,7 +729,7 @@ vs_application:
                 name: vs_application.menu.reading_room_settings
                 uri: "javascript:;"
                 attributes:
-                    iconClass: icon_genius
+                    iconClass: ri-settings-5-line
                     breadcrumb_route: vs_reading_room_reading_room_settings_index
                 childs:
                     list_applications:
@@ -743,7 +743,7 @@ vs_application:
                         name: vs_application.menu.edit_reading_room_application
                         route: vs_reading_room_reading_room_application_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
                     list_settings:
                         name: vs_application.menu.list_reading_room_settings
@@ -756,7 +756,7 @@ vs_application:
                         name: vs_application.menu.edit_reading_room_setting
                         route: vs_reading_room_reading_room_settings_update
                         routeParameters:
-                          id: int
+                            id: int
                         display: false
         
         profileMenu:

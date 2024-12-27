@@ -2,7 +2,6 @@ const Encore 		= require( '@symfony/webpack-encore' );
 const path 			= require( 'path' );
 const pathExists    = require( 'path-exists' );
 
-const projectAssetsPath             = './assets';
 const applicationAssetsPath         = './vendor/vankosoft/application/src/Vankosoft/ApplicationBundle/Resources/themes/default/assets';
 const usersSubscriptionsAssetsPath  = './vendor/vankosoft/users-subscriptions-bundle/lib/Resources/themes/default/assets';
 const paymentAssetsPath             = './vendor/vankosoft/payment-bundle/lib/Resources/themes/default/assets';
@@ -142,21 +141,12 @@ Encore
     .addEntry( 'js/project-issues-edit', applicationAssetsPath + '/js/pages/project-issues-edit.js' )
     
     // Custom Pages
-//     .addEntry( 'js/videos-categories', './themes/AdminPanel_VelzonChild/assets/js/pages/videos-categories.js' )
-//     .addEntry( 'js/videos-categories-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/videos-categories-edit.js' )
-//     .addEntry( 'js/videos-genres', './themes/AdminPanel_VelzonChild/assets/js/pages/videos-genres.js' )
-//     .addEntry( 'js/videos', './themes/AdminPanel_VelzonChild/assets/js/pages/videos.js' )
-//     .addEntry( 'js/videos-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/videos-edit.js' )
-//     .addEntry( 'js/videos-upload', './themes/AdminPanel_VelzonChild/assets/js/pages/videos-upload.js' )
-//     .addEntry( 'js/actors', './themes/AdminPanel_VelzonChild/assets/js/pages/actors.js' )
-//     .addEntry( 'js/actors-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/actors-edit.js' )
-//     .addEntry( 'js/video-platform-settings', './themes/AdminPanel_VelzonChild/assets/js/pages/video-platform-settings.js' )
-//     .addEntry( 'js/video-platform-settings-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/video-platform-settings-edit.js' )
-//     .addEntry( 'js/video-platform-storages', './themes/AdminPanel_VelzonChild/assets/js/pages/video-platform-storages.js' )
-//     .addEntry( 'js/video-platform-storages-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/video-platform-storages-edit.js' )
-//     .addEntry( 'js/google-projects', './themes/AdminPanel_VelzonChild/assets/js/pages/google-projects.js' )
-//     .addEntry( 'js/youtube-channels', './themes/AdminPanel_VelzonChild/assets/js/pages/youtube-channels.js' )
-//     .addEntry( 'js/youtube-channel-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/youtube-channel-edit.js' )
+    .addEntry( 'js/reading-room-settings', './themes/AdminPanel_VelzonChild/assets/js/pages/reading-room-settings.js' )
+    .addEntry( 'js/reading-room-settings-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/reading-room-settings-edit.js' )
+    .addEntry( 'js/books-genres', './themes/AdminPanel_VelzonChild/assets/js/pages/books-genres.js' )
+    .addEntry( 'js/authors', './themes/AdminPanel_VelzonChild/assets/js/pages/authors.js' )
+    .addEntry( 'js/authors-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/authors-edit.js' )
+    //.addEntry( 'js/products-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/products-edit.js' )
 ;
 
 //////////////////////////////////////////////////////////////////
