@@ -11,6 +11,11 @@ const defaultThemePath 				= '../../vendor/vankosoft/application/src/Vankosoft/A
 const artgrisAssetsPath 			= '../../vendor/artgris/filemanager-bundle/Resources/public';
 const baseThemePath 				= '../../vendor/vankosoft/application-themes/AdminPanel_VelzonDefault/assets';
 
+const addCKEditor = require( '../../vendor/daddl3/symfony-ckeditor-5-webpack/assets/js/ckeditor-webpack-entry' );
+
+/** Encore, sourceMap **/
+addCKEditor( Encore, true );
+
 Encore
     .setOutputPath( 'public/admin-panel/build/velzon-theme/' )
     .setPublicPath( '/build/velzon-theme/' )
@@ -77,7 +82,22 @@ Encore
         {from: path.resolve( __dirname, baseThemePath + '/vendor/Velzon_v4.2.0/images/users' ), to: 'images/users/[path][name].[ext]'},
         {from: path.resolve( __dirname, baseThemePath + '/vendor/Velzon_v4.2.0/images/svg' ), to: 'images/svg/[path][name].[ext]'},
     ])
-     
+    
+    // Add an entry for CKEditor 5
+    .addEntry( 'ckeditor5', './vendor/daddl3/symfony-ckeditor-5-webpack/assets/js/ckeditor5.js' )
+    .configureSplitChunks( splitChunks => {
+        splitChunks.chunks = 'all';
+        splitChunks.name = false;
+        splitChunks.cacheGroups = {
+            styles: {
+                name: false,
+                test: /\.css$/,
+                chunks: 'all',
+                enforce: true,
+            }
+        };
+    })
+    
     // Global Assets
     .addStyleEntry( 'css/app', './themes/AdminPanel_VelzonChild/assets/css/app.scss' )
     .addEntry( 'js/layout', './themes/AdminPanel_VelzonChild/assets/layout.js' )
@@ -95,6 +115,7 @@ Encore
     
     .addEntry( 'js/resource-delete', applicationAssetsPath + '/js/pages/resource-delete.js' )
     
+    .addEntry( 'js/dashboard', applicationAssetsPath + '/js/pages/dashboard.js' )
     .addEntry( 'js/settings', applicationAssetsPath + '/js/pages/settings.js' )
     .addEntry( 'js/applications', applicationAssetsPath + '/js/pages/applications.js' )
     .addEntry( 'js/profile', applicationAssetsPath + '/js/pages/profile.js' )
