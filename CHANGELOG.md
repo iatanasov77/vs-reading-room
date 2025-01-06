@@ -1,3 +1,12 @@
+1.3.0	|	Release date: **06.01.2025**
+============================================
+* New Features and Improvements:
+  - Update Production Send Mail DSN
+  - Remove Building of Default AdminPanel Theme from Webpack Config.
+  - Improve Application Layout.
+  - Update Vankosoft Application Core Library and Catalog Extension.
+
+
 1.2.3	|	Release date: **27.12.2024**
 ============================================
 * New Features:
