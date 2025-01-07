@@ -3,15 +3,16 @@ vs_application_instalator:
         instalation_info:
             classes:
                 model: App\Entity\Application\InstalationInfo
+
 vs_application:
     project_type: catalog_application
     
     vankosoft_api:
-        enabled: false
-        project: 'game-platform'
+        enabled: true
+        project: 'reading-room'
         connection:
-            host: 'http://api.vankosoft.org/api'
-            user: apiadmin
+            host: '%env(VANKOSOFT_API_HOST)%'
+            user: '%env(VANKOSOFT_API_USER)%'
             password: '%env(VANKOSOFT_API_PASSWORD)%'
     
     resources:
