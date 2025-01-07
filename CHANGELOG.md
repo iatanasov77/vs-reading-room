@@ -1,3 +1,10 @@
+1.4.0	|	Release date: **07.01.2025**
+============================================
+* New Features:
+  - Configure Vankosoft API Project Issues.
+  - Set Project Slug in VankoSoft API Config.
+
+
 1.3.0	|	Release date: **06.01.2025**
 ============================================
 * New Features and Improvements:

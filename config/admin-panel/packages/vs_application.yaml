@@ -9,7 +9,7 @@ vs_application:
     
     vankosoft_api:
         enabled: true
-        project: 'game-platform'
+        project: 'reading-room'
         connection:
             host: '%env(VANKOSOFT_API_HOST)%'
             user: '%env(VANKOSOFT_API_USER)%'
