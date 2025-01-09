@@ -4,12 +4,15 @@ twig:
     strict_variables: '%kernel.debug%'
     
     globals:
+        app_environment: '%env(APP_ENV)%'
         applicationTitle: '%applicationTitle%'
         formCreateAccount: '%vs_users.form_create_account%'
-        alerts: '@vs_app.twig.alerts'
         installedBundles: '%kernel.bundles%'
-        localesRepo: '@vs_application.repository.locale'
         picturesPath: '%vs_application.filemanager_shared_media_gaufrette.app_pictures%'
+        analyticsMeasurementId: '%env(GOOGLE_MEASUREMENT_ID)%'
+        
+        alerts: '@vs_app.twig.alerts'
+        localesRepo: '@vs_application.repository.locale'
         
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

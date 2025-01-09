@@ -1,3 +1,9 @@
+1.4.1	|	Release date: **09.01.2025**
+============================================
+* New Features:
+  - Load Google Analytics in Application.
+
+
 1.4.0	|	Release date: **07.01.2025**
 ============================================
 * New Features:
