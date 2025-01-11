@@ -53,8 +53,9 @@ class BooksController extends ProductController
         $categories = new ArrayCollection();
         $pcr        = $this->get( 'vs_catalog.repository.product_category' );
         
-        $formLocale = $request->request->get( 'locale' );
         $formPost   = $request->request->all( 'book_form' );
+        //$formLocale = $request->request->get( 'locale' );
+        $formLocale = $formPost['locale'];
         $formTaxon  = isset( $formPost['category_taxon'] ) ? $formPost['category_taxon'] : null;
         
         if ( $formLocale ) {

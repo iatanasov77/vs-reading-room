@@ -31,7 +31,9 @@
             </nav>
             <div class="tab-content" id="nav-tabContent">
                 <div class="tab-pane fade show active" id="nav-product-details" role="tabpanel" aria-labelledby="nav-product-details-tab">
-                    {% include '@VSCatalog/Pages/Products/partial/product_form.html.twig' %}
+                    <div id="FormContainer" data-itemId="{{ item.id }}">
+                        {% include '@VSCatalog/Pages/Products/partial/product_form.html.twig' %}
+                    </div>
 		        </div>
 		    {% if item.id %}
 		        <div class="tab-pane fade" id="nav-product-associations" role="tabpanel" aria-labelledby="nav-product-associations-tab">

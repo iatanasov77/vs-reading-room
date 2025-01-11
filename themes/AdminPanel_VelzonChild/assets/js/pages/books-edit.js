@@ -9,6 +9,9 @@ require( 'jquery-easyui-extensions/EasyuiCombobox.css' );
 import { EasyuiCombobox } from 'jquery-easyui-extensions/EasyuiCombobox.js';
 import { VsRemoveDuplicates } from '@/js/includes/vs_remove_duplicates.js';
 
+// bin/console fos:js-routing:dump --format=json --target=public/shared_assets/js/fos_js_routes_admin.json
+import { VsPath } from '@/js/includes/fos_js_routes.js';
+
 import Tagify from '@yaireo/tagify';
 import '@yaireo/tagify/dist/tagify.css';
 
@@ -57,18 +60,26 @@ $( function()
     $( '#book_form_category_taxon' ).combotree( 'setValues', taxonValues );
     */
     
-	$( '#page_form_locale' ).on( 'change', function( e ) {
-		var pageId	= $( '#pageFormContainer' ).attr( 'data-pageId' );
-		var locale	= $( this ).val()
-		
-		if ( pageId ) {
-    		$.ajax({
+    $( '#FormContainer' ).on( 'change', '#book_form_locale', function( e ) {
+        var projectId  = $( '#FormContainer' ).attr( 'data-itemId' );
+        var locale  = $( this ).val();
+        
+        // RETURN FOR NOW
+        alert( locale );
+        return;
+        
+        if ( projectId ) {
+            $.ajax({
                 type: 'GET',
-                url: '/page-actions/get-form/' + locale + '/' + pageId,
+                url: VsPath( 'vsorg_projects_form_in_locale', { 'itemId': projectId, 'locale': locale } ),
                 success: function ( data ) {
-                    $( '#pageFormContainer' ).html( data );
-                    $( '#page_form_category_taxon' ).combotree();
-                }, 
+                    $( '#FormContainer' ).html( data );
+                    
+                    $( '.attributesContainer' ).duplicateFields({
+                        btnRemoveSelector: ".btnRemoveField",
+                        btnAddSelector:    ".btnAddField"
+                    });
+                },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
                     alert( 'FATAL ERROR!!!' );
                 }
