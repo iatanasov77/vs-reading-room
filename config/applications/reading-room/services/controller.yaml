@@ -169,6 +169,8 @@ services:
             - '%vs_catalog.latest_products_limit%'
             - '@doctrine'
             - '@vs_reading_room.repository.book_genre'
+            - '@vs_application.repository.translation'
+            - '@vs_application.repository.locale'
         calls:
             - [ setContainer, [ '@service_container' ] ]
             

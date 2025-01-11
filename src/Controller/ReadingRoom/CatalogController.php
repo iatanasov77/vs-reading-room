@@ -7,6 +7,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
+use Vankosoft\CatalogBundle\Model\Interfaces\ProductInterface;
 
 class CatalogController extends BaseCatalogController
 {
@@ -18,17 +19,27 @@ class CatalogController extends BaseCatalogController
     /** @var RepositoryInterface */
     private $genresRepository;
     
+    /** @var RepositoryInterface */
+    private $translationsRepository;
+    
+    /** @var RepositoryInterface */
+    private $localesRepository;
+    
     public function __construct(
         RepositoryInterface $productCategoryRepository,
         RepositoryInterface $productRepository,
         int $latestProductsLimit,
         ManagerRegistry $doctrine,
-        RepositoryInterface $genresRepository
+        RepositoryInterface $genresRepository,
+        RepositoryInterface $translationsRepository,
+        RepositoryInterface $localesRepository
     ) {
         parent::__construct( $productCategoryRepository, $productRepository, $latestProductsLimit );
         
-        $this->doctrine	        = $doctrine;
-        $this->genresRepository = $genresRepository;
+        $this->doctrine	                = $doctrine;
+        $this->genresRepository         = $genresRepository;
+        $this->translationsRepository   = $translationsRepository;
+        $this->localesRepository        = $localesRepository;
     }
     
     public function latestProductsAction( Request $request ): Response
@@ -89,7 +100,19 @@ class CatalogController extends BaseCatalogController
         
         return $this->render( '@VSCatalog/Pages/Catalog/show_product.html.twig', [
             'product'       => $product,
+            'translations'  => $this->getTranslations( $product ),
             'shoppingCart'  => $this->getShoppingCart( $request ),
         ]);
+    }
+    
+    private function getTranslations( ProductInterface $product ): array
+    {
+        $translations   = [];
+        foreach ( \array_keys( $this->translationsRepository->findTranslations( $product ) ) as $localeCode ) {
+            $locale = $this->localesRepository->findOneBy( ['code' => $localeCode ] );
+            $translations[$localeCode]    = $locale->getTitle();
+        }
+        
+        return $translations;
     }
 }

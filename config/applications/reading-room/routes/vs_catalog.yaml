@@ -26,3 +26,7 @@ vs_catalog_catalog_category_products:
     controller: App\Controller\ReadingRoom\CatalogController::categoryProductsAction
     defaults:
         categorySlug: ''
+
+vs_catalog_catalog_product_show:
+    path: /catalog/products/{categorySlug}/{productSlug}
+    controller: App\Controller\ReadingRoom\CatalogController::showProductAction
