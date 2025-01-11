@@ -5,7 +5,9 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use daddl3\SymfonyCKEditor5WebpackViteBundle\Form\Ckeditor5TextareaType;
 
 use Vankosoft\CatalogBundle\Form\ProductForm;
 
@@ -41,6 +43,24 @@ class BookForm extends ProductForm
 
         $entity = $builder->getData();
         $builder
+            ->add( 'description', Ckeditor5TextareaType::class, [
+                'label'                 => 'vs_payment.form.description',
+                'translation_domain'    => 'VSPaymentBundle',
+                'required'              => false,
+                
+                'attr' => [
+                    'data-ckeditor5-config' => 'default'
+                ],
+            ])
+            
+            ->add( 'files', CollectionType::class, [
+                'entry_type'   => Type\ProductFileType::class,
+                'allow_add'    => true,
+                'allow_delete' => true,
+                'prototype'    => true,
+                'by_reference' => false
+            ])
+        
             ->add( 'bookAuthors', HiddenType::class, [
                 'mapped'    => false,
                 'data'      => \json_encode( $entity->getAuthors()->getKeys() )
