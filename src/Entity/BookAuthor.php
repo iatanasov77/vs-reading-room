@@ -219,6 +219,11 @@ class BookAuthor implements ResourceInterface, TranslatableInterface
         return $this;
     }
     
+    public function __toString()
+    {
+        return $this->name;
+    }
+    
     protected function createTranslation(): TranslationInterface
     {
         

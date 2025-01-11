@@ -1,0 +1,45 @@
+vs_catalog_products:
+    resource: "@VSCatalogBundle/Resources/config/routing/products.yaml"
+    prefix: /
+    options:
+        expose: true
+    
+vs_catalog_pricing_plans:
+    resource: "@VSCatalogBundle/Resources/config/routing/pricing_plans.yaml"
+    prefix: /
+    options:
+        expose: true
+
+vs_catalog_product_index_filter_by_genre:
+    path: /products/genre/{filterGenre}/
+    methods: [GET]
+    defaults:
+        _controller: vs_catalog.controller.product::indexAction
+        _sylius:
+            paginate: 10
+            sortable: true
+            sorting:
+                updatedAt: desc
+            filterable: true
+            criteria:
+                genre: $filterGenre
+            template: "@VSCatalog/Pages/Products/index.html.twig"
+    options:
+        expose: true
+
+vs_catalog_product_index_filter_by_author:
+    path: /products/author/{filterAuthor}/
+    methods: [GET]
+    defaults:
+        _controller: vs_catalog.controller.product::indexAction
+        _sylius:
+            paginate: 10
+            sortable: true
+            sorting:
+                updatedAt: desc
+            filterable: true
+            criteria:
+                author: $filterAuthor
+            template: "@VSCatalog/Pages/Products/index.html.twig"
+    options:
+        expose: true

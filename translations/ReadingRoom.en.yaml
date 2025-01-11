@@ -5,6 +5,10 @@ reading_room:
         settings: Settings
         reading_room_settings_label: Reading Room Settings
         reading_room_settings_placeholder: '-- Choose a Reading Room Settings --'
+        filter_by_genre: Filter By Genre
+        filter_by_genre_placeholder: '-- Choose a Book Genre --'
+        filter_by_author: Filter By Author
+        filter_by_author_placeholder: '-- Choose a Book Author --'
         
         reading_room_settings:
             application: Application
