@@ -8,7 +8,7 @@
     <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
         <div id="ReadBookContainer"
             class="justify-content-center ReadBookContainer"
-            data-BookUrl="{{ path( 'app_reading_room_read', {'id': book.id} ) }}"
+            data-BookUrl="{{ path( 'app_reading_room_read', {'id': book.id, 'locale': localeCode} ) }}"
             data-openFile="{{ readingRoomSettings.openFile ? 'true' : 'false' }}"
             data-viewBookmark="{{ readingRoomSettings.viewBookmark ? 'true' : 'false' }}"
             data-download="{{ readingRoomSettings.download ? 'true' : 'false' }}"

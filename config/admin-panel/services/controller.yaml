@@ -23,3 +23,14 @@ services:
         arguments:
             - '@doctrine'
             - '@vs_reading_room.repository.book_author'
+    
+    App\Controller\AdminPanel\ProductExtController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@doctrine'
+            - '@vs_catalog.repository.product'
+            - '@vs_catalog.repository.product_category'
+            - '@vs_application.repository.taxonomy'
+            - '@vs_application.repository.tags_whitelist_context'
+            #- '@vs_catalog.resources.product.form'

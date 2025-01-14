@@ -1,6 +1,8 @@
 parameters:
     vs_application.filemanager_shared_media_gaufrette.app_pictures: "%kernel.project_dir%/public/shared_media/gaufrette/app_pictures"
     vs_application.gaufrette.app_pictures.filesystem: vs_application_app_pictures
+    vs_reading_room.filemanager_shared_media_gaufrette.books: "%kernel.project_dir%/public/shared_media/gaufrette/books"
+    vs_reading_room.gaufrette.books.filesystem: vs_reading_room_books
 
 services:
     _defaults:
@@ -17,6 +19,17 @@ services:
         class: Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader
         arguments:
             - '@vs_application.app_pictures_uploader.filesystem'
+            - '@vs_cms.file_path_generator'
+    
+    vs_reading_room.book_uploader.filesystem:
+        class: Gaufrette\Filesystem
+        arguments: ['%vs_reading_room.gaufrette.books.filesystem%']
+        factory: ['@knp_gaufrette.filesystem_map', 'get']
+        
+    vs_reading_room.book_uploader:
+        class: App\Component\Uploader\BookUploader
+        arguments:
+            - '@vs_reading_room.book_uploader.filesystem'
             - '@vs_cms.file_path_generator'
     
     # Create a Custom Uploader extending Vankosoft\CmsBundle\Component\Uploader\FilemanagerUploader

@@ -43,11 +43,11 @@ class ReadBookController extends AbstractController
         $this->projectRootDir       = $projectRootDir;
     }
     
-    public function read( $id, Request $request ): Response
+    public function read( $id, $locale, Request $request ): Response
     {
         $book           = $this->productRepository->find( $id );
         $bookFiles      = $book->getFiles();
-        $contentFile    = $bookFiles[Product::PRODUCT_FILE_TYPE_CONTENT];
+        $contentFile    = $bookFiles[\sprintf( '%s_%s', Product::PRODUCT_FILE_TYPE_CONTENT, $locale )];
         $contentSize    = $this->localFilesystem->size( $contentFile->getPath() );
         
         $filePath                   = $this->productFilesDir . '/' . $contentFile->getPath();

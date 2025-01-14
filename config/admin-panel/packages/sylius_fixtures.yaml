@@ -14,4 +14,3 @@ sylius_fixtures:
         vankosoft_sampledata_suite:
             fixtures:
                 #test_countries: ~
-

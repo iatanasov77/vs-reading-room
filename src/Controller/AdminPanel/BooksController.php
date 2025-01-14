@@ -1,8 +1,14 @@
 <?php namespace App\Controller\AdminPanel;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vankosoft\CatalogBundle\Controller\ProductController;
+use Vankosoft\CatalogBundle\Model\Interfaces\ProductInterface;
+use Vankosoft\CatalogBundle\Model\Interfaces\ProductFileInterface;
+use Vankosoft\CatalogBundle\Component\Product;
 use App\Controller\AdminPanel\Traits\FilterFormTrait;
 
 class BooksController extends ProductController
@@ -98,7 +104,8 @@ class BooksController extends ProductController
                     continue;
                 }
                 
-                $this->addProductFile( $entity, $files[$fileId], $file['file'], $formPost['files'][$fileId]["code"] );
+                $fileCode   = \sprintf( "%s_%s", $formPost['files'][$fileId]["code"], $formLocale );
+                $this->addProductFile( $entity, $files[$fileId], $file['file'], $fileCode );
             }
         }
         
@@ -113,5 +120,27 @@ class BooksController extends ProductController
                 $entity->removeFile( $file );
             }
         }
+    }
+    
+    protected function addProductFile( ProductInterface &$entity, ProductFileInterface &$productFile, File $file, string $code ): void
+    {
+        $productFile->setOriginalName( $file->getClientOriginalName() );
+        
+        $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
+        $productFile->setFile( $uploadedFile );
+        
+        $this->get( 'vs_reading_room.book_uploader' )->upload( $productFile );
+        $productFile->setFile( null ); // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
+        
+        if ( $code == Product::PRODUCT_FILE_TYPE_OTHER ) {
+            $productFile->setCode( $code . '-' . \microtime() );
+        } else {
+            $productFile->setCode( $code );
+        }
+        
+        $tranlatableLocale  = $entity->getTranslatableLocale();
+        $productFile->setLocale( $tranlatableLocale );
+        
+        $entity->addFile( $productFile );
     }
 }

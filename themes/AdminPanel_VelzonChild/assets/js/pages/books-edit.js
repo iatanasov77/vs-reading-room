@@ -17,7 +17,7 @@ import '@yaireo/tagify/dist/tagify.css';
 
 import DragSort from '@yaireo/dragsort';
 import '@yaireo/dragsort/dist/dragsort.css';
-
+    
 var tagsInput;
 var tagify;
 var dragsort;
@@ -28,7 +28,7 @@ function onDragEnd( elm )
     tagify.updateValueByDOMTags();
 }
 
-$( function()
+function initForm()
 {
     $( '.attributesContainer' ).duplicateFields({
         btnRemoveSelector: ".btnRemoveField",
@@ -55,39 +55,7 @@ $( function()
         debug: false
     });
     
-    /*
-    var taxonValues = $( '#categoryTaxonIds' ).attr( 'data-values' ).split( ',' );
-    $( '#book_form_category_taxon' ).combotree( 'setValues', taxonValues );
-    */
-    
-    $( '#FormContainer' ).on( 'change', '#book_form_locale', function( e ) {
-        var projectId  = $( '#FormContainer' ).attr( 'data-itemId' );
-        var locale  = $( this ).val();
-        
-        // RETURN FOR NOW
-        alert( locale );
-        return;
-        
-        if ( projectId ) {
-            $.ajax({
-                type: 'GET',
-                url: VsPath( 'vsorg_projects_form_in_locale', { 'itemId': projectId, 'locale': locale } ),
-                success: function ( data ) {
-                    $( '#FormContainer' ).html( data );
-                    
-                    $( '.attributesContainer' ).duplicateFields({
-                        btnRemoveSelector: ".btnRemoveField",
-                        btnAddSelector:    ".btnAddField"
-                    });
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert( 'FATAL ERROR!!!' );
-                }
-            });
-        }
-    });
-    
-    var tagsInputWhitelist  = $( '#book_form_tagsInputWhitelist' ).val().split( ',' );
+     var tagsInputWhitelist  = $( '#book_form_tagsInputWhitelist' ).val().split( ',' );
     //console.log( tagsInputWhitelist );
     
     tagsInput   = $( '#book_form_tags' )[0];
@@ -130,5 +98,38 @@ $( function()
         checkboxId: "books",
         values: selectedAuthors,
         debug: true
+    });
+}
+
+$( function()
+{
+    initForm();
+    
+    /*
+    var taxonValues = $( '#categoryTaxonIds' ).attr( 'data-values' ).split( ',' );
+    $( '#book_form_category_taxon' ).combotree( 'setValues', taxonValues );
+    */
+    
+    $( '#FormContainer' ).on( 'change', '#book_form_locale', function( e ) {
+        // CkEditor 5 Is Not Initialized on Ajax Reload;
+        return;
+    
+        var bookId  = $( '#FormContainer' ).attr( 'data-itemId' );
+        var locale  = $( this ).val();
+        
+        if ( bookId ) {
+            $.ajax({
+                type: 'GET',
+                url: VsPath( 'vs_reading_room_books_form_in_locale', { 'itemId': bookId, 'locale': locale } ),
+                success: function ( data ) {
+                    $( '#FormContainer' ).html( data );
+                    
+                    initForm();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert( 'FATAL ERROR!!!' );
+                }
+            });
+        }
     });
 });
