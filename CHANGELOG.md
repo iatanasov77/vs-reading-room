@@ -1,3 +1,12 @@
+1.4.2	|	Release date: **14.01.2025**
+============================================
+* New Features and Improvements:
+  - Add More Filters in AdminPanel Books Index Page.
+  - Improve Edit Book Page.
+  - Prepare Boooks to Have Files in Different Locales.
+  - Create Book Files Multilanguage.
+
+
 1.4.1	|	Release date: **09.01.2025**
 ============================================
 * New Features:
