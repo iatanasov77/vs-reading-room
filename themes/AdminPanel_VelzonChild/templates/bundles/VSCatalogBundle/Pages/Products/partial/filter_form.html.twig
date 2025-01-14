@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        {{ form_label( filterForm.filterByCategory, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget( filterForm.filterByCategory, {
+            'attr': {
+                'class': 'form-select',
+                'data-value': filterCategory
+            }
+        }) }}
+    </div>
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        {{ form_label( filterForm.filterByGenre, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget( filterForm.filterByGenre, {
+            'attr': {
+                'class': 'form-select',
+                'data-value': filterGenre
+            }
+        }) }}
+    </div>
+    <div class="col-xl-4 col-lg-12 col-md-12 col-sm-12 col-12 mb-5">
+        {{ form_label( filterForm.filterByAuthor, null, {'label_attr': {'class': 'form-label'}}) }}
+        {{ form_widget( filterForm.filterByAuthor, {
+            'attr': {
+                'class': 'form-select',
+                'data-value': filterAuthor
+            }
+        }) }}
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="row">
+    {% if item.id and form.vars.value %}
+        {% set fileId = form.vars.value.code %}
+        {% set fileCode = form.vars.value.code | split( '_' ) %}
+        
+        {% set originalName = item.files[fileId].originalName %}
+        {% set fileWidgetClass = 'form-control fieldPhoto persistedPhoto' %}
+    {% else %}
+        {% set fileId = '' %}
+        {% set fileCode = '' %}
+        
+        {% set originalName = 'Choose File' %}
+        {% set fileWidgetClass = 'form-control fieldPhoto' %}
+    {% endif %}
+    
+    <div class="col-lg-3 mb-3">
+        {% set codeParts = fileCode | length %}
+        {% set fileCodeValue = fileCode | slice( 0, codeParts - 2 ) | join( '_' ) %}
+        {% set fileLocale = fileCode | last | lower %}
+        
+        {{ form_widget(form.code, {
+            'value' : fileCodeValue,
+            'attr': { 'class': 'form-select', }
+        }) }}
+    </div>
+    
+    <div class="col-lg-6 form-field-file  mb-3">
+        {{ form_widget(form.file, {'attr': {
+                'class': fileWidgetClass,
+                'placeholder': originalName
+            }
+        }) }}
+        <label class="input-group-text" for="product_form_files_{{ fileId }}_file">{{ originalName }}</label>
+    </div>
+    
+    <div class="col-lg-1 mb-3">
+        
+        <i class="flag flag-{{ fileLocale }}"></i>
+    </div>
+    
+    <div class="col-lg-1">
+        <a href="javascript:;" class="btn btn-success btnAddField"><i class="icon_plus_alt2"></i></a>
+        <a href="javascript:;" class="btn btn-danger btnRemoveField"><i class="icon_close_alt2"></i></a>
+    </div>
+</div>
+    

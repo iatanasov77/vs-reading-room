@@ -7,4 +7,9 @@ use Vankosoft\CatalogBundle\Model\ProductCategory as ProductCategoryBase;
 #[ORM\Table(name: "VSCAT_ProductCategories")]
 class ProductCategory extends ProductCategoryBase
 {
+    public function __toString()
+    {
+        return $this->getNameTranslated( 'en_US' );
+        //return $this->taxon ? $this->taxon->getName() : '';
+    }
 }

@@ -100,6 +100,7 @@ class BookGenre implements ResourceInterface, TaxonDescendentInterface
     
     public function __toString()
     {
-        return $this->taxon ? $this->taxon->getName() : '';
+        return $this->getNameTranslated( 'en_US' );
+        //return $this->taxon ? $this->taxon->getName() : '';
     }
 }

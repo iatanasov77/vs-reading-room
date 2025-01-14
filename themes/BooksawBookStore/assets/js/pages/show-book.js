@@ -13,6 +13,18 @@ const afterLoad = function() {
 
 $( function()
 {
+    var tooltipTriggerList = [].slice.call( document.querySelectorAll( '[data-bs-toggle="tooltip"]' ) );
+    var tooltipList = tooltipTriggerList.map( function ( tooltipTriggerEl ) {
+        return new bootstrap.Tooltip( tooltipTriggerEl )
+    });
+    
+    $( '#ProductDescriptionContainer a' ).on( 'click', function( e ) {
+        e.preventDefault();
+        
+        var url = $( this ).attr( 'href' );
+        window.open( url, '_blank' );
+    });
+
     var bookSuggestionsUrl  = VsPath( 'app_reading_room_book_suggestions', { productSlug: productSlug }, routes );
     $( '#bookSuggestionsContainer' ).widget({ callback: bookSuggestionsUrl, afterLoad: afterLoad });
 });

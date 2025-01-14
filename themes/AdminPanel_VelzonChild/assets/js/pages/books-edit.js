@@ -9,12 +9,15 @@ require( 'jquery-easyui-extensions/EasyuiCombobox.css' );
 import { EasyuiCombobox } from 'jquery-easyui-extensions/EasyuiCombobox.js';
 import { VsRemoveDuplicates } from '@/js/includes/vs_remove_duplicates.js';
 
+// bin/console fos:js-routing:dump --format=json --target=public/shared_assets/js/fos_js_routes_admin.json
+import { VsPath } from '@/js/includes/fos_js_routes.js';
+
 import Tagify from '@yaireo/tagify';
 import '@yaireo/tagify/dist/tagify.css';
 
 import DragSort from '@yaireo/dragsort';
 import '@yaireo/dragsort/dist/dragsort.css';
-
+    
 var tagsInput;
 var tagify;
 var dragsort;
@@ -25,7 +28,7 @@ function onDragEnd( elm )
     tagify.updateValueByDOMTags();
 }
 
-$( function()
+function initForm()
 {
     $( '.attributesContainer' ).duplicateFields({
         btnRemoveSelector: ".btnRemoveField",
@@ -52,31 +55,7 @@ $( function()
         debug: false
     });
     
-    /*
-    var taxonValues = $( '#categoryTaxonIds' ).attr( 'data-values' ).split( ',' );
-    $( '#book_form_category_taxon' ).combotree( 'setValues', taxonValues );
-    */
-    
-	$( '#page_form_locale' ).on( 'change', function( e ) {
-		var pageId	= $( '#pageFormContainer' ).attr( 'data-pageId' );
-		var locale	= $( this ).val()
-		
-		if ( pageId ) {
-    		$.ajax({
-                type: 'GET',
-                url: '/page-actions/get-form/' + locale + '/' + pageId,
-                success: function ( data ) {
-                    $( '#pageFormContainer' ).html( data );
-                    $( '#page_form_category_taxon' ).combotree();
-                }, 
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert( 'FATAL ERROR!!!' );
-                }
-            });
-        }
-    });
-    
-    var tagsInputWhitelist  = $( '#book_form_tagsInputWhitelist' ).val().split( ',' );
+     var tagsInputWhitelist  = $( '#book_form_tagsInputWhitelist' ).val().split( ',' );
     //console.log( tagsInputWhitelist );
     
     tagsInput   = $( '#book_form_tags' )[0];
@@ -119,5 +98,38 @@ $( function()
         checkboxId: "books",
         values: selectedAuthors,
         debug: true
+    });
+}
+
+$( function()
+{
+    initForm();
+    
+    /*
+    var taxonValues = $( '#categoryTaxonIds' ).attr( 'data-values' ).split( ',' );
+    $( '#book_form_category_taxon' ).combotree( 'setValues', taxonValues );
+    */
+    
+    $( '#FormContainer' ).on( 'change', '#book_form_locale', function( e ) {
+        // CkEditor 5 Is Not Initialized on Ajax Reload;
+        return;
+    
+        var bookId  = $( '#FormContainer' ).attr( 'data-itemId' );
+        var locale  = $( this ).val();
+        
+        if ( bookId ) {
+            $.ajax({
+                type: 'GET',
+                url: VsPath( 'vs_reading_room_books_form_in_locale', { 'itemId': bookId, 'locale': locale } ),
+                success: function ( data ) {
+                    $( '#FormContainer' ).html( data );
+                    
+                    initForm();
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert( 'FATAL ERROR!!!' );
+                }
+            });
+        }
     });
 });

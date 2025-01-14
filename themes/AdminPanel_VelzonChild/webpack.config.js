@@ -167,7 +167,8 @@ Encore
     .addEntry( 'js/books-genres', './themes/AdminPanel_VelzonChild/assets/js/pages/books-genres.js' )
     .addEntry( 'js/authors', './themes/AdminPanel_VelzonChild/assets/js/pages/authors.js' )
     .addEntry( 'js/authors-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/authors-edit.js' )
-    //.addEntry( 'js/products-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/products-edit.js' )
+    .addEntry( 'js/books-index', './themes/AdminPanel_VelzonChild/assets/js/pages/books-index.js' )
+    .addEntry( 'js/books-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/books-edit.js' )
 ;
 
 //////////////////////////////////////////////////////////////////

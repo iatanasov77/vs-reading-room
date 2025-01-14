@@ -79,3 +79,9 @@ services:
             - '%vs_payment.model.currency.class%'
             - '%vs_reading_room.model.book_genre.class%'
             - '%vs_reading_room.model.book_author.class%'
+    
+    App\Form\Type\ProductFileType:
+        tags:
+            - { name: form.type }
+        arguments:
+            - '%vs_catalog.model.product_file.class%'

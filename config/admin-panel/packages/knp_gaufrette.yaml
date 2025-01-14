@@ -15,6 +15,9 @@ knp_gaufrette:
             local:
                 directory: "%vs_cms.filemanager_shared_media_gaufrette.slider%"
                 create: true
+        vs_reading_room_books:
+            local:
+                directory: "%vs_reading_room.filemanager_shared_media_gaufrette.books%"
         
     filesystems:
         vs_application_profile:
@@ -25,3 +28,5 @@ knp_gaufrette:
             adapter: "%vs_application.gaufrette.app_pictures.filesystem%"
         vs_application_slider:
             adapter: "%vs_cms.gaufrette.slider.filesystem%"
+        vs_reading_room_books:
+            adapter: "%vs_reading_room.gaufrette.books.filesystem%"
