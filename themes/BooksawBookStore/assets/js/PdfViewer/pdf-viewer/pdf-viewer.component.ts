@@ -15,6 +15,7 @@ export class PdfViewerComponent implements OnInit
     @ViewChild( 'bigPdfViewer', { static: true } ) public bigPdfViewer: any;
 
     pdfUrl: String;
+    bookFileName: String;
     
     /**
      * pdfjs Viewer Settings 
@@ -27,6 +28,7 @@ export class PdfViewerComponent implements OnInit
     constructor()
     {
         this.pdfUrl         = '';
+        this.bookFileName   = '';
         this.openFile       = false;
         this.viewBookmark   = false;
         this.download       = false;
@@ -36,6 +38,7 @@ export class PdfViewerComponent implements OnInit
     ngOnInit(): void
     {
         this.pdfUrl         = $( '#ReadBookContainer' ).attr( 'data-BookUrl' );
+        this.bookFileName   = $( '#ReadBookContainer' ).attr( 'data-BookFileName' );
         this.openFile       = $( '#ReadBookContainer' ).attr( 'data-openFile' );
         this.viewBookmark   = $( '#ReadBookContainer' ).attr( 'data-viewBookmark' );
         this.download       = $( '#ReadBookContainer' ).attr( 'data-download' );
