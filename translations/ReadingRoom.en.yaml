@@ -14,6 +14,8 @@ reading_room:
             application: Application
             application_placeholder: '-- Select an Application --'
             settings_key: Settings Key
+            theme_settings: Theme Settings
+            show_price: Show Book Price
             ng2_pdfjs_viewer_settings: Angular PDFJS Viewer Settings
             open_file: Show/hide open file button.
             view_bookmark: Show/hide bookmark button.

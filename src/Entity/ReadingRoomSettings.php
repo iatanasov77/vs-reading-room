@@ -26,6 +26,10 @@ class ReadingRoomSettings implements ResourceInterface
     private $settingsKey;
     
     /** @var bool */
+    #[ORM\Column(name: "show_price", type: "boolean", options: ["default" => 0, ])]
+    private $showPrice = false;
+    
+    /** @var bool */
     #[ORM\Column(name: "open_file", type: "boolean", options: ["default" => 0, "comment" => "Setting for 'ng2-pdfjs-viewer' Component"])]
     private $openFile = false;
     
@@ -78,6 +82,18 @@ class ReadingRoomSettings implements ResourceInterface
     public function setSettingsKey($settingsKey)
     {
         $this->settingsKey  = $settingsKey;
+        
+        return $this;
+    }
+    
+    public function getShowPrice()
+    {
+        return $this->showPrice;
+    }
+    
+    public function setShowPrice( $showPrice )
+    {
+        $this->showPrice = $showPrice;
         
         return $this;
     }

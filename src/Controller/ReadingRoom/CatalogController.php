@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Pagerfanta\Pagerfanta;
 use Pagerfanta\Adapter\ArrayAdapter;
 use Vankosoft\CatalogBundle\Model\Interfaces\ProductInterface;
+use App\Component\ReadingRoom;
 
 class CatalogController extends BaseCatalogController
 {
@@ -25,6 +26,9 @@ class CatalogController extends BaseCatalogController
     /** @var RepositoryInterface */
     private $localesRepository;
     
+    /** @var ReadingRoom **/
+    private $readingRoom;
+    
     public function __construct(
         RepositoryInterface $productCategoryRepository,
         RepositoryInterface $productRepository,
@@ -32,7 +36,8 @@ class CatalogController extends BaseCatalogController
         ManagerRegistry $doctrine,
         RepositoryInterface $genresRepository,
         RepositoryInterface $translationsRepository,
-        RepositoryInterface $localesRepository
+        RepositoryInterface $localesRepository,
+        ReadingRoom $readingRoom
     ) {
         parent::__construct( $productCategoryRepository, $productRepository, $latestProductsLimit );
         
@@ -40,6 +45,7 @@ class CatalogController extends BaseCatalogController
         $this->genresRepository         = $genresRepository;
         $this->translationsRepository   = $translationsRepository;
         $this->localesRepository        = $localesRepository;
+        $this->readingRoom              = $readingRoom;
     }
     
     public function latestProductsAction( Request $request ): Response
@@ -57,15 +63,17 @@ class CatalogController extends BaseCatalogController
         
         if($request->isXmlHttpRequest()) {
             return $this->render( '@VSCatalog/Pages/Catalog/partial/products-page.html.twig', [
-                'products'  => $resources,
+                'readingRoomSettings'   => $this->readingRoom->settings(),
+                'products'              => $resources,
             ]);
         }
         
         return $this->render( '@VSCatalog/Pages/Catalog/latest_products.html.twig', [
-            'products'      => $resources,
-            'shoppingCart'  => $this->getShoppingCart( $request ),
-            'categories'    => $categories,
-            'genres'        => $this->genresRepository->findAll(),
+            'readingRoomSettings'   => $this->readingRoom->settings(),
+            'products'              => $resources,
+            'shoppingCart'          => $this->getShoppingCart( $request ),
+            'categories'            => $categories,
+            'genres'                => $this->genresRepository->findAll(),
         ]);
     }
     
@@ -84,13 +92,15 @@ class CatalogController extends BaseCatalogController
         
         if($request->isXmlHttpRequest()) {
             return $this->render( '@VSCatalog/Pages/Catalog/partial/products-page.html.twig', [
-                'products'  => $resources,
+                'readingRoomSettings'   => $this->readingRoom->settings(),
+                'products'              => $resources,
             ]);
         }
         
         return $this->render( '@VSCatalog/Pages/Catalog/category_products.html.twig', [
-            'category'      => $category,
-            'shoppingCart'  => $this->getShoppingCart( $request ),
+            'readingRoomSettings'   => $this->readingRoom->settings(),
+            'category'              => $category,
+            'shoppingCart'          => $this->getShoppingCart( $request ),
         ]);
     }
     

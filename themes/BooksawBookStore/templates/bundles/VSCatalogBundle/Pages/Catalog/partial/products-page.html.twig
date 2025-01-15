@@ -36,7 +36,11 @@
                                             {{ genre.name }}{% if not loop.last %}, {% endif %}
                                         {% endfor %}
                                     </span>
-                                    <div class="item-price">{{ product.price }} {{ product.currencyCode | vs_currency_symbol }}</div>
+                                    
+                                    {% if readingRoomSettings.showPrice %}
+                                        <div class="item-price">{{ product.price }} {{ product.currencyCode | vs_currency_symbol }}</div>
+                                    {% endif %}
+                                    
                                 </figcaption>
                             </a>
                         </div>
