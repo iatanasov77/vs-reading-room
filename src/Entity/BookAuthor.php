@@ -7,9 +7,8 @@ use Sylius\Component\Resource\Model\ResourceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
-use Sylius\Component\Resource\Model\TranslatableInterface;
-use Sylius\Component\Resource\Model\TranslatableTrait;
-use Sylius\Component\Resource\Model\TranslationInterface;
+use Vankosoft\ApplicationBundle\Model\Traits\TranslatableTrait;
+use Vankosoft\ApplicationBundle\Model\Interfaces\TranslatableInterface;
 use App\Entity\Application\Translation;
 use App\Entity\Catalog\Product;
 
@@ -57,14 +56,9 @@ class BookAuthor implements ResourceInterface, TranslatableInterface
     #[ORM\InverseJoinColumn(name: "genre_id", referencedColumnName: "id")]
     private $genres;
     
-    /**
-     * Used locale to override Translation listener`s locale
-     * this is not a mapped field of entity metadata, just a simple property
-     * 
-     * @var string
-     */
+    /** {@inheritDoc} */
     #[Gedmo\Locale]
-    private $locale;
+    protected $locale;
     
     public function __construct()
     {
@@ -202,30 +196,8 @@ class BookAuthor implements ResourceInterface, TranslatableInterface
         return $this;
     }
     
-    public function getLocale()
-    {
-        return $this->currentLocale;
-    }
-    
-    public function getTranslatableLocale(): ?string
-    {
-        return $this->locale;
-    }
-    
-    public function setTranslatableLocale($locale): self
-    {
-        $this->locale = $locale;
-        
-        return $this;
-    }
-    
     public function __toString()
     {
         return $this->name;
-    }
-    
-    protected function createTranslation(): TranslationInterface
-    {
-        
     }
 }

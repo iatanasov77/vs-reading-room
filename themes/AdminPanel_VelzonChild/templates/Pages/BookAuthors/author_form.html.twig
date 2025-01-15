@@ -44,10 +44,10 @@
         <legend class="w-auto float-none ps-2 pe-2">{{ 'reading_room.form.author.photos' | trans( {},'ReadingRoom' ) }}</legend>
         
         <div id="PhotosContainer"
-            data-prototype="{% apply escape %}{% include 'admin-panel/Pages/BookAuthors/add-photo-prototype.html.twig' with {'form': form.photos.vars.prototype} %}{% endapply %}"
+            data-prototype="{% apply escape %}{% include 'Pages/BookAuthors/add-photo-prototype.html.twig' with {'form': form.photos.vars.prototype} %}{% endapply %}"
         > 
             {% for photo in form.photos %}
-                {% include 'admin-panel/Pages//BookAuthors/add-photo-prototype.html.twig' with {'form': photo} %}
+                {% include 'Pages//BookAuthors/add-photo-prototype.html.twig' with {'form': photo} %}
             {% endfor %}
         </div>
     </fieldset>
