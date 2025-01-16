@@ -45,6 +45,15 @@
             {% include '@VSCatalog/Pages/Products/partial/product_form_category.html.twig' %}
             
             <div class="form-group">
+                {{ form_label(form.bookType, null, {
+                    'label_attr': {'class': 'col-form-label'}
+                    }) 
+                }}
+                
+                {{ form_widget(form.bookType, {'attr': {'class': 'form-select'}}) }}
+            </div>
+            
+            <div class="form-group">
                 {{ form_label(form.name, null, {
                     'label_attr': {'class': 'col-form-label'}
                     }) 
@@ -74,7 +83,7 @@
             <fieldset class="border border-dark rounded p-3 fieldset-product-pictures mb-3">
                 <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.pictures' | trans( {},'VSCatalogBundle' ) }}</legend>
                 
-                <div class="attributesContainer"
+                <div class="picturesContainer"
                     data-prototype="{% apply escape %}{% include '@VSCatalog/Pages/Products/partial/add-picture-prototype.html.twig' with {'form': form.pictures.vars.prototype} %}{% endapply %}"
                 > 
                     {% for pictureForm in form.pictures %}
@@ -86,7 +95,7 @@
             <fieldset class="border border-dark rounded p-3 fieldset-product-files mb-3">
                 <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.files' | trans( {},'VSCatalogBundle' ) }}</legend>
                 
-                <div class="attributesContainer"
+                <div class="filesContainer"
                     data-prototype="{% apply escape %}{% include '@VSCatalog/Pages/Products/partial/add-file-prototype.html.twig' with {'form': form.files.vars.prototype} %}{% endapply %}"
                 > 
                     {% for fileForm in form.files %}
@@ -97,6 +106,33 @@
             
             <fieldset class="border border-dark rounded p-3 fieldset-custom-data">
                 <legend class="w-auto float-none ps-2 pe-2">{{ 'reading_room.form.product.custom-data' | trans( {},'ReadingRoom' ) }}</legend>
+                
+                <div class="form-group" id="TocDocumentField">
+                    {{ form_label(form.document, null, {
+                        'label_attr': {'class': 'form-label'}
+                        }) 
+                    }}
+                    <div class="input-group mb-3">
+                        {{ form_widget(form.document, {'attr': {'class': 'form-select'}}) }}
+                        <div class="input-group-append">
+                            {% if item.document %}
+                                <a class="btn btn-primary"
+                                    href="{{ path( 'vs_cms_document_update', {'id': item.document.id } ) }}"
+                                    title="{{ 'vs_application.template.items_index_row_action_edit' | trans( {},'VSApplicationBundle' ) }}"    
+                                >
+                                    {{ 'reading_room.form.product.document_update' | trans( {},'ReadingRoom' ) }}
+                                </a>
+                            {% else %}
+                                <a class="btn btn-primary"
+                                    href="{{ path( 'vs_cms_document_create' ) }}"
+                                    title="{{ 'vs_application.template.create_title' | trans( {},'VSApplicationBundle' ) }}"    
+                                >
+                                    {{ 'reading_room.form.product.document_create' | trans( {},'ReadingRoom' ) }}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
                 
                 <div class="form-group">
                     {{ form_label(form.genres, null, {

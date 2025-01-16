@@ -3,7 +3,7 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .ReadBookContainer {
-	    width: 100px;
+	    /*width: 100px;*/
 	    height: 100px;
 	}
 }
@@ -11,7 +11,7 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
     .ReadBookContainer {
-        width: 100px;
+        /*width: 100px;*/
         height: 100px;
     }
 }
@@ -19,7 +19,7 @@
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
     .ReadBookContainer {
-        width: 100px;
+        /*width: 100px;*/
         height: 100px;
     }
 }
@@ -27,7 +27,7 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-height: 400px) {
     .ReadBookContainer {
-        width: 900px;
+        /*width: 900px;*/
         height: 500px;
     }
 }
@@ -35,7 +35,7 @@
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-height: 800px) {
     .ReadBookContainer {
-        width: 900px;
+        /*width: 900px;*/
         height: 768px;
     }
 }

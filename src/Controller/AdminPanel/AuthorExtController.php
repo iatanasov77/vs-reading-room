@@ -33,7 +33,7 @@ class AuthorExtController extends AbstractController
             $em->refresh( $item );
         }
         
-        return $this->render( 'admin-panel/Pages/BookAuthors/author_form.html.twig', [
+        return $this->render( 'Pages/BookAuthors/author_form.html.twig', [
             'item'  => $item,
             'form'  => $this->createForm( BookAuthorForm::class, $item )->createView(),
         ]);

@@ -2,8 +2,9 @@
   <ng2-pdfjs-viewer #bigPdfViewer
                     pdfSrc="{{ pdfUrl }}"
                     viewerFolder="/build/booksaw-book-store/assets/pdfjs"
+                    locale="{{ locale }}"
                     
-                    downloadFileName="mySample"
+                    downloadFileName="{{ bookFileName }}"
                     viewerId="MyID"
                     
                     zoom="auto"

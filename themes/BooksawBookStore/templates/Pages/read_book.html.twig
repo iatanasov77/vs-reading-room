@@ -5,14 +5,21 @@
 {% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ book.name }}{% endblock %}
 
 {% block content %}
+    {% set viewBookmark = readingRoomSettings.viewBookmark or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    {% set canOpenFile = readingRoomSettings.openFile or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    {% set canDownload = readingRoomSettings.download or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    {% set canPrint = readingRoomSettings.print or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    
     <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
         <div id="ReadBookContainer"
             class="justify-content-center ReadBookContainer"
+            data-locale="{{ app.request.locale | replace( {'_': '-'} ) }}"
             data-BookUrl="{{ path( 'app_reading_room_read', {'id': book.id, 'locale': localeCode} ) }}"
-            data-openFile="{{ readingRoomSettings.openFile ? 'true' : 'false' }}"
-            data-viewBookmark="{{ readingRoomSettings.viewBookmark ? 'true' : 'false' }}"
-            data-download="{{ readingRoomSettings.download ? 'true' : 'false' }}"
-            data-print="{{ readingRoomSettings.print ? 'true' : 'false' }}"
+            data-BookFileName="{{ book.name }}"
+            data-openFile="{{ canOpenFile }}"
+            data-viewBookmark="{{ viewBookmark }}"
+            data-download="{{ canDownload }}"
+            data-print="{{ canPrint }}"
         >     
             <app-pdf-viewer></app-pdf-viewer>
         </div>

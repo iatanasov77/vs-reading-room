@@ -59,9 +59,30 @@
                         </div>
                         
                     </div>
+                    
+                    <fieldset class="border border-dark rounded p-3">
+                        <legend class="w-auto float-none ps-2 pe-2">
+                            {{ 'reading_room.form.reading_room_settings.theme_settings'  | trans( {},'ReadingRoom' ) }}
+                        </legend>
                         
-                	<h5 class="card-header sub-header">{{ 'reading_room.form.reading_room_settings.ng2_pdfjs_viewer_settings'  | trans( {},'ReadingRoom' ) }}</h5>
-                	<div class="card-body">
+                        <div class="form-group">
+                           <label class="custom-control custom-checkbox" for="reading_room_settings_form_showPrice">  
+                                <input type="checkbox" id="reading_room_settings_form_showPrice"
+                                    class="custom-control-input"
+                                    name="reading_room_settings_form[showPrice]"
+                                    value="{{ item.showPrice }}"
+                                    {% if item.showPrice %}checked="checked"{% endif %}
+                                />
+                                <span class="custom-control-label">{{ form.showPrice.vars.label | trans( {}, 'ReadingRoom' ) }}</span>
+                            </label>
+                        </div>
+                        
+                    </fieldset>
+                    
+                    <fieldset class="border border-dark rounded p-3">
+                        <legend class="w-auto float-none ps-2 pe-2">
+                            {{ 'reading_room.form.reading_room_settings.ng2_pdfjs_viewer_settings'  | trans( {},'ReadingRoom' ) }}
+                        </legend>
                 	   
                 	   <div class="form-group">
                     	   <label class="custom-control custom-checkbox" for="reading_room_settings_form_openFile">  
@@ -111,7 +132,7 @@
                             </label>
                         </div>
                         
-                	</div>
+                	</fieldset>
                 	
                     <div class="card-body">
                         {{ vs_form.buttons( form, metadata ) }}

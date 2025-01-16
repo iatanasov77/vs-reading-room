@@ -6,10 +6,13 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use daddl3\SymfonyCKEditor5WebpackViteBundle\Form\Ckeditor5TextareaType;
 
 use Vankosoft\CatalogBundle\Form\ProductForm;
+use App\Entity\Cms\Document;
+use App\Component\ReadingRoom;
 
 class BookForm extends ProductForm
 {
@@ -19,6 +22,9 @@ class BookForm extends ProductForm
     /** @var string */
     private $bookAuthorClass;
     
+    /** @var ReadingRoom */
+    private $readingRoom;
+    
     public function __construct(
         string $dataClass,
         RequestStack $requestStack,
@@ -26,12 +32,14 @@ class BookForm extends ProductForm
         string $categoryClass,
         string $currencyClass,
         string $bookGenreClass,
-        string $bookAuthorClass
+        string $bookAuthorClass,
+        ReadingRoom $readingRoom
     ) {
         parent::__construct( $dataClass, $requestStack, $localesRepository, $categoryClass, $currencyClass );
         
         $this->bookGenreClass   = $bookGenreClass;
         $this->bookAuthorClass  = $bookAuthorClass;
+        $this->readingRoom      = $readingRoom;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -43,6 +51,12 @@ class BookForm extends ProductForm
 
         $entity = $builder->getData();
         $builder
+            ->add( 'bookType', ChoiceType::class, [
+                'label'                 => 'reading_room.form.product.book_type',
+                'translation_domain'    => 'ReadingRoom',
+                'choices'               => \array_flip( $this->readingRoom->bookTypes() ),
+            ])
+        
             ->add( 'description', Ckeditor5TextareaType::class, [
                 'label'                 => 'vs_payment.form.description',
                 'translation_domain'    => 'VSPaymentBundle',
@@ -59,6 +73,15 @@ class BookForm extends ProductForm
                 'allow_delete' => true,
                 'prototype'    => true,
                 'by_reference' => false
+            ])
+            
+            ->add( 'document', EntityType::class, [
+                'class'                 => Document::class,
+                'choice_label'          => 'title',
+                'required'              => false,
+                'label'                 => 'reading_room.form.product.document',
+                'placeholder'           => 'reading_room.form.product.document_placeholder',
+                'translation_domain'    => 'ReadingRoom',
             ])
         
             ->add( 'bookAuthors', HiddenType::class, [

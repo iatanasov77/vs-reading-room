@@ -32,6 +32,13 @@ class ReadingRoomSettingsForm extends AbstractForm
                 'placeholder'           => 'reading_room.form.reading_room_settings.book_suggestions_strategy_placeholder'
             ])
             
+            ->add( 'showPrice', CheckboxType::class, [
+                'required'              => false,
+                
+                'label'                 => 'reading_room.form.reading_room_settings.show_price',
+                'translation_domain'    => 'ReadingRoom',
+            ])
+            
             ->add( 'openFile', CheckboxType::class, [
                 'required'              => false,
                 

@@ -8,5 +8,6 @@ services:
         public: true
         arguments:
             - '@vs_application.context.application'
+            - '@translator'
 
 
