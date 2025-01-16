@@ -56,6 +56,8 @@ class BooksController extends ProductController
     
     protected function prepareEntity( &$entity, &$form, Request $request )
     {
+        $entity->setUser( $this->get( 'vs_users.security_bridge' )->getUser() );
+        
         $categories = new ArrayCollection();
         $pcr        = $this->get( 'vs_catalog.repository.product_category' );
         
