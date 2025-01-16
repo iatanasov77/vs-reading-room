@@ -1,3 +1,17 @@
+1.4.3	|	Release date: **16.01.2025**
+============================================
+* New Features:
+  - Add a Setting whether to show Боок Prices.
+  - Create Books to Have Different Types, Not Only PDF.
+  - Improve Read Book PDF Viewer.
+  - Improve Book Edit Form View.
+  - Update Angular PDFJS viewer Version.
+* Bug-Fixes:
+  - Some Fixes of bugs remained from AdminPanel Theme Changing.
+  - Fix AdminPanel Books Controller to Add User That Create/Edit Book.
+  - Fix Styling of Book PDF Reader.
+
+
 1.4.2	|	Release date: **14.01.2025**
 ============================================
 * New Features and Improvements:
