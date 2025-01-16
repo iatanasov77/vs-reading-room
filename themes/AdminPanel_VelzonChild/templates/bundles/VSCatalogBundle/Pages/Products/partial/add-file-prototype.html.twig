@@ -4,13 +4,13 @@
         {% set fileCode = form.vars.value.code | split( '_' ) %}
         
         {% set originalName = item.files[fileId].originalName %}
-        {% set fileWidgetClass = 'form-control fieldPhoto persistedPhoto' %}
+        {% set fileWidgetClass = 'form-control fieldFile persistedPhoto' %}
     {% else %}
         {% set fileId = '' %}
         {% set fileCode = '' %}
         
         {% set originalName = 'Choose File' %}
-        {% set fileWidgetClass = 'form-control fieldPhoto' %}
+        {% set fileWidgetClass = 'form-control fieldFile' %}
     {% endif %}
     
     <div class="col-lg-3 mb-3">

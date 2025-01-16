@@ -30,9 +30,32 @@ function onDragEnd( elm )
 
 function initForm()
 {
-    $( '.attributesContainer' ).duplicateFields({
+    $( '.picturesContainer' ).duplicateFields({
         btnRemoveSelector: ".btnRemoveField",
-        btnAddSelector:    ".btnAddField"
+        btnAddSelector:    ".btnAddField",
+        onCreate: function( newElement ) {
+            let fileInputId = newElement.find( '.fieldPhoto' ).attr( 'id' );
+            newElement.find( '.input-group-text' ).attr( 'for', fileInputId );
+        }
+    });
+    
+    $( '.picturesContainer' ).on( 'change', '.fieldPhoto', function() {
+        var filename = $( this ).val().split('\\').pop();
+        $( this ).next( '.input-group-text' ).text( filename );
+    });
+    
+    $( '.filesContainer' ).duplicateFields({
+        btnRemoveSelector: ".btnRemoveField",
+        btnAddSelector:    ".btnAddField",
+        onCreate: function( newElement ) {
+            let fileInputId = newElement.find( '.fieldFile' ).attr( 'id' );
+            newElement.find( '.input-group-text' ).attr( 'for', fileInputId );
+        }
+    });
+    
+    $( '.filesContainer' ).on( 'change', '.fieldFile', function() {
+        var filename = $( this ).val().split('\\').pop();
+        $( this ).next( '.input-group-text' ).text( filename );
     });
     
     let associationsSelector    = ".product-associations";

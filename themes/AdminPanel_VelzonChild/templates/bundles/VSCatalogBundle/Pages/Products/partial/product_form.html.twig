@@ -83,7 +83,7 @@
             <fieldset class="border border-dark rounded p-3 fieldset-product-pictures mb-3">
                 <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.pictures' | trans( {},'VSCatalogBundle' ) }}</legend>
                 
-                <div class="attributesContainer"
+                <div class="picturesContainer"
                     data-prototype="{% apply escape %}{% include '@VSCatalog/Pages/Products/partial/add-picture-prototype.html.twig' with {'form': form.pictures.vars.prototype} %}{% endapply %}"
                 > 
                     {% for pictureForm in form.pictures %}
@@ -95,7 +95,7 @@
             <fieldset class="border border-dark rounded p-3 fieldset-product-files mb-3">
                 <legend class="w-auto float-none ps-2 pe-2">{{ 'vs_catalog.form.product.files' | trans( {},'VSCatalogBundle' ) }}</legend>
                 
-                <div class="attributesContainer"
+                <div class="filesContainer"
                     data-prototype="{% apply escape %}{% include '@VSCatalog/Pages/Products/partial/add-file-prototype.html.twig' with {'form': form.files.vars.prototype} %}{% endapply %}"
                 > 
                     {% for fileForm in form.files %}
