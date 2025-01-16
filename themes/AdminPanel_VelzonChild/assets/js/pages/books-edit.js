@@ -103,6 +103,7 @@ function initForm()
 
 $( function()
 {
+    $( '#TocDocumentField' ).hide();
     initForm();
     
     /*
@@ -130,6 +131,14 @@ $( function()
                     alert( 'FATAL ERROR!!!' );
                 }
             });
+        }
+    });
+    
+    $( '#FormContainer' ).on( 'change', '#book_form_bookType', function( e ) {
+        if ( $( this ).val() == 'vankosoft_document' ) {
+            $( '#TocDocumentField' ).show();
+        } else {
+            $( '#TocDocumentField' ).hide();
         }
     });
 });

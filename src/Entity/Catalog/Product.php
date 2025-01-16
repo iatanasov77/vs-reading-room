@@ -4,6 +4,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Vankosoft\CatalogBundle\Model\Product as BaseProduct;
+use Vankosoft\CmsBundle\Model\Interfaces\DocumentInterface;
+use App\Entity\Cms\Document;
 use App\Entity\UserManagement\User;
 use App\Entity\BookGenre;
 use App\Entity\BookAuthor;
@@ -15,6 +17,15 @@ class Product extends BaseProduct
     /** @var User */
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "submittedBooks")]
     private $user;
+    
+    /** @var string */
+    #[ORM\Column(name: "book_type", type: "string", columnDefinition: "ENUM('pdf', 'vankosoft_document')", options: ["default" => "pdf", ])]
+    private $bookType;
+    
+    /** @var DocumentInterface */
+    #[ORM\OneToOne(targetEntity: Document::class, cascade: ["all"], orphanRemoval: true)]
+    #[ORM\JoinColumn(name: "document_id", referencedColumnName: "id", nullable: true)]
+    private $document;
     
     /** @var Collection|BookGenre[] */
     #[ORM\ManyToMany(targetEntity: BookGenre::class, inversedBy: "books", indexBy: "id")]
@@ -50,6 +61,35 @@ class Product extends BaseProduct
         return $this;
     }
     
+    public function getBookType(): string
+    {
+        return $this->bookType;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setBookType( string $bookType ): self
+    {
+        $this->bookType = $bookType;
+        
+        return $this;
+    }
+    
+    public function getDocument(): ?DocumentInterface
+    {
+        return $this->document;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setDocument( ?DocumentInterface $document ): self
+    {
+        $this->document = $document;
+        
+        return $this;
+    }
     public function getGenres()
     {
         return $this->genres;

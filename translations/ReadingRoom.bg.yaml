@@ -41,6 +41,13 @@ reading_room:
             genres_placeholder: '-- Select Book Genres --'
             authors: Book Authors
             authors_placeholder: '-- Select Book Authors --'
+            book_type: Book Type
+            book_type_pdf: PDF
+            book_type_vankosoft_document: Vankosoft Document
+            document: Document
+            document_placeholder: '-- Choose a Document --'
+            document_create: Create Document
+            document_update: Edit Document
 
     template:
         application_title: ВанкоСофт Читалня
