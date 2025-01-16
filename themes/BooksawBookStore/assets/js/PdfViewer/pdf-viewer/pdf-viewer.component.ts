@@ -16,6 +16,7 @@ export class PdfViewerComponent implements OnInit
 
     pdfUrl: String;
     bookFileName: String;
+    locale: String;
     
     /**
      * pdfjs Viewer Settings 
@@ -27,6 +28,7 @@ export class PdfViewerComponent implements OnInit
     
     constructor()
     {
+        this.locale         = '';
         this.pdfUrl         = '';
         this.bookFileName   = '';
         this.openFile       = false;
@@ -37,6 +39,7 @@ export class PdfViewerComponent implements OnInit
     
     ngOnInit(): void
     {
+        this.locale         = $( '#ReadBookContainer' ).attr( 'data-locale' );
         this.pdfUrl         = $( '#ReadBookContainer' ).attr( 'data-BookUrl' );
         this.bookFileName   = $( '#ReadBookContainer' ).attr( 'data-BookFileName' );
         this.openFile       = $( '#ReadBookContainer' ).attr( 'data-openFile' );
