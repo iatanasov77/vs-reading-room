@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -93,9 +92,3 @@ yarn-error.log
 /docs/TechnicalDocumentation/VisualParadigm/.VankosoftApplication.vpp.lck
 /docs/TechnicalDocumentation/VisualParadigm/VankosoftApplication.vpp.bak_*
 ###< VisualParadigm Meta Files ###
-
-
-###> php-cs-fixer/shim ###
-/.php-cs-fixer.php
-/.php-cs-fixer.cache
-###< php-cs-fixer/shim ###

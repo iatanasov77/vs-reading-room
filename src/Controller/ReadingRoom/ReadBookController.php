@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Gaufrette\Filesystem as GaufretteFilesystem;
+use League\Flysystem\Filesystem as LeagueFlysystem;
 use Vankosoft\CatalogBundle\Component\Product;
 
 class ReadBookController extends AbstractController
@@ -20,7 +20,7 @@ class ReadBookController extends AbstractController
     /** @var RepositoryInterface **/
     private $productRepository;
     
-    /** @var GaufretteFilesystem */
+    /** @var LeagueFlysystem */
     private $localFilesystem;
     
     /** @var string **/
@@ -32,7 +32,7 @@ class ReadBookController extends AbstractController
     public function __construct(
         ManagerRegistry $doctrine,
         RepositoryInterface $productRepository,
-        GaufretteFilesystem $localFilesystem,
+        LeagueFlysystem $localFilesystem,
         string $productFilesDir,
         string $projectRootDir
     ) {
@@ -48,7 +48,7 @@ class ReadBookController extends AbstractController
         $book           = $this->productRepository->find( $id );
         $bookFiles      = $book->getFiles();
         $contentFile    = $bookFiles[\sprintf( '%s_%s', Product::PRODUCT_FILE_TYPE_CONTENT, $locale )];
-        $contentSize    = $this->localFilesystem->size( $contentFile->getPath() );
+        $contentSize    = $this->localFilesystem->fileSize( $contentFile->getPath() );
         
         $filePath                   = $this->productFilesDir . '/' . $contentFile->getPath();
         $response   = new StreamedResponse( function() use ( $filePath, $contentSize )

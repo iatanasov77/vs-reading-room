@@ -1,15 +1,15 @@
 <?php namespace App\Component\Uploader;
 
-use Gaufrette\Filesystem;
+use League\Flysystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
 use Webmozart\Assert\Assert;
 
-use Vankosoft\CmsBundle\Component\Uploader\FileUploaderInterface;
+use Vankosoft\CmsBundle\Component\Uploader\AbstractFileUploader;
 use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
 use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
 use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
-class BookUploader implements FileUploaderInterface
+class BookUploader extends AbstractFileUploader
 {
     /** @var Filesystem */
     protected $filesystem;
@@ -31,11 +31,6 @@ class BookUploader implements FileUploaderInterface
             }
             
             $this->filePathGenerator = $filePathGenerator ?? new UploadedFilePathGenerator();
-    }
-    
-    public function getFilesystem(): Filesystem
-    {
-        return $this->filesystem;
     }
     
     public function upload( FileInterface $filemanagerFile ): void
@@ -67,36 +62,5 @@ class BookUploader implements FileUploaderInterface
         if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
             $filemanagerFile->setType( $this->filesystem->getAdapter()->mimeType( $filemanagerFile->getPath() ) );
         }
-    }
-    
-    public function remove( string $path ): bool
-    {
-        if ( $this->filesystem->has( $path ) ) {
-            return $this->filesystem->delete( $path );
-        }
-        
-        return false;
-    }
-    
-    public function fileSize( FileInterface $filemanagerFile )
-    {
-        if ( $filemanagerFile->getFile() ) {
-            return $filemanagerFile->getFile()->getSize();
-        } else {
-            return $this->filesystem->size( $filemanagerFile->getPath() );
-        }
-    }
-    
-    protected function has( string $path ): bool
-    {
-        return $this->filesystem->has( $path );
-    }
-    
-    /**
-     * Will return true if the path is prone to be blocked by ad blockers
-     */
-    protected function isAdBlockingProne( string $path ): bool
-    {
-        return strpos( $path, 'ad' ) !== false;
     }
 }

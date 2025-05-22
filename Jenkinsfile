@@ -38,9 +38,6 @@ node ( label: 'php-host' ) {
     def GOOGLE_MEASUREMENT_CREDENTIALS_ID   = 'readingroom-google-measurement-id';
     def GOOGLE_MEASUREMENT_ID               = 'G-abc123';
     
-    def VANKOSOFT_API_USER;
-    def VANKOSOFT_API_PASSWORD;
-    
     stage( 'Configure Environement' ) {
     
         // Bind Git Credentials
@@ -93,12 +90,6 @@ node ( label: 'php-host' ) {
         withCredentials([string(credentialsId: "${GOOGLE_MEASUREMENT_CREDENTIALS_ID}", variable: 'MEASUREMENT_ID')]) {
             GOOGLE_MEASUREMENT_ID   = "$MEASUREMENT_ID"
         }
-        
-        // Bind VankoSoft API Credentials
-        withCredentials([usernamePassword(credentialsId: "vankosoft-issues-api", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-            VANKOSOFT_API_USER      = "$USERNAME"
-            VANKOSOFT_API_PASSWORD  = "$PASSWORD"
-        }
     }
     
     stage( 'Source Checkout' ) {
@@ -142,8 +133,6 @@ node ( label: 'php-host' ) {
                     'database_url': APP_DATABASE_URL,
                     'app_host': APP_HOST,
                     'google_measurement_id': GOOGLE_MEASUREMENT_ID,
-                    'vankosoft_api_user': VANKOSOFT_API_USER,
-                    'vankosoft_api_password': VANKOSOFT_API_PASSWORD
                 ])
     }
     
