@@ -29,5 +29,3 @@ vs_catalog:
         product_association:
             classes:
                 model: App\Entity\Catalog\ProductAssociation
-
-

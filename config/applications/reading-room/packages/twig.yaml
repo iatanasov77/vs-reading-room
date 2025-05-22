@@ -8,11 +8,9 @@ twig:
         applicationTitle: '%applicationTitle%'
         formCreateAccount: '%vs_users.form_create_account%'
         installedBundles: '%kernel.bundles%'
+        useCkEditor: '%env(resolve:USE_CKEDITOR)%'
         picturesPath: '%vs_application.filemanager_shared_media_gaufrette.app_pictures%'
         analyticsMeasurementId: '%env(GOOGLE_MEASUREMENT_ID)%'
-        
-        alerts: '@vs_app.twig.alerts'
-        localesRepo: '@vs_application.repository.locale'
         
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
