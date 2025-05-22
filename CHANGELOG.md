@@ -1,3 +1,10 @@
+1.5.0	|	Release date: **22.05.2025**
+============================================
+* New Features:
+  - Unconfiguring php-cs-fixer/shim
+  - Update to the New Versions of Vankosoft Core and Extensions.
+
+
 1.4.3	|	Release date: **16.01.2025**
 ============================================
 * New Features:
