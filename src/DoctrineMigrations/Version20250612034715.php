@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20250522082505 extends AbstractMigration
+final class Version20250612034715 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -93,7 +93,16 @@ final class Version20250522082505 extends AbstractMigration
             CREATE INDEX IDX_4A491FD507FAB6A ON VSAPP_Settings (maintenance_page_id )
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSCAT_PricingPlanSubscriptions CHANGE pricing_plan_id pricing_plan_id INT NOT NULL
+            ALTER TABLE VSCAT_PricingPlanCategories ADD CONSTRAINT FK_10C2B955727ACA70 FOREIGN KEY (parent_id) REFERENCES VSCAT_PricingPlanCategories (id) ON DELETE CASCADE
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSCAT_PricingPlanCategories ADD CONSTRAINT FK_10C2B955DE13F470 FOREIGN KEY (taxon_id) REFERENCES VSAPP_Taxons (id)
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSCAT_PricingPlanSubscriptions ADD CONSTRAINT FK_EA3E01A0A76ED395 FOREIGN KEY (user_id) REFERENCES VSUM_Users (id)
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSCAT_ProductCategories ADD CONSTRAINT FK_7ADE9A79DE13F470 FOREIGN KEY (taxon_id) REFERENCES VSAPP_Taxons (id)
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE VSCAT_ProductFiles ADD locale VARCHAR(255) NOT NULL
@@ -114,19 +123,19 @@ final class Version20250522082505 extends AbstractMigration
             CREATE UNIQUE INDEX UNIQ_D8F34E8CC33F7837 ON VSCAT_Products (document_id)
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSPAY_PromotionRules DROP FOREIGN KEY FK_9D727099139DF194
+            ALTER TABLE VSPAY_CustomerGroups ADD CONSTRAINT FK_8D3A9BC4DE13F470 FOREIGN KEY (taxon_id) REFERENCES VSAPP_Taxons (id)
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSPAY_PromotionRules ADD CONSTRAINT FK_9D727099139DF194 FOREIGN KEY (promotion_id) REFERENCES VSPAY_Promotions (id) ON DELETE CASCADE
+            ALTER TABLE VSPAY_Order ADD CONSTRAINT FK_87954502A76ED395 FOREIGN KEY (user_id) REFERENCES VSUM_Users (id)
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSPAY_Promotion_Applications ADD CONSTRAINT FK_1D3F36D53E030ACD FOREIGN KEY (application_id) REFERENCES VSAPP_Applications (id) ON DELETE CASCADE
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE VSUM_UsersInfo CHANGE title title ENUM('mr', 'mrs', 'miss')
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSUS_PayedServiceSubscriptionPeriods CHANGE payed_service_id payed_service_id INT NOT NULL
-        SQL);
-        $this->addSql(<<<'SQL'
-            ALTER TABLE VSUS_PayedServicesAttributes CHANGE payed_service_id payed_service_id INT NOT NULL
+            ALTER TABLE VSUS_NewsletterSubscriptions ADD CONSTRAINT FK_E521F0DCA76ED395 FOREIGN KEY (user_id) REFERENCES VSUM_Users (id)
         SQL);
     }
 
@@ -206,7 +215,16 @@ final class Version20250522082505 extends AbstractMigration
             CREATE INDEX IDX_4A491FD507FAB6A ON VSAPP_Settings (maintenance_page_id)
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSCAT_PricingPlanSubscriptions CHANGE pricing_plan_id pricing_plan_id INT DEFAULT NULL
+            ALTER TABLE VSCAT_PricingPlanCategories DROP FOREIGN KEY FK_10C2B955727ACA70
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSCAT_PricingPlanCategories DROP FOREIGN KEY FK_10C2B955DE13F470
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSCAT_PricingPlanSubscriptions DROP FOREIGN KEY FK_EA3E01A0A76ED395
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSCAT_ProductCategories DROP FOREIGN KEY FK_7ADE9A79DE13F470
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE VSCAT_ProductFiles DROP locale
@@ -227,19 +245,19 @@ final class Version20250522082505 extends AbstractMigration
             ALTER TABLE VSCAT_Products DROP user_id, DROP document_id, DROP book_type
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSPAY_PromotionRules DROP FOREIGN KEY FK_9D727099139DF194
+            ALTER TABLE VSPAY_CustomerGroups DROP FOREIGN KEY FK_8D3A9BC4DE13F470
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSPAY_PromotionRules ADD CONSTRAINT FK_9D727099139DF194 FOREIGN KEY (promotion_id) REFERENCES VSPAY_Promotions (id) ON UPDATE NO ACTION ON DELETE NO ACTION
+            ALTER TABLE VSPAY_Order DROP FOREIGN KEY FK_87954502A76ED395
+        SQL);
+        $this->addSql(<<<'SQL'
+            ALTER TABLE VSPAY_Promotion_Applications DROP FOREIGN KEY FK_1D3F36D53E030ACD
         SQL);
         $this->addSql(<<<'SQL'
             ALTER TABLE VSUM_UsersInfo CHANGE title title VARCHAR(255) DEFAULT NULL
         SQL);
         $this->addSql(<<<'SQL'
-            ALTER TABLE VSUS_PayedServiceSubscriptionPeriods CHANGE payed_service_id payed_service_id INT DEFAULT NULL
-        SQL);
-        $this->addSql(<<<'SQL'
-            ALTER TABLE VSUS_PayedServicesAttributes CHANGE payed_service_id payed_service_id INT DEFAULT NULL
+            ALTER TABLE VSUS_NewsletterSubscriptions DROP FOREIGN KEY FK_E521F0DCA76ED395
         SQL);
     }
 }

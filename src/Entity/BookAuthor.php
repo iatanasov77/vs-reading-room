@@ -12,6 +12,10 @@ use Vankosoft\ApplicationBundle\Model\Interfaces\TranslatableInterface;
 use App\Entity\Application\Translation;
 use App\Entity\Catalog\Product;
 
+/**
+ * @Doctrine\Common\Annotations\Annotation\IgnoreAnnotation( "ORM\MappedSuperclass" )
+ * @Doctrine\Common\Annotations\Annotation\IgnoreAnnotation("ORM\Column")
+ */
 #[ORM\Entity]
 #[ORM\Table(name: "VSCAT_BookAuthors")]
 #[Gedmo\TranslationEntity(class: Translation::class)]

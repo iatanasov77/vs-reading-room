@@ -10,6 +10,10 @@ use App\Entity\UserManagement\User;
 use App\Entity\BookGenre;
 use App\Entity\BookAuthor;
 
+/**
+ * @Doctrine\Common\Annotations\Annotation\IgnoreAnnotation( "ORM\MappedSuperclass" )
+ * @Doctrine\Common\Annotations\Annotation\IgnoreAnnotation("ORM\Column")
+ */
 #[ORM\Entity]
 #[ORM\Table(name: "VSCAT_Products")]
 class Product extends BaseProduct
