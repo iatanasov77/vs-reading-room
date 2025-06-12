@@ -8,6 +8,10 @@ use Vankosoft\ApplicationBundle\Model\Interfaces\TaxonDescendentInterface;
 use Vankosoft\ApplicationBundle\Model\Traits\TaxonDescendentEntity;
 use App\Entity\Catalog\Product;
 
+/**
+ * @Doctrine\Common\Annotations\Annotation\IgnoreAnnotation( "ORM\MappedSuperclass" )
+ * @Doctrine\Common\Annotations\Annotation\IgnoreAnnotation("ORM\Column")
+ */
 #[ORM\Entity]
 #[ORM\Table(name: "VSCAT_BookGenres")]
 class BookGenre implements ResourceInterface, TaxonDescendentInterface

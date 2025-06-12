@@ -33,9 +33,11 @@
         "symfony/notifier": "6.4.*",
         "symfony/runtime": "6.4.*",
         
-        "vankosoft/application": "1.12.*",
+        "vankosoft/application": "1.13.*",
         "vankosoft/application-themes": "^1.5",
-        "vankosoft/catalog-bundle": "^2.3"
+        "vankosoft/catalog-bundle": "^2.4",
+        
+        "doctrine/dbal": "^3.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
