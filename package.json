@@ -47,13 +47,34 @@
         "@yaireo/dragsort": "^1.3.1",
         "vanilla-cookieconsent": "^3.0",
         "remixicon": "^3.5",
-        "code-prettify-google": "^1.0.1",
+        
+        "particles.js": "^2.0",
+        "jsvectormap": "^1.5",
+        "swiper": "^11.0",
+        "feather-icons": "^4.29",
+        "node-waves": "^0.7",
+        "simplebar": "^6.2",
+        "choices.js": "^10.2",
+        "ad-rotator": "^5.8",
+        "apexcharts": "^4.3",
+
+        "dragula": "^3.7",
+        "dom-autoscroller": "^2.3",
+        "@lordicon/helpers": "^1.10",
+        "@lordicon/element": "^1.10",
+        "lottie-web": "^5.12",
+        "flatpickr": "^4.6",
         
         "scrolling-tabs-bootstrap-5": "^1.1",
         "bootstrap-icons": "^1.11",
         "move-js": "^0.5",
         
+        "code-prettify-google": "^1.0.1",
         "@stripe/stripe-js": "^2.1",
+        
+        "@analytics/google-analytics": "^1.1",
+        "analytics": "^0.8"        ,
+        "@types/dlv": "^1.0",
         
         "normalize.css": "^8.0",
         "aos": "^2.3",
@@ -72,19 +93,7 @@
         "hammerjs": "^2.0.8",
         "rxjs": "^7.5.4",
         "zone.js": "~0.14.2",
-        "ng2-pdfjs-viewer": "^18.0",
-        
-        "@analytics/google-analytics": "^1.0.5",
-        "analytics": "^0.8.1",
-        "@types/dlv": "^1.0.0",
-        
-        "particles.js": "^2.0",
-        "feather-icons": "^4.29",
-        "node-waves": "^0.7",
-        "simplebar": "^6.2",
-        "choices.js": "^10.2",
-        "ad-rotator": "^5.8",
-        "apexcharts": "^4.3"
+        "ng2-pdfjs-viewer": "^18.0"
     },
     "devDependencies": {
         "@hotwired/stimulus": "^3.0.0",

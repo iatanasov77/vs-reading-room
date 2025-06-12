@@ -1,3 +1,9 @@
+1.6.1	|	Release date: **12.06.2025**
+============================================
+* Bug-Fixes:
+  - Fix Webpack Compilling of AdminPanel Theme.
+
+
 1.6.0	|	Release date: **12.06.2025**
 ============================================
 * New Features:

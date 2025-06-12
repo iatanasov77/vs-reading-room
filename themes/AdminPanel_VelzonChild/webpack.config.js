@@ -41,8 +41,7 @@ Encore
     
     .addAliases({
         '@': path.resolve( __dirname, defaultThemePath ),
-        
-        '@@@': path.resolve( __dirname, baseThemePath )
+        '@@': path.resolve( __dirname, baseThemePath )
     })
     
     // Default Theme Images
@@ -76,6 +75,7 @@ Encore
     
     // Velzon Images
     .copyFiles([
+        {from: path.resolve( __dirname, baseThemePath + '/images' ), to: 'images/[path][name].[ext]'},
         //{from: './themes/CompasBilling/assets/vendor/Velzon_v3.5.0/lang', to: 'lang/[path][name].[ext]'},
         {from: path.resolve( __dirname, baseThemePath + '/vendor/Velzon_v4.2.0/fonts' ), to: 'fonts/[path][name].[ext]'},
         {from: path.resolve( __dirname, baseThemePath + '/vendor/Velzon_v4.2.0/images/flags' ), to: 'images/flags/[path][name].[ext]'},
@@ -106,6 +106,7 @@ Encore
     
     // VsApplicationBundle Pages
     .addEntry( 'js/profile-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/profile-edit.js' )
+    .addEntry( 'js/velzon-profile', './themes/AdminPanel_VelzonChild/assets/js/pages/profile.js' )
     
     //////////////////////////////////////////////////////////////////
     // Standard Pages
@@ -158,9 +159,6 @@ Encore
     .addEntry( 'js/sliders-items', applicationAssetsPath + '/js/pages/sliders-items.js' )
     .addEntry( 'js/sliders-items-edit', applicationAssetsPath + '/js/pages/sliders-items-edit.js' )
     
-    .addEntry( 'js/project-issues', applicationAssetsPath + '/js/pages/project-issues.js' )
-    .addEntry( 'js/project-issues-edit', applicationAssetsPath + '/js/pages/project-issues-edit.js' )
-    
     // Custom Pages
     .addEntry( 'js/reading-room-settings', './themes/AdminPanel_VelzonChild/assets/js/pages/reading-room-settings.js' )
     .addEntry( 'js/reading-room-settings-edit', './themes/AdminPanel_VelzonChild/assets/js/pages/reading-room-settings-edit.js' )
@@ -193,7 +191,6 @@ if ( pathExists.sync( paymentAssetsPath ) ) {
         .addEntry( 'js/exchange-rates', paymentAssetsPath + '/js/pages/exchange-rates.js' )
         .addEntry( 'js/recieved-payments', paymentAssetsPath + '/js/pages/recieved-payments.js' )
         .addEntry( 'js/orders', paymentAssetsPath + '/js/pages/orders.js' )
-        .addEntry( 'js/stripe-webhook-endpoint', paymentAssetsPath + '/js/pages/stripe-webhook-endpoint.js' )
         .addEntry( 'js/coupon-objects', paymentAssetsPath + '/js/pages/coupon-objects.js' )
         .addEntry( 'js/coupons-index', paymentAssetsPath + '/js/pages/coupons-index.js' )
         .addEntry( 'js/coupons-edit', paymentAssetsPath + '/js/pages/coupons-edit.js' )
@@ -204,6 +201,7 @@ if ( pathExists.sync( paymentAssetsPath ) ) {
         .addEntry( 'js/customer-groups', paymentAssetsPath + '/js/pages/customer-groups.js' )
         .addEntry( 'js/customer-groups-edit', paymentAssetsPath + '/js/pages/customer-groups-edit.js' )
         .addEntry( 'js/stripe-objects', paymentAssetsPath + '/js/pages/stripe-objects.js' )
+        .addEntry( 'js/stripe-object-form', paymentAssetsPath + '/js/pages/stripe-object-form.js' )
     ;
 }
     
