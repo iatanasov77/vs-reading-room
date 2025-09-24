@@ -2,15 +2,15 @@ require( 'jquery-easyui/css/easyui.css' );
 require( 'jquery-easyui/js/jquery.easyui.min.js' );
 // Need copy of: jquery-easyui/images/*
 
-require ( 'jquery-duplicate-fields/jquery.duplicateFields.js' );
-require( '@/js/includes/bootstrap-5/file-input.js' );
+require ( '@vankosoft/jquery-duplicate-fields/jquery.duplicateFields.js' );
+require( '@@/js/includes/bootstrap-5/file-input.js' );
 
-require( 'jquery-easyui-extensions/EasyuiCombobox.css' );
-import { EasyuiCombobox } from 'jquery-easyui-extensions/EasyuiCombobox.js';
-import { VsRemoveDuplicates } from '@/js/includes/vs_remove_duplicates.js';
+require( '@vankosoft/jquery-easyui-extensions/EasyuiCombobox.css' );
+import { EasyuiCombobox } from '@vankosoft/jquery-easyui-extensions/EasyuiCombobox.js';
+import { VsRemoveDuplicates } from '@@/js/includes/vs_remove_duplicates.js';
 
 // bin/console fos:js-routing:dump --format=json --target=public/shared_assets/js/fos_js_routes_admin.json
-import { VsPath } from '@/js/includes/fos_js_routes.js';
+import { VsPath } from '@@/js/includes/fos_js_routes.js';
 
 import Tagify from '@yaireo/tagify';
 import '@yaireo/tagify/dist/tagify.css';

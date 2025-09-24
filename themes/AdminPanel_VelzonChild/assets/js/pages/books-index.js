@@ -1,6 +1,6 @@
-import { VsPath } from '@/js/includes/fos_js_routes.js';
-require( '@/js/includes/clone_preview.js' );
-require( '@/js/includes/resource-delete.js' );
+import { VsPath } from '@@/js/includes/fos_js_routes.js';
+require( '@@/js/includes/clone_preview.js' );
+require( '@@/js/includes/resource-delete.js' );
 require( '../../css/custom.css' );
 
 $( function()

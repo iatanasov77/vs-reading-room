@@ -26,10 +26,8 @@
         "jquery-slimscroll": "^1.3.8",
         "jquery.nicescroll": "^3.7.6",
         "jquery-easyui": "^1.5.21",
-        "jquery-easyui-extensions": "^1.0",
         "jquery-ui-dist": "^1.12.1",
         "jquery-validation": "^1.20",
-        "jquery-duplicate-fields": "^1.1",
         "mdb-ui-kit": "^8.1",
         "moment": "^2.29.1",
         "velocity-animate": "^1.5.2",
@@ -62,6 +60,9 @@
         "lottie-web": "^5.12",
         "flatpickr": "^4.6",
         
+        "@vankosoft/jquery-duplicate-fields": "^2.0",
+        "@vankosoft/jquery-easyui-extensions": "^2.0",
+        
         "scrolling-tabs-bootstrap-5": "^1.1",
         "bootstrap-icons": "^1.11",
         "move-js": "^0.5",
@@ -90,7 +91,7 @@
         "hammerjs": "^2.0.8",
         "rxjs": "^7.5.4",
         "zone.js": "~0.14.2",
-        "ng2-pdfjs-viewer": "^18.0"
+        "ng2-pdfjs-viewer": "^25.0"
     },
     "devDependencies": {
         "@symfony/webpack-encore": "^5.0",
