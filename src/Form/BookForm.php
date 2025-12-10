@@ -31,11 +31,22 @@ class BookForm extends ProductForm
         RepositoryInterface $localesRepository,
         string $categoryClass,
         string $currencyClass,
+        string $useCkEditor,
+        string $ckeditor5Editor,
+        
         string $bookGenreClass,
         string $bookAuthorClass,
         ReadingRoom $readingRoom
     ) {
-        parent::__construct( $dataClass, $requestStack, $localesRepository, $categoryClass, $currencyClass );
+        parent::__construct(
+            $dataClass,
+            $requestStack,
+            $localesRepository,
+            $categoryClass,
+            $currencyClass,
+            $useCkEditor,
+            $ckeditor5Editor
+        );
         
         $this->bookGenreClass   = $bookGenreClass;
         $this->bookAuthorClass  = $bookAuthorClass;

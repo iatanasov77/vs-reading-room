@@ -93,7 +93,7 @@ class BookAuthorController extends AbstractCrudController
         
         $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
         $authorPhoto->setFile( $uploadedFile );
-        $this->get( 'vs_application.app_pictures_uploader' )->upload( $authorPhoto );
+        $this->get( 'vs_cms.app_pictures_uploader' )->upload( $authorPhoto );
         $authorPhoto->setFile( null ); // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
     }
     

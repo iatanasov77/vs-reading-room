@@ -9,7 +9,10 @@ use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
+use daddl3\SymfonyCKEditor5WebpackViteBundle\Form\Ckeditor5TextareaType;
+
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -17,21 +20,33 @@ use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 use App\Form\Type\BookAuthorPhotoType;
 use App\Entity\BookAuthor;
+use Vankosoft\CmsBundle\Form\Traits\FosCKEditor4Config;
 
 class BookAuthorForm extends AbstractForm
 {
+    use FosCKEditor4Config;
+    
     /** @var string */
     private $bookClass;
     
     /** @var string */
     private $genreClass;
     
+    /** @var string */
+    private $useCkEditor;
+    
+    /** @var string */
+    private $ckeditor5Editor;
+    
     public function __construct(
         string $dataClass,
         RepositoryInterface $localesRepository,
         RequestStack $requestStack,
         string $bookClass,
-        string $genreClass
+        string $genreClass,
+        
+        string $useCkEditor,
+        string $ckeditor5Editor
     ) {
         parent::__construct( $dataClass );
         
@@ -39,6 +54,9 @@ class BookAuthorForm extends AbstractForm
         $this->requestStack         = $requestStack;
         $this->bookClass            = $bookClass;
         $this->genreClass           = $genreClass;
+        
+        $this->useCkEditor          = $useCkEditor;
+        $this->ckeditor5Editor      = $ckeditor5Editor;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -70,13 +88,6 @@ class BookAuthorForm extends AbstractForm
             ->add( 'name', TextType::class, [
                 'label'                 => 'reading_room.form.author.name',
                 'translation_domain'    => 'ReadingRoom',
-            ])
-            
-            ->add( 'description', CKEditorType::class, [
-                'label'                 => 'reading_room.form.author.description',
-                'translation_domain'    => 'ReadingRoom',
-                'config'                => $this->ckEditorConfig( $options ),
-                'required'              => false,
             ])
             
             ->add( 'photos', CollectionType::class, [
@@ -112,6 +123,23 @@ class BookAuthorForm extends AbstractForm
             ])
         ;
         
+        if ( $this->useCkEditor == '5' ) {
+            $builder->add( 'description', Ckeditor5TextareaType::class, [
+                'label'                 => 'reading_room.form.author.description',
+                'translation_domain'    => 'ReadingRoom',
+                'required'              => false,
+                'attr' => [
+                    'data-ckeditor5-config' => 'devpage'
+                ],
+            ]);
+        } else {
+            $builder->add( 'description', CKEditorType::class, [
+                'label'                 => 'reading_room.form.author.description',
+                'translation_domain'    => 'ReadingRoom',
+                'config'                => $this->ckEditorConfig( $options ),
+                'required'              => false,
+            ]);
+        }
     }
     
     public function configureOptions( OptionsResolver $resolver ): void
@@ -122,56 +150,14 @@ class BookAuthorForm extends AbstractForm
             ->setDefaults([
                 'data_class'        => BookAuthor::class,
                 'csrf_protection'   => false,
-                
-                // CKEditor Options
-                'ckeditor_uiColor'              => '#ffffff',
-                'ckeditor_toolbar'              => 'full',
-                'ckeditor_extraPlugins'         => '',
-                'ckeditor_removeButtons'        => '',
-                'ckeditor_allowedContent'       => false,
-                'ckeditor_extraAllowedContent'  => '*[*]{*}(*)',
             ])
-            
-            ->setDefined([
-                // CKEditor Options
-                'ckeditor_uiColor',
-                'ckeditor_toolbar',
-                'ckeditor_extraPlugins',
-                'ckeditor_removeButtons',
-                'ckeditor_allowedContent',
-                'ckeditor_extraAllowedContent',
-            ])
-            
-            ->setAllowedTypes( 'ckeditor_uiColor', 'string' )
-            ->setAllowedTypes( 'ckeditor_toolbar', 'string' )
-            ->setAllowedTypes( 'ckeditor_extraPlugins', 'string' )
-            ->setAllowedTypes( 'ckeditor_removeButtons', 'string' )
-            ->setAllowedTypes( 'ckeditor_allowedContent', ['boolean', 'string'] )
-            ->setAllowedTypes( 'ckeditor_extraAllowedContent', 'string' )
         ;
+            
+        $this->configureCkEditorOptions( $resolver );
     }
     
     public function getName()
     {
         return 'vs_reading_room.book_author';
-    }
-    
-    protected function ckEditorConfig( array $options ): array
-    {
-        $ckEditorConfig = [
-            'uiColor'                           => $options['ckeditor_uiColor'],
-            'toolbar'                           => $options['ckeditor_toolbar'],
-            'extraPlugins'                      => array_map( 'trim', explode( ',', $options['ckeditor_extraPlugins'] ) ),
-            'removeButtons'                     => $options['ckeditor_removeButtons'],
-        ];
-        
-        $ckEditorAllowedContent = (bool)$options['ckeditor_allowedContent'];
-        if ( $ckEditorAllowedContent ) {
-            $ckEditorConfig['allowedContent']       = $ckEditorAllowedContent;
-        } else {
-            $ckEditorConfig['extraAllowedContent']  = $options['ckeditor_extraAllowedContent'];
-        }
-        
-        return $ckEditorConfig;
     }
 }
