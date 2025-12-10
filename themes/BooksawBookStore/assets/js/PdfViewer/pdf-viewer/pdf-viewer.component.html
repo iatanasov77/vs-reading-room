@@ -1,21 +1,21 @@
 <div class="w-100 h-100" style="width: 800px; height: 800px;">
-  <ng2-pdfjs-viewer #bigPdfViewer
-                    pdfSrc="{{ pdfUrl }}"
-                    viewerFolder="/build/booksaw-book-store/assets/pdfjs"
-                    locale="{{ locale }}"
-                    
-                    downloadFileName="{{ bookFileName }}"
-                    viewerId="MyID"
-                    
-                    zoom="auto"
-                    openFile="{{ openFile }}"
-					viewBookmark="{{ viewBookmark }}"
-					download="{{ download }}"
-					print="{{ print }}"
-                    
-                    (onDocumentLoad)="testPagesLoaded($event)"
-                    (onPageChange)="testPageChange($event)"
-                    (onBeforePrint)="testBeforePrint()"
-                    (onAfterPrint)="testAfterPrint()">
-  </ng2-pdfjs-viewer>
+    <ng2-pdfjs-viewer #bigPdfViewer
+        pdfSrc="{{ pdfUrl }}"
+        viewerFolder="/build/booksaw-book-store/assets/pdfjs"
+        locale="{{ locale }}"
+        
+        downloadFileName="{{ bookFileName }}"
+        viewerId="MyID"
+        
+        zoom="auto"
+        openFile="{{ openFile }}"
+        viewBookmark="{{ viewBookmark }}"
+        download="{{ download }}"
+        print="{{ print }}"
+        
+        (onDocumentLoad)="testPagesLoaded($event)"
+        (onPageChange)="testPageChange($event)"
+        (onBeforePrint)="testBeforePrint()"
+        (onAfterPrint)="testAfterPrint()">
+    </ng2-pdfjs-viewer>
 </div>
