@@ -19,10 +19,12 @@
                         <ul class="menu-list">
                             {{ knp_menu_render('mainApplication', {'template': 'Menu/main-menu.html.twig'}) }}
                             
+                            {#  
                             {% if app.request.attributes.get( '_route' ) == 'app_home' %}
                                 <li class="menu-item"><a href="#featured-books" class="nav-link">Featured</a></li>
                                 <li class="menu-item"><a href="#popular-books" class="nav-link">Popular</a></li>
                             {% endif %}
+                            #}
                         </ul>
 
                         <div class="hamburger">
