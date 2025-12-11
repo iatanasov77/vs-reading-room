@@ -23,4 +23,6 @@ vs_application:
         create_new_reading_room_setting: Create Reading Room Settings
         edit_reading_room_setting: Edit Reading Room Settings
 
-
+        catalog:
+            show_book: Show Book
+            read_book: Read Book
