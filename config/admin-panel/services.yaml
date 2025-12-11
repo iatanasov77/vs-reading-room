@@ -50,6 +50,7 @@ parameters:
     vs_application_slider_photo_description: '395 x 572'
     
     vs_application.taxon_repository_throw_exception: false
+    vs_application.filemanager_shared_media_gaufrette.app_pictures: "%kernel.project_dir%/public/shared_media/gaufrette/app_pictures"
     
 services:
     # default configuration for services in *this* file

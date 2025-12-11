@@ -58,16 +58,34 @@ vs_application:
             home:
                 name: vs_application.menu.home
                 route: app_home
-                
-            catalog:
-                name: Catalog
-                route: vs_catalog_catalog_latest_products
+            authors:
+                name: vs_application.menu.list_authors
+                route: app_reading_room_authors
+
                 childs:
+                    show_author:
+                        name: vs_application.menu.show_author
+                        route: app_reading_room_author_details
+                        routeParameters:
+                            slug: string
+                        display: false
+            catalog:
+                name: vs_application.menu.catalog_products
+                route: vs_catalog_catalog_latest_products
+
+                childs:
+#                     show_book:
+#                         name: vs_application.menu.catalog.show_book
+#                         route: vs_catalog_catalog_product_show
+#                         routeParameters:
+#                             categorySlug: string
+#                             productSlug: string
+#                         display: false
                     read_book:
-                        name: Read Book
+                        name: vs_application.menu.catalog.read_book
                         route: app_reading_room_read_book
                         routeParameters:
-                          productSlug: string
+                            productSlug: string
                         display: false
             contact:
                 name: vs_application.menu.contact

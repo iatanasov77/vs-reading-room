@@ -5,18 +5,21 @@
         
         {% set originalName = item.files[fileId].originalName %}
         {% set fileWidgetClass = 'form-control fieldFile persistedPhoto' %}
+        
+        {% set fileLocale = form.vars.value.locale %}
     {% else %}
         {% set fileId = '' %}
         {% set fileCode = '' %}
         
         {% set originalName = 'Choose File' %}
         {% set fileWidgetClass = 'form-control fieldFile' %}
+        
+        {% set fileLocale = '' %}
     {% endif %}
     
-    <div class="col-lg-3 mb-3">
+    <div class="col-lg-2 mb-3">
         {% set codeParts = fileCode | length %}
         {% set fileCodeValue = fileCode | slice( 0, codeParts - 2 ) | join( '_' ) %}
-        {% set fileLocale = fileCode | last | lower %}
         
         {{ form_widget(form.code, {
             'value' : fileCodeValue,
@@ -24,18 +27,20 @@
         }) }}
     </div>
     
-    <div class="col-lg-6 form-field-file  mb-3">
+    <div class="col-lg-2 mb-3">
+        {{ form_widget(form.locale, {
+            'value' : fileLocale,
+            'attr': { 'class': 'form-select', }
+        }) }}
+    </div>
+    
+    <div class="col-lg-7 form-field-file  mb-3">
         {{ form_widget(form.file, {'attr': {
                 'class': fileWidgetClass,
                 'placeholder': originalName
             }
         }) }}
         <label class="input-group-text" for="product_form_files_{{ fileId }}_file">{{ originalName }}</label>
-    </div>
-    
-    <div class="col-lg-1 mb-3">
-        
-        <i class="flag flag-{{ fileLocale }}"></i>
     </div>
     
     <div class="col-lg-1">

@@ -52,6 +52,7 @@ reading_room:
     template:
         application_title: ВанкоСофт Читалня
         admin_menu_title: Reading Room
+        account: Account
         contact_us: Contact us
         get_in_touch: Get in Touch
         get_in_touch_description: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
@@ -72,6 +73,7 @@ reading_room:
         page_title_book_genre_update: Edit Book Genre
         page_title_book_genre_details: Book Genre Details
         list_authors: Book Authors
+        author_details: Author
         page_title_author_create: Create New Author
         page_title_author_update: Edit Author
         page_title_author_details: Book Author Details

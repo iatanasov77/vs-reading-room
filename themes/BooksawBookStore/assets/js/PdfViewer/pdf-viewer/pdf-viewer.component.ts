@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
+import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
 
 import templateString from './pdf-viewer.component.html'
 import cssString from './pdf-viewer.component.scss'
@@ -12,7 +13,7 @@ declare var $: any;
 })
 export class PdfViewerComponent implements OnInit
 {
-    @ViewChild( 'bigPdfViewer', { static: true } ) public bigPdfViewer: any;
+    @ViewChild( 'bigPdfViewer' ) bigPdfViewer!: PdfJsViewerComponent;
 
     pdfUrl: String;
     bookFileName: String;
@@ -48,6 +49,11 @@ export class PdfViewerComponent implements OnInit
         this.print          = $( '#ReadBookContainer' ).attr( 'data-print' );
     }
     
+    async goToPage( page: number )
+    {
+        //await this.bigPdfViewer.goToPage( page );
+    }
+
     public testBeforePrint(): void
     {
         console.log( 'testBeforePrint() successfully called' );

@@ -1,0 +1,67 @@
+{% extends "base.html.twig" %}
+                            
+{% block content %}
+    <section id="popular-books" class="bookshelf py-5 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+    
+                    <div class="section-header align-center">
+                        <h2 class="section-title">
+                            {{ 'reading_room.template.list_authors' | trans( {},'ReadingRoom' ) }}
+                        </h2>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        {% for authorsRow in authors | batch( 4 ) %}
+            <div class="row">
+
+                {% for author in authorsRow %}
+                    
+                    {% if author.photos.first %}
+                        {% set authorPicture = author.photos.first.path | imagine_filter( 'index_page_thumbnail' ) %}
+                    {% else %}
+                        {% set authorPicture = '/build/bootstrap-shop-theme/images/products/6.jpg' %}
+                    {% endif %}
+                    
+                    <div class="col-md-3">
+                        <div class="product-item">
+                            <figure class="product-style">
+                                <a href="{{ path( 'app_reading_room_author_details', {'slug': author.slug} ) }}">
+                                    <img src="{{ authorPicture }}" alt="{{ author.name }}" class="product-item">
+                                </a>
+                            </figure>
+                            <figcaption>
+                                <a href="{{ path( 'app_reading_room_author_details', {'slug': author.slug} ) }}">
+                                    <h3>{{ author.name }}</h3>
+                                </a>
+                            </figcaption>
+                        </div>
+                    </div>
+                    
+                {% endfor %}
+                
+            </div>
+        {% endfor %}
+        
+        {% if  authors.pageCount > 1 %}
+            <div class="row">
+                <!-- paginator -->
+                <div class="col-12">
+                    <div class="section__paginator">
+                        <!-- amount -->
+                        <span class="section__paginator-pages">Showing {{ authors.count }} of {{ authors.getTotalItemCount }}</span>
+                        <!-- end amount -->
+        
+                        {{ knp_pagination_render(items, 'Layout/pagination.html.twig') }}
+                    </div>
+                </div>
+                <!-- end paginator -->
+            </div>
+        {% endif %}
+        
+    </section>
+{% endblock %}

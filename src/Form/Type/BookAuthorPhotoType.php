@@ -35,7 +35,7 @@ class BookAuthorPhotoType extends AbstractType
                 
                 'constraints'           => [
                     new File([
-                        'maxSize'           => '1024k',
+                        'maxSize'           => '2048k',
                         'mimeTypes'         => [
                             'image/gif',
                             'image/jpeg',

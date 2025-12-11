@@ -13,4 +13,3 @@ app_set_lang:
 app_set_locale:
     path: /set_locale/{locale}
     controller: App\Controller\Application\DefaultController::setLocale
-    

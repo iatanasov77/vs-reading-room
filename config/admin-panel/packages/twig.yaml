@@ -12,6 +12,7 @@ twig:
         installedBundles: '%kernel.bundles%'
         pageCategoriesTaxonomyCode: '%vs_application.page_categories.taxonomy_code%'
         useCkEditor: '%env(resolve:USE_CKEDITOR)%'
+        picturesPath: '%vs_application.filemanager_shared_media_gaufrette.app_pictures%'
     
     form_themes:
         - '@FOSCKEditor/Form/ckeditor_widget.html.twig'

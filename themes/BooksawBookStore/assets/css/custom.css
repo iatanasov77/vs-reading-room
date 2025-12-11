@@ -1,3 +1,14 @@
 .topbar-head-dropdown img {
     height: 20px !important;
 }
+
+.product-item figcaption a > h3 {
+    font-size: 1.4em;
+    font-weight: 500;
+    color: #74642F;
+    margin: 0;
+}
+
+a {
+    color: var(--accent-color) !important;
+}

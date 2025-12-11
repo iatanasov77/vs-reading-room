@@ -59,8 +59,6 @@ class BookUploader extends AbstractFileUploader
             file_get_contents( $filemanagerFile->getFile()->getPathname() )
         );
         
-        if ( method_exists ( $this->filesystem->getAdapter(), 'mimeType' ) ) {
-            $filemanagerFile->setType( $this->filesystem->getAdapter()->mimeType( $filemanagerFile->getPath() ) );
-        }
+        $filemanagerFile->setType( $this->filesystem->mimeType( $filemanagerFile->getPath() ) );
     }
 }

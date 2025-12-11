@@ -27,6 +27,14 @@
             {% include 'Layout/top.html.twig' %}
         </div><!--header-wrap-->
     
+        {#
+        <div class="breadcum-items align-right mt-2 me-2">
+            <span class="item"><a href="index.html">Home /</a></span>
+            <span class="item colored">Shop</span>
+        </div>
+        #}
+        {{ knp_menu_render('breadcrumbs', {'template': 'Menu/breadcrumb.html.twig'}) }}
+        
         {% block content %}{% endblock %}
         
         {% include 'Layout/footer.html.twig' %}

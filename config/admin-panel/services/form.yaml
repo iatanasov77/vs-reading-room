@@ -58,6 +58,8 @@ services:
             - '@request_stack'
             - '%vs_catalog.model.product.class%'
             - '%vs_reading_room.model.book_genre.class%'
+            - '%vs_cms.form.use_ckeditor%'
+            - '%vs_cms.form.decription_field.ckeditor5_editor%'
             
     vs_reading_room.resources.book_author_photo.form:
         class: App\Form\Type\BookAuthorPhotoType
@@ -77,6 +79,9 @@ services:
             - '@vs_application.repository.locale'
             - '%vs_catalog.model.product_category.class%'
             - '%vs_payment.model.currency.class%'
+            - '%vs_cms.form.use_ckeditor%'
+            - '%vs_cms.form.decription_field.ckeditor5_editor%'
+            
             - '%vs_reading_room.model.book_genre.class%'
             - '%vs_reading_room.model.book_author.class%'
             - '@app_reading_room'
@@ -86,3 +91,5 @@ services:
             - { name: form.type }
         arguments:
             - '%vs_catalog.model.product_file.class%'
+            - '@request_stack'
+            - '@vs_application.repository.locale'

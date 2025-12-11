@@ -214,3 +214,11 @@ services:
             - '@vs_catalog.repository.product'
         calls:
             - [ setContainer, [ '@service_container' ] ]
+    
+    App\Controller\ReadingRoom\AuthorController:
+        tags: ['controller.service_arguments']
+        autowire: true
+        arguments:
+            - '@vs_reading_room.repository.book_author'
+        calls:
+            - [ setContainer, [ '@service_container' ] ]
