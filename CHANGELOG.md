@@ -1,3 +1,20 @@
+1.6.3	|	Release date: **11.12.2025**
+============================================
+* New Features and Improvements:
+  - Improve Frontend Dependencies.
+  - Update Dependencies.
+  - Some Fixes About New Versions Vankosoft Core Library and Extensions.
+  - Fix 'ng2-pdfjs-viewer' Major Version Because Newer Versions Not Loaded.
+  - Update PHP Version in Jenkinsfile.
+  - Improve Catalog Page and Add Breadcrumb for All Pages in Frontend Theme.
+  - Fix AdminPanel Authors and Books Edit Pages.
+  - Fix Catalog Routes.
+  - Show Book Authors in Frontend.
+  - Add an Account Link for Logged in Users.
+  - Remove Some Links After Main Menu.
+  - Upload Book Files for Different Locales independent of Entity Translatable Locale.
+
+
 1.6.2	|	Release date: **12.06.2025**
 ============================================
 * Bug-Fixes:
