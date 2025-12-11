@@ -106,8 +106,26 @@ class BooksController extends ProductController
                     continue;
                 }
                 
-                $fileCode   = \sprintf( "%s_%s", $formPost['files'][$fileId]["code"], $formLocale );
-                $this->addProductFile( $entity, $files[$fileId], $file['file'], $fileCode );
+                if ( $formPost['files'][$fileId]["code"] != Product::PRODUCT_FILE_TYPE_CONTENT ) {
+                    continue;
+                }
+                
+                $fileCode           = $formPost['files'][$fileId]["code"];
+                $fileLocale         = $formPost['files'][$fileId]["locale"];
+                $fileCodeWithLocale = \sprintf( "%s_%s", $fileCode, $fileLocale );
+                
+                $existingFiles = $entity->getFiles()->filter(
+                    function( $entry ) use ( $fileCode, $fileLocale ) {
+                        return $entry->getCode() == $fileCode && $entry->getLocale() == $fileLocale;
+                    }
+                );
+                foreach ( $existingFiles as $existingFile ) {
+                    if ( $existingFile->getId() ) {
+                        $entity->removeFile( $existingFile );
+                    }
+                }
+                
+                $this->addBookFile( $entity, $files[$fileId], $file['file'], $fileCodeWithLocale, $fileLocale );
             }
         }
         
@@ -124,8 +142,13 @@ class BooksController extends ProductController
         }
     }
     
-    protected function addProductFile( ProductInterface &$entity, ProductFileInterface &$productFile, File $file, string $code ): void
-    {
+    protected function addBookFile(
+        ProductInterface &$entity,
+        ProductFileInterface &$productFile,
+        File $file,
+        string $code,
+        string $locale
+    ): void {
         $productFile->setOriginalName( $file->getClientOriginalName() );
         
         $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
@@ -140,8 +163,7 @@ class BooksController extends ProductController
             $productFile->setCode( $code );
         }
         
-        $tranlatableLocale  = $entity->getTranslatableLocale();
-        $productFile->setLocale( $tranlatableLocale );
+        $productFile->setLocale( $locale );
         
         $entity->addFile( $productFile );
     }

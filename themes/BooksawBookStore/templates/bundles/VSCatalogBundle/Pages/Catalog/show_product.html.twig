@@ -35,8 +35,8 @@
                             </h4>
                         {% endif %}
                         #}
-                        {% for localeCode, localeTitle in translations %}
-                            {% set linkTitle = 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) ~ ' in ' ~ localeTitle %}
+                        {% for localeCode in bookTranslations %}
+                            {% set linkTitle = 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) ~ ' in ' ~ localeCode %}
                             
                             <a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug, 'locale': localeCode} ) }}"
                                 data-bs-toggle="tooltip"

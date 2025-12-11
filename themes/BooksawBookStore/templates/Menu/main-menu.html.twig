@@ -7,10 +7,6 @@
         {% if( parentItem.displayed ) %}
             <li class="menu-item{% if parentItem.isCurrent %} active{% endif %}">
                 <a href="{{ parentItem.uri }}">{{ parentItem.name | trans }}</a>
-                
-                {% if(parentItem.hasChildren) %}
-                
-                {% endif %}
             </li>
         {% endif %}
     {% endfor %}

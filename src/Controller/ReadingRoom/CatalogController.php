@@ -109,9 +109,10 @@ class CatalogController extends BaseCatalogController
         $product   = $this->productRepository->findOneBy( ['slug' => $productSlug] );
         
         return $this->render( '@VSCatalog/Pages/Catalog/show_product.html.twig', [
-            'product'       => $product,
-            'translations'  => $this->getTranslations( $product ),
-            'shoppingCart'  => $this->getShoppingCart( $request ),
+            'product'           => $product,
+            'translations'      => $this->getTranslations( $product ),
+            'bookTranslations'  => $this->geBookTranslations( $product ),
+            'shoppingCart'      => $this->getShoppingCart( $request ),
         ]);
     }
     
@@ -121,6 +122,16 @@ class CatalogController extends BaseCatalogController
         foreach ( \array_keys( $this->translationsRepository->findTranslations( $product ) ) as $localeCode ) {
             $locale = $this->localesRepository->findOneBy( ['code' => $localeCode ] );
             $translations[$localeCode]    = $locale->getTitle();
+        }
+        
+        return $translations;
+    }
+    
+    private function geBookTranslations( $entity ): array
+    {
+        $translations   = [];
+        foreach ( $entity->getFiles() as $file ) {
+            $translations[] = $file->getLocale();
         }
         
         return $translations;
