@@ -2,7 +2,7 @@
 
 {% block title %}{{ parent() }}{% endblock %}
 
-{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ author.name }}{% endblock %}
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'reading_room.template.author_details' | trans( {},'ReadingRoom' ) }}: {{ author.name }}{% endblock %}
 
 {% block content %}
     {% if author.photos.first %}
