@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }}{% endblock %}
+
+{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ author.name }}{% endblock %}
+
+{% block content %}
+    {% if author.photos.first %}
+        {% set authorPicture = path( 'vs_cms_images_filesystem_get_file', { file: picturesPath ~ '/' ~ author.photos.first.path } ) %}
+    {% else %}
+        {% set authorPicture = '/build/bootstrap-shop-theme/images/products/6.jpg' %}
+    {% endif %}
+    
+    <section class="bg-sand padding-medium">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-5">
+                    <a href="#" class="product-image">
+                        <img src="{{ authorPicture }}">
+                    </a>
+                </div>
+
+                <div class="col-md-7 pl-5">
+                    <div class="product-detail">
+                        <h1>{{ author.name }}</h1>
+                        
+                        <div id="ProductDescriptionContainer" class="mt-3">
+                            {{ author.description | raw }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

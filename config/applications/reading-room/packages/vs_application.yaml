@@ -58,11 +58,20 @@ vs_application:
             home:
                 name: vs_application.menu.home
                 route: app_home
-                
+            authors:
+                name: vs_application.menu.list_authors
+                route: app_reading_room_authors
+
+                childs:
+                    show_author:
+                        name: vs_application.menu.show_author
+                        route: app_reading_room_author_details
+                        routeParameters:
+                            slug: string
+                        display: false
             catalog:
-                name: vs_application.menu.catalog
+                name: vs_application.menu.catalog_products
                 route: vs_catalog_catalog_latest_products
-                displayChildren: false
 
                 childs:
                     show_book:

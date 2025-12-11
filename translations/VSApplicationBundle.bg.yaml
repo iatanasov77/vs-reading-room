@@ -14,6 +14,7 @@ vs_application:
         list_authors: Book Authors
         create_new_author: Create New Author
         edit_author: Edit Author
+        show_author: Show Author
         
         list_reading_room_applications: Reading Room Applications
         create_new_reading_room_application: Create New Reading Room Application
