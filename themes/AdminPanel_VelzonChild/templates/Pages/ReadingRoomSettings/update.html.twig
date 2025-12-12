@@ -77,9 +77,21 @@
                             </label>
                         </div>
                         
+                        <div class="form-group">
+                           <label class="custom-control custom-checkbox" for="reading_room_settings_form_enableRegistration">  
+                                <input type="checkbox" id="reading_room_settings_form_enableRegistration"
+                                    class="custom-control-input"
+                                    name="reading_room_settings_form[enableRegistration]"
+                                    value="{{ item.enableRegistration }}"
+                                    {% if item.enableRegistration %}checked="checked"{% endif %}
+                                />
+                                <span class="custom-control-label">{{ form.enableRegistration.vars.label | trans( {}, 'ReadingRoom' ) }}</span>
+                            </label>
+                        </div>
+                        
                     </fieldset>
                     
-                    <fieldset class="border border-dark rounded p-3">
+                    <fieldset class="border border-dark rounded p-3 mt-4">
                         <legend class="w-auto float-none ps-2 pe-2">
                             {{ 'reading_room.form.reading_room_settings.ng2_pdfjs_viewer_settings'  | trans( {},'ReadingRoom' ) }}
                         </legend>

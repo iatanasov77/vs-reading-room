@@ -1,3 +1,9 @@
+1.6.4	|	Release date: **12.12.2025**
+============================================
+* New Features:
+  - Create a Widget to Show Authentication Menu Links on Top of Frontent Theme.
+
+
 1.6.3	|	Release date: **11.12.2025**
 ============================================
 * New Features and Improvements:

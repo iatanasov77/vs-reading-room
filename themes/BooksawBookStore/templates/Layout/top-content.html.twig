@@ -24,18 +24,20 @@
             <div class="col-md-6">
                 <div class="right-element">
                 
-                {% if app.user %}
-                    <a href="javascript:void(0);" class="user-account for-buy">
-                        <i class="icon icon-user"></i>
-                        <span>{{ 'reading_room.template.account' | trans( {},'ReadingRoom' ) }}</span>
-                    </a>
-                {#
-                    <a href="#" class="cart for-buy">
-                        <i class="icon icon-clipboard"></i>
-                        <span>Cart:(0 $)</span>
-                    </a>
-                #}
-                {% endif %}
+                    {% if app.user %}
+                        <a href="javascript:void(0);" class="user-account for-buy">
+                            <i class="icon icon-user"></i>
+                            <span>{{ 'reading_room.template.account' | trans( {},'ReadingRoom' ) }}</span>
+                        </a>
+                        {#
+                        <a href="#" class="cart for-buy">
+                            <i class="icon icon-clipboard"></i>
+                            <span>Cart:(0 $)</span>
+                        </a>
+                        #}
+                    {% else %}
+                        {{ vs_widget_render( 'reading-room-layout', ['application-authentication'] ) }}
+                    {% endif %}
                 
                     <div class="action-menu">
                         <div class="search-bar">
