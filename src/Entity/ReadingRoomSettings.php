@@ -34,6 +34,10 @@ class ReadingRoomSettings implements ResourceInterface
     private $showPrice = false;
     
     /** @var bool */
+    #[ORM\Column(name: "enable_registration", type: "boolean", options: ["default" => 1, ])]
+    private $enableRegistration = true;
+    
+    /** @var bool */
     #[ORM\Column(name: "open_file", type: "boolean", options: ["default" => 0, "comment" => "Setting for 'ng2-pdfjs-viewer' Component"])]
     private $openFile = false;
     
@@ -98,6 +102,18 @@ class ReadingRoomSettings implements ResourceInterface
     public function setShowPrice( $showPrice )
     {
         $this->showPrice = $showPrice;
+        
+        return $this;
+    }
+    
+    public function getEnableRegistration()
+    {
+        return $this->enableRegistration;
+    }
+    
+    public function setEnableRegistration( $enableRegistration  )
+    {
+        $this->enableRegistration = $enableRegistration;
         
         return $this;
     }

@@ -39,6 +39,13 @@ class ReadingRoomSettingsForm extends AbstractForm
                 'translation_domain'    => 'ReadingRoom',
             ])
             
+            ->add( 'enableRegistration', CheckboxType::class, [
+                'required'              => false,
+                
+                'label'                 => 'reading_room.form.reading_room_settings.enable_registration',
+                'translation_domain'    => 'ReadingRoom',
+            ])
+            
             ->add( 'openFile', CheckboxType::class, [
                 'required'              => false,
                 

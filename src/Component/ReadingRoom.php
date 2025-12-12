@@ -40,6 +40,11 @@ final class ReadingRoom
         return $this->readingRoomSettings->getBookSuggestionsAssociationType();
     }
     
+    public function getEnableRegistration()
+    {
+        return $this->readingRoomSettings->getEnableRegistration();
+    }
+    
     public function bookTypes(): array
     {
         return [

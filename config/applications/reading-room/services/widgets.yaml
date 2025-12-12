@@ -30,3 +30,9 @@ services:
     App\Widgets\BookSuggestionsWidget:
         tags:
             - { name: kernel.event_listener, event: widget.start, method: builder }
+    
+    App\Widgets\ApplicationAuthenticationWidget:
+        arguments:
+            - '@app_reading_room'
+        tags:
+            - { name: kernel.event_listener, event: widget.start, method: builder }

@@ -16,6 +16,7 @@ reading_room:
             settings_key: Settings Key
             theme_settings: Theme Settings
             show_price: Show Book Price
+            enable_registration: Enable User Registration
             ng2_pdfjs_viewer_settings: Angular PDFJS Viewer Settings
             open_file: Show/hide open file button.
             view_bookmark: Show/hide bookmark button.
