@@ -9,7 +9,8 @@ declare var $: any;
 @Component({
     selector: 'app-pdf-viewer',
     template: templateString || 'Template Not Loaded !!!',
-    styles: [cssString || 'Template Not Loaded !!!',]
+    styles: [cssString || 'Template Not Loaded !!!',],
+    standalone: false
 })
 export class PdfViewerComponent implements OnInit
 {
