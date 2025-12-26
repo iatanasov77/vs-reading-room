@@ -37,6 +37,7 @@ class ProductFileType extends AbstractType
     public function buildForm( FormBuilderInterface $builder, array $options ): void
     {
         $currentLocale  = $this->requestStack->getCurrentRequest()->getLocale();
+        //var_dump( $this->fillLocaleChoices() ); die;
         
         $builder
         
@@ -51,6 +52,7 @@ class ProductFileType extends AbstractType
             
             ->add( 'locale', ChoiceType::class, [
                 'label'                 => 'vs_cms.form.locale',
+                'placeholder'           => false,
                 'translation_domain'    => 'VSCmsBundle',
                 'choices'               => \array_flip( $this->fillLocaleChoices() ),
                 'data'                  => $currentLocale,
