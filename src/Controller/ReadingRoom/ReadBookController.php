@@ -3,11 +3,13 @@
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\StreamedResponse;
 use Symfony\Component\HttpFoundation\HeaderUtils;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Resource\Factory\FactoryInterface;
 use League\Flysystem\Filesystem as LeagueFlysystem;
 use Vankosoft\CatalogBundle\Component\Product;
 use App\Entity\Catalog\ProductFile;
@@ -25,6 +27,12 @@ class ReadBookController extends AbstractController
     /** @var LeagueFlysystem */
     private $localFilesystem;
     
+    /** @var RepositoryInterface **/
+    private $bookmarkRepository;
+    
+    /** @var FactoryInterface **/
+    private $bookmarkFactory;
+    
     /** @var string **/
     private $productFilesDir;
     
@@ -35,12 +43,16 @@ class ReadBookController extends AbstractController
         ManagerRegistry $doctrine,
         RepositoryInterface $productRepository,
         LeagueFlysystem $localFilesystem,
+        RepositoryInterface $bookmarkRepository,
+        FactoryInterface $bookmarkFactory,
         string $productFilesDir,
         string $projectRootDir
     ) {
         $this->doctrine             = $doctrine;
         $this->productRepository    = $productRepository;
         $this->localFilesystem      = $localFilesystem;
+        $this->bookmarkRepository   = $bookmarkRepository;
+        $this->bookmarkFactory      = $bookmarkFactory;
         $this->productFilesDir      = $productFilesDir;
         $this->projectRootDir       = $projectRootDir;
     }
@@ -68,6 +80,65 @@ class ReadBookController extends AbstractController
         $this->makeContentDisposition( $contentFile, $response );
         
         return $response;
+    }
+    
+    public function getBookmark( $bookId, $bookLocale, $userId, Request $request ): Response
+    {
+        $bookmark   = $this->bookmarkRepository->findOneBy([
+            'bookId' => $bookId,
+            'locale' => $bookLocale,
+            'userId' => $userId
+        ]);
+        
+        if ( $bookmark ) {
+            return new JsonResponse([
+                'dateCreated'   => $bookmark->getUpdatedAt(),
+                'bookId'        => $bookmark->getBookId(),
+                'bookLocale'    => $bookmark->getLocale(),
+                'userId'        => $bookmark->getUserId(),
+                'page'          => $bookmark->getPage(),
+            ]);
+        }
+        
+        return new JsonResponse([
+            'dateCreated'   => new \DateTime(),
+            'bookId'        => 0,
+            'bookLocale'    => 'en_US',
+            'userId'        => 0,
+            'page'          => 1,
+        ]);
+    }
+    
+    public function createBookmark( Request $request ): Response
+    {
+        $postData = \json_decode( $request->getContent(), true );
+        
+        $bookmark   = $this->bookmarkRepository->findOneBy([
+            'bookId' => $postData['bookId'],
+            'locale' => $postData['bookLocale'],
+            'userId' => $postData['userId']
+        ]);
+        
+        if ( ! $bookmark ) {
+            $bookmark = $this->bookmarkFactory->createNew();
+            $bookmark->setBookId( $postData['bookId'] );
+            $bookmark->setLocale( $postData['bookLocale'] );
+            $bookmark->setUserId( $postData['userId'] );
+        }
+        
+        $bookmark->setPage( $postData['page'] );
+        
+        $em = $this->doctrine->getManager();
+        $em->persist( $bookmark );
+        $em->flush();
+        
+        return new JsonResponse([
+            'dateCreated'   => $bookmark->getUpdatedAt(),
+            'bookId'        => $bookmark->getBookId(),
+            'bookLocale'    => $bookmark->getLocale(),
+            'userId'        => $bookmark->getUserId(),
+            'page'          => $bookmark->getPage(),
+        ]);
     }
     
     private function makeContentDisposition( ProductFile $oFile, Response &$response )

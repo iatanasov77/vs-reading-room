@@ -3,6 +3,7 @@
         pdfSrc="{{ pdfUrl }}"
         viewerFolder="/build/booksaw-book-store/assets/pdfjs"
         locale="{{ locale }}"
+        page="{{ page }}"
         
         downloadFileName="{{ bookFileName }}"
         viewerId="MyID"
@@ -13,9 +14,11 @@
         download="{{ download }}"
         print="{{ print }}"
         
-        (onDocumentLoad)="testPagesLoaded($event)"
-        (onPageChange)="testPageChange($event)"
-        (onBeforePrint)="testBeforePrint()"
-        (onAfterPrint)="testAfterPrint()">
+        (onDocumentLoad)="pagesLoaded($event)"
+        (onPageChange)="pageChange($event)"
+        (onBookmarkClick)="createBookmark($event)"
+        (onBeforePrint)="beforePrint()"
+        (onAfterPrint)="afterPrint()"
+    >
     </ng2-pdfjs-viewer>
 </div>

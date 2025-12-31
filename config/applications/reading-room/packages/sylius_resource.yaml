@@ -44,3 +44,9 @@ sylius_resource:
             classes:
                 model:      App\Entity\BookGenre
                 repository: App\Repository\GenresRepository
+        
+        vs_reading_room.bookmark:
+            driver: doctrine/orm
+            classes:
+                model:      App\Entity\Bookmark
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
