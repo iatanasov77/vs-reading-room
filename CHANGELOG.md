@@ -1,3 +1,13 @@
+1.7.0	|	Release date: **04.01.2026**
+============================================
+* New Features and Improvements:
+  - Update PDF.js Viewer Version.
+  - Improve Read Book Page.
+  - Add Link to Author Details Page in Book Listing Pages.
+  - Improve AdminPanel Edit Book Form.
+  - Create Bookmark Functionaliti for PDF Viewer.
+
+
 1.6.4	|	Release date: **12.12.2025**
 ============================================
 * New Features:
