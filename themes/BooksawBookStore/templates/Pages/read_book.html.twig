@@ -13,7 +13,12 @@
     <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
         <div id="ReadBookContainer"
             class="justify-content-center ReadBookContainer"
-            data-locale="{{ app.request.locale | replace( {'_': '-'} ) }}"
+            
+            data-BookId="{{ book.id }}"
+            data-BookLocale="{{ localeCode }}"
+            data-UserId="{{ app.user ? app.user.id : 0 }}"
+            
+            data-locale="{{ localeCode | replace( {'_': '-'} ) }}"
             data-BookUrl="{{ path( 'app_reading_room_read', {'id': book.id, 'locale': localeCode} ) }}"
             data-BookFileName="{{ book.name }}"
             data-openFile="{{ canOpenFile }}"

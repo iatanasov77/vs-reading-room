@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 // ----> Import PdfJsViewerModule here
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
@@ -27,7 +28,9 @@ const MATERIAL_IMPORTS = [
         PdfJsViewerModule,
         MatGridListModule,
         MatTableModule,
-        MATERIAL_IMPORTS
+        MATERIAL_IMPORTS,
+        
+        HttpClientModule
     ],
     providers: [
         { provide: APP_BASE_HREF, useValue: window.location.pathname }

@@ -19,6 +19,14 @@ app_reading_room_read:
     path: /read-book-{id}-{locale}
     controller: App\Controller\ReadingRoom\ReadBookController::read
 
+app_reading_room_get_bookmark:
+    path: /bookmarks/{bookId}/{bookLocale}/{userId}
+    controller: App\Controller\ReadingRoom\ReadBookController::getBookmark
+
+app_reading_room_create_bookmark:
+    path: /bookmarks/new
+    controller: App\Controller\ReadingRoom\ReadBookController::createBookmark
+
 app_reading_room_book_suggestions:
     path: /widgets-callbacks/book-suggestions/{productSlug}
     controller: App\Controller\ReadingRoom\WidgetsCallbacksController::getBookSuggestionsAction

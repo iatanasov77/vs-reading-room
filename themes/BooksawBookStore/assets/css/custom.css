@@ -12,3 +12,11 @@
 a {
     color: var(--accent-color) !important;
 }
+
+div.product-item figcaption span a {
+    color: var(--mdb-body-color) !important;
+}
+
+div.product-item figcaption span a:hover {
+    text-decoration: underline !important;
+}

@@ -31,7 +31,10 @@
                                 </a>
                                 <span>
                                     {% for author in product.authors %}
-                                        {{ author.name }}{% if not loop.last %}, {% endif %}
+                                        <a href="{{ path( 'app_reading_room_author_details', {'slug': author.slug} ) }}">
+                                            {{ author.name }}
+                                        </a>
+                                        {% if not loop.last %}, {% endif %}
                                     {% endfor %}
                                 </span><br />
                                 <span>
