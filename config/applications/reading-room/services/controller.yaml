@@ -51,10 +51,7 @@ services:
             - '@vs_users.manager.user'
             - '@vs_users.factory.avatar_image'
             - '@vs_cms.profile_uploader'
-            - '@vs_payment_payment'
-            - '@vs_catalog.repository.pricing_plan'
-            - '@vs_catalog.repository.pricing_plan_category'
-            - '@vs_catalog.repository.pricing_plan_subscription'
+            - '@vs_agent.agent'
             
     App\Controller\ReadingRoom\RegisterController:
         public: true

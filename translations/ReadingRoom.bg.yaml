@@ -82,3 +82,18 @@ reading_room:
         items_index_row_books: Books
         related_products: Related Products
         you_may_also_like: You may also like
+        
+        my_profile:
+            my_profile: My Profile
+            username: Username
+            profile: Profile
+            subscription: Subscription
+            subscriptions: Subscriptions
+            settings: Settings
+            logout: Logout
+            no_choosed_plan: No Choosed plan
+            profile_details: Profile details
+            save: Save
+            change_password: Change password
+            change: Change
+            expire_at: Expire At

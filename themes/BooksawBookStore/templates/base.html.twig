@@ -2,7 +2,7 @@
 <html lang="{{ app.request.locale|slice(0, 2) }}">
 
     <head>
-        <title>{% block title %}{{ applicationTitle }}{% endblock %}</title>
+        <title>{% block title %}{{ applicationTitle | trans( {},'ReadingRoom' ) }}{% endblock %}</title>
         <link rel="shortcut icon" type="image/png" href="{{ asset( '/build/booksaw-book-store/images/client-image5.png' ) }}" />
         
         <meta charset="utf-8">

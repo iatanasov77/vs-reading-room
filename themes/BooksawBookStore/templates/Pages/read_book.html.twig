@@ -18,7 +18,7 @@
             data-BookLocale="{{ localeCode }}"
             
             data-UserId="{{ app.user ? app.user.id : 0 }}"
-            data-UserName="{{ app.user ? app.user.info.getFullName() : '' }}"
+            data-UserName="{{ app.user ? app.user.info.fullName : '' }}"
             data-UserEmail="{{ app.user ? app.user.email : '' }}"
             data-UserAutoBookmark="{{ is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' }}"
             

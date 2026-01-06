@@ -58,6 +58,10 @@ vs_application:
             home:
                 name: vs_application.menu.home
                 route: app_home
+            profile:
+                name: vs_application.menu.my_profile
+                route: vrr_profile_show
+                display: false
             authors:
                 name: vs_application.menu.list_authors
                 route: app_reading_room_authors

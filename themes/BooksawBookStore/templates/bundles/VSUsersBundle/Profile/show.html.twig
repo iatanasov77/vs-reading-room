@@ -1,0 +1,148 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} :: {{ 'vs_users.template.profile_show_title' | trans( {},'VSUsersBundle' ) }}{% endblock %}
+{% block pageTitle %}<i class="fa fa-user-md"></i> {{ 'vs_users.template.profile_show_title' | trans( {},'VSUsersBundle' ) }}{% endblock %}
+
+{% block content %}
+    <!-- page title -->
+    <section class="bookshelf my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="section__wrap">
+                        <!-- section title -->
+                        <h1 class="section__title section__title--head">{{ 'reading_room.template.my_profile.my_profile' | trans( {},'ReadingRoom' ) }}</h1>
+                        <!-- end section title -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- end page title -->
+    
+    <!-- content -->
+    <div class="content">
+        <!-- profile -->
+        <div class="profile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="profile__content">
+                            <div class="profile__user">
+                                {% if app.user.info.avatar %}
+                                    {% set profilePictureSrc = app.user.info.avatar.path | imagine_filter('profile_form_thumb') %}
+                                {% else %}
+                                    {% set profilePictureSrc = '/build/booksaw-book-store/avatar-1.jpg' %}
+                                {% endif %}
+                                
+                                <div class="profile__avatar">
+                                    <img src="{{ profilePictureSrc }}" alt="{{ app.user.info.fullName }}">
+                                </div>
+                                <div class="profile__meta">
+                                    {#
+                                    <h3>{{ 'vs_vvp.template.my_profile.username' | trans( {},'VanzVideoPlayer' ) }}</h3>
+                                    #}
+                                    <h3>{{ app.user.info.fullName }}</h3>
+                                    <span>{{ app.user.email }}</span>
+                                </div>
+                            </div>
+
+                            <a class="profile__logout" type="button" href="{{ path( 'app_logout' ) }}">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,12a1,1,0,0,0,1,1h7.59l-2.3,2.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0l4-4a1,1,0,0,0,.21-.33,1,1,0,0,0,0-.76,1,1,0,0,0-.21-.33l-4-4a1,1,0,1,0-1.42,1.42L12.59,11H5A1,1,0,0,0,4,12ZM17,2H7A3,3,0,0,0,4,5V8A1,1,0,0,0,6,8V5A1,1,0,0,1,7,4H17a1,1,0,0,1,1,1V19a1,1,0,0,1-1,1H7a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v3a3,3,0,0,0,3,3H17a3,3,0,0,0,3-3V5A3,3,0,0,0,17,2Z"/></svg>
+                                <span>{{ 'reading_room.template.my_profile.logout' | trans( {},'ReadingRoom' ) }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end profile -->
+        
+        <div class="container">
+            <div class="row">
+                <!-- details form -->
+                <div class="col-12 col-lg-6">
+                    {{ form_start(profileEditForm, { 'attr': {'class': 'sign__form sign__form--profile'} }) }}
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="sign__title">{{ 'reading_room.template.my_profile.profile_details' | trans( {},'ReadingRoom' ) }}</h4>
+                            </div>
+            
+                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                <div class="sign__group">
+                                    {{ form_label( profileEditForm.firstName, null, {'label_attr': {'class': 'sign__label'}} ) }}
+                                    {{ form_widget( profileEditForm.firstName, {'attr': {'class': 'sign__input'}, 'value': app.user.info.firstName} ) }}
+                                </div>
+                            </div>
+            
+                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                <div class="sign__group">
+                                    {{ form_label( profileEditForm.lastName, null, {'label_attr': {'class': 'sign__label'}} ) }}
+                                    {{ form_widget( profileEditForm.lastName, {'attr': {'class': 'sign__input'}, 'value': app.user.info.lastName} ) }}
+                                </div>
+                            </div>
+            
+                            <div class="col-12">
+                                <button class="sign__btn sign__btn--small" type="submit">
+                                    <span>{{ 'reading_room.template.my_profile.save' | trans( {},'ReadingRoom' ) }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+                <!-- end details form -->
+            
+                <!-- password form -->
+                <div class="col-12 col-lg-6">
+                    {{ form_start(changePasswordForm, { 'attr': {'class': 'sign__form sign__form--profile'} }) }}
+                        <div class="row">
+                            <div class="col-12">
+                                <h4 class="sign__title">{{ 'reading_room.template.my_profile.change_password' | trans( {},'ReadingRoom' ) }}</h4>
+                            </div>
+            
+                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                <div class="sign__group">
+                                    {{ form_label( changePasswordForm.oldPassword, null, {'label_attr': {'class': 'sign__label'}} ) }}
+                                    {{ form_widget( changePasswordForm.oldPassword, {'attr': {'class': 'sign__input'}} ) }}
+                                </div>
+                            </div>
+            
+                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                <div class="sign__group">
+                                    {{ form_label( changePasswordForm.password.first, null, {'label_attr': {'class': 'sign__label'}} ) }}
+                                    {{ form_widget( changePasswordForm.password.first, {'attr': {'class': 'sign__input'}} ) }}
+                                </div>
+                            </div>
+            
+                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
+                                <div class="sign__group">
+                                    {{ form_label( changePasswordForm.password.second, null, {'label_attr': {'class': 'sign__label'}} ) }}
+                                    {{ form_widget( changePasswordForm.password.second, {'attr': {'class': 'sign__input'}} ) }}
+                                </div>
+                            </div>
+            
+                            <div class="col-12">
+                                <button class="sign__btn sign__btn--small" type="submit">
+                                    <span>{{ 'reading_room.template.my_profile.change' | trans( {},'ReadingRoom' ) }}</span>
+                                </button>
+                            </div>
+                        </div>
+                    {{ form_end(form, {'render_rest': false}) }}
+                </div>
+                <!-- end password form -->
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/profile', null, 'BooksawBookStore' ) }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+    
+    {{ encore_entry_script_tags( 'js/profile', null, 'BooksawBookStore' ) }}
+{% endblock %}
