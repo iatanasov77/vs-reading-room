@@ -5,6 +5,7 @@ import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
 import { PdfService } from '../services/pdf.service';
 
 // Interfaces
+import { IUser } from '../interfaces/userInterface';
 import { IBookmark } from '../interfaces/bookmarkInterface';
 
 import templateString from './pdf-viewer.component.html'
@@ -29,7 +30,8 @@ export class PdfViewerComponent implements OnInit
     
     bookId: number;
     bookLocale: String;
-    userId: number;
+    
+    user?: IUser;
     
     /**
      * pdfjs Viewer Settings 
@@ -44,7 +46,6 @@ export class PdfViewerComponent implements OnInit
     ) {
         this.bookId         = 0;
         this.bookLocale     = 'en_US';
-        this.userId         = 0;
         
         this.pdfUrl         = '';
         this.bookFileName   = '';
@@ -62,9 +63,6 @@ export class PdfViewerComponent implements OnInit
     {
         this.bookId         = $( '#ReadBookContainer' ).attr( 'data-BookId' );
         this.bookLocale     = $( '#ReadBookContainer' ).attr( 'data-BookLocale' );
-        this.userId         = $( '#ReadBookContainer' ).attr( 'data-UserId' );
-        
-        this.locale         = $( '#ReadBookContainer' ).attr( 'data-locale' );
         
         this.pdfUrl         = $( '#ReadBookContainer' ).attr( 'data-BookUrl' );
         this.bookFileName   = $( '#ReadBookContainer' ).attr( 'data-BookFileName' );
@@ -72,6 +70,17 @@ export class PdfViewerComponent implements OnInit
         this.viewBookmark   = $( '#ReadBookContainer' ).attr( 'data-viewBookmark' );
         this.download       = $( '#ReadBookContainer' ).attr( 'data-download' );
         this.print          = $( '#ReadBookContainer' ).attr( 'data-print' );
+        this.locale         = $( '#ReadBookContainer' ).attr( 'data-locale' );
+        
+        var userId          = $( '#ReadBookContainer' ).attr( 'data-UserId' );
+        if ( userId > 0 ) {
+            this.user = {
+                id: userId,
+                name: $( '#ReadBookContainer' ).attr( 'data-UserName' ),
+                email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
+                autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
+            }
+        }
         
         /*
         $( window ).on( 'beforeunload', function() {
@@ -103,8 +112,8 @@ export class PdfViewerComponent implements OnInit
     {
         console.log( 'testPagesLoaded() successfully called. Total pages # : ' + count );
         
-        if ( this.userId > 0 ) {
-            this.pdfService.getBookmark( this.bookId, this.bookLocale, this.userId ).subscribe( ( bookmark: IBookmark ) => {
+        if ( this.user ) {
+            this.pdfService.getBookmark( this.bookId, this.bookLocale, this.user.id ).subscribe( ( bookmark: IBookmark ) => {
                 this.bigPdfViewer.page = bookmark.page;
             });
         }
@@ -115,12 +124,12 @@ export class PdfViewerComponent implements OnInit
         console.log( 'testPageChange() successfully called. Current page # : ' + pageNumber );
         //alert( `Book ID: ${this.bookId} User ID: ${this.userId}` );
         
-        if ( this.userId > 0 ) {
+        if ( this.user && this.user.autoBookmark ) {
             const bookmark: IBookmark = {
                 dateCreated: new Date(), // Date.now(),
                 bookId: this.bookId,
                 bookLocale: this.bookLocale,
-                userId: this.userId,
+                userId: this.user.id,
                 page: pageNumber
             };
             
