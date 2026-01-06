@@ -1,7 +1,9 @@
 .sign__group--checkbox input:not(:checked) + label:before, .sign__group--checkbox input:checked + label:before {
-    border: 1px solid rgba(255,88,96,0.6);
+    /* border: 1px solid rgba(255,88,96,0.6); */
+    border: 1px solid #f3f2ec;
 }
 
+/*
 input,
 textarea,
 select {
@@ -16,6 +18,7 @@ select {
     transition: 0.5s ease;
     transition-property: color, border-color, box-shadow;
 }
+*/
 
 .sign__content {
     display: flex;
@@ -94,7 +97,8 @@ select {
 
 .sign__input:hover,
 .sign__input:focus {
-    border-color: #ff55a5 !important;
+    /* border-color: #ff55a5 !important; */
+    border-color: #f3f2ec !important;
 }
 
 .sign__textarea {
@@ -113,11 +117,13 @@ select {
 
 .sign__textarea:hover,
 .sign__textarea:focus {
-    border-color: #ff55a5;
+    /* border-color: #ff55a5; */
+    border-color: #f3f2ec;
 }
 
 .sign__select {
-    background: url("../images/form/angle-down.svg") no-repeat center right 20px #2b2b31;
+    /* background: url("../images/form/angle-down.svg") no-repeat center right 20px #2b2b31; */
+    background-color: #2b2b31;
     background-size: 20px auto;
     border: 1px solid transparent;
     border-radius: 8px;
@@ -133,7 +139,8 @@ select {
 
 .sign__select:focus,
 .sign__select:hover {
-    border-color: #ff55a5;
+    /* border-color: #ff55a5; */
+    border-color: #f3f2ec;
 }
 
 .sign__group {
@@ -167,12 +174,14 @@ select {
 
 .sign__group--checkbox input:not(:checked) + label a,
 .sign__group--checkbox input:checked + label a {
-    color: #ff55a5;
+    /* color: #ff55a5; */
+    color: #f3f2ec;
 }
 
 .sign__group--checkbox input:not(:checked) + label a:hover,
 .sign__group--checkbox input:checked + label a:hover {
-    color: #ff5860;
+    /* color: #ff55a5; */
+    color: #f3f2ec;
 }
 .sign__group--checkbox input:not(:checked) + label:before,
 .sign__group--checkbox input:checked + label:before {
@@ -283,7 +292,8 @@ select {
 }
 
 .sign__radio input:checked + label:before {
-    border-color: #ff55a5;
+    /* border-color: #ff55a5; */
+    border-color: #f3f2ec;
 }
 
 .sign__btn {
@@ -349,11 +359,13 @@ select {
 }
 
 .sign__text a {
-    color: #ff55a5;
+    /* color: #ff55a5; */
+    color: #f3f2ec;
 }
 
 .sign__text a:hover {
-    color: #ff5860;
+    /* color: #ff55a5; */
+    color: #f3f2ec;
 }
 @media (min-width: 768px) {
     .sign__form {
