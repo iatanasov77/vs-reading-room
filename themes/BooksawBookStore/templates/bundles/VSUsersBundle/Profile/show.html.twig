@@ -32,7 +32,7 @@
                                 {% if app.user.info.avatar %}
                                     {% set profilePictureSrc = app.user.info.avatar.path | imagine_filter('profile_form_thumb') %}
                                 {% else %}
-                                    {% set profilePictureSrc = '/build/booksaw-book-store/avatar-1.jpg' %}
+                                    {% set profilePictureSrc = '/build/booksaw-book-store/images/avatar-1.jpg' %}
                                 {% endif %}
                                 
                                 <div class="profile__avatar">

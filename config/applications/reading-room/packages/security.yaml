@@ -8,7 +8,7 @@ security:
         default_provider:
             entity:
                 class: App\Entity\UserManagement\User
-                property: email
+                property: username
 
     firewalls:
         main:

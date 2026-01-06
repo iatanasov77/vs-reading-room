@@ -8,6 +8,7 @@ use Twig\Environment;
 use Doctrine\Persistence\ManagerRegistry;
 
 use Vankosoft\ApplicationBundle\Component\Context\ApplicationContextInterface;
+use App\Component\ReadingRoom;
 
 class AuthController extends AbstractController
 {
@@ -22,14 +23,19 @@ class AuthController extends AbstractController
     /** @var ManagerRegistry **/
     private $doctrine;
     
+    /** @var ReadingRoom **/
+    private $readingRoom;
+    
     public function __construct(
         ApplicationContextInterface $applicationContext,
         Environment $templatingEngine,
-        ManagerRegistry $doctrine
+        ManagerRegistry $doctrine,
+        ReadingRoom $readingRoom
     ) {
         $this->applicationContext   = $applicationContext;
         $this->templatingEngine     = $templatingEngine;
         $this->doctrine             = $doctrine;
+        $this->readingRoom          = $readingRoom;
     }
     
     public function login( AuthenticationUtils $authenticationUtils, Request $request ): Response
@@ -52,9 +58,10 @@ class AuthController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
         
         $tplVars = [
-            'shoppingCart'  => $this->getShoppingCart( $request ),
-            'last_username' => $lastUsername,
-            'error'         => $error,
+            'shoppingCart'          => $this->getShoppingCart( $request ),
+            'last_username'         => $lastUsername,
+            'error'                 => $error,
+            'enableRegistration'    => $this->readingRoom->getEnableRegistration(),
         ];
         
         return new Response( $this->templatingEngine->render( $this->getTemplate(), $tplVars ) );

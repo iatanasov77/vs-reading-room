@@ -73,6 +73,7 @@ Encore
     .addStyleEntry( 'css/app', './themes/BooksawBookStore/assets/css/app.scss' )
     .addEntry( 'js/app', './themes/BooksawBookStore/assets/js/app.js' )
     
+    .addEntry( 'js/static-page', './themes/BooksawBookStore/assets/js/pages/static-page.js' )
     .addEntry( 'js/profile', './themes/BooksawBookStore/assets/js/pages/profile.js' )
     .addEntry( 'js/catalog', './themes/BooksawBookStore/assets/js/pages/catalog.js' )
     .addEntry( 'js/show-book', './themes/BooksawBookStore/assets/js/pages/show-book.js' )

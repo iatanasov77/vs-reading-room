@@ -4,7 +4,7 @@
     <!-- registration form -->
     {{ form_start(form, { 'attr': {'class': 'sign__form registration_form', 'id': 'registration-form'} }) }}
         <a href="{{ path( 'app_home' ) }}" class="sign__logo">
-            <img src="{{ asset( 'build/holeshunter-theme/theme-images/hunter_transparent.svg' ) }}" alt="{{ applicationTitle }}">
+            {{ applicationTitle | trans( {},'ReadingRoom' ) }}
         </a>
         
         {% if formErrors.count %}
@@ -17,33 +17,7 @@
             </ul>
         {% endif %}
         
-        {% if birthdayError %}
-            <ul class="sign__group sign__errors">
-                <li>{{ birthdayError }}</li>
-            </ul>
-        {% endif %}
-        
         {{ form_widget( form._token ) }}
-        
-        <div class="sign__group">
-            {{ form_label(form.pricingPlan, null, {
-                'label_attr': {'class': 'sign__label'}
-                }) 
-            }}
-            {{ form_widget( form.pricingPlan, {'attr': {'class': 'sign__select'}} ) }}
-        </div>
-        
-        <div class="sign__group control-group">
-            {{ form_label(form.birthday, null, {
-                'label_attr': {'class': 'sign__label'}
-                }) 
-            }}
-            <div class="sign__group controls">
-                {{ form_widget(form.birthday.day, { attr: { 'class': 'sign__select sign__select_3' } }) }}
-                {{ form_widget(form.birthday.month, { attr: { 'class': 'sign__select sign__select_3' } }) }}
-                {{ form_widget(form.birthday.year, { attr: { 'class': 'sign__select sign__select_3' } }) }}
-            </div>
-        </div>
         
         <div class="sign__group">
             {{ form_widget(form.firstName, {'attr': {'class': 'sign__input', 'placeholder': form.firstName.vars.label }}) }}
@@ -72,26 +46,32 @@
         
         <div class="sign__group sign__group--checkbox">
             <input id="remember" name="remember" type="checkbox" required="required">
-            <label for="remember">{{ 'vs_vvp.template.register.i_agree_to_the' | trans( {},'VanzVideoPlayer' ) }} 
+            <label for="remember">{{ 'reading_room.template.register.i_agree_to_the' | trans( {},'ReadingRoom' ) }} 
                 <a href="{{ path( 'vs_cms_pages_show_by_slug', {'slug': 'privacy-policy'} ) }}">
-                    {{ 'vs_vvp.template.register.privacy_policy' | trans( {},'VanzVideoPlayer' ) }}
+                    {{ 'reading_room.template.register.privacy_policy' | trans( {},'ReadingRoom' ) }}
                 </a>
             </label>    
         </div>
         
-        <button class="sign__btn" type="submit"><span>{{ 'vs_vvp.template.register.sign_up' | trans( {},'VanzVideoPlayer' ) }}</span></button>
+        <button class="sign__btn" type="submit"><span>{{ 'reading_room.template.register.sign_up' | trans( {},'ReadingRoom' ) }}</span></button>
 
-        <span class="sign__text">{{ 'vs_vvp.template.register.already_have_an_account' | trans( {},'VanzVideoPlayer' ) }} 
+        <span class="sign__text">{{ 'reading_room.template.register.already_have_an_account' | trans( {},'ReadingRoom' ) }} 
             <a href="{{ path( 'app_login' ) }}">
-                {{ 'vs_vvp.template.register.sign_in' | trans( {},'VanzVideoPlayer' ) }}
+                {{ 'reading_room.template.register.sign_in' | trans( {},'ReadingRoom' ) }}
             </a>
         </span>
     {{ form_end(form, {'render_rest': false}) }}
     <!-- registration form -->
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/static-page', null, 'BooksawBookStore' ) }}
+{% endblock %}
+
 {% block javascripts %}
     {{ parent() }}
     
-    {{ encore_entry_script_tags( 'js/static-page', null, 'HoleshunterTheme' ) }}
+    {{ encore_entry_script_tags( 'js/static-page', null, 'BooksawBookStore' ) }}
 {% endblock %}
