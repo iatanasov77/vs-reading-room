@@ -1,3 +1,13 @@
+1.7.1	|	Release date: **07.01.2026**
+============================================
+* New Features and Improvements:
+  - Improve Creating a Bookmark.
+  - Create an Application Profile Page.
+  - Create Authentication Forms.
+  - Add a Template for Static Pages in Frontend Theme.
+  - Refactoring of Breadcrumb Menu.
+
+
 1.7.0	|	Release date: **04.01.2026**
 ============================================
 * New Features and Improvements:
