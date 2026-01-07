@@ -27,6 +27,12 @@
             {% include 'Layout/top.html.twig' %}
         </div><!--header-wrap-->
         
+        <div class="breadcum-items align-right mt-2 me-2">
+            {% block breadcrumbs %}
+                {{ knp_menu_render('breadcrumbs', {'template': 'Menu/breadcrumb.html.twig'}) }}
+            {% endblock %}
+        </div>
+        
         {% block content %}{% endblock %}
         
         {% include 'Layout/footer.html.twig' %}
