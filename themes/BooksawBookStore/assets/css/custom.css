@@ -20,3 +20,8 @@ div.product-item figcaption span a {
 div.product-item figcaption span a:hover {
     text-decoration: underline !important;
 }
+
+.page-title {
+    font-size: 4.5em;
+    margin-top: 1em !important;
+}

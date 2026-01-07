@@ -2,6 +2,8 @@ const Encore = require('@symfony/webpack-encore');
 const path = require('path');
 const AngularCompilerPlugin = require('@ngtools/webpack').AngularWebpackPlugin;
 
+const defaultThemePath              = '../../vendor/vankosoft/application/src/Vankosoft/ApplicationBundle/Resources/themes/default/assets';
+
 Encore
     .setOutputPath( 'public/shared_assets/build/booksaw-book-store/' )
     .setPublicPath( '/build/booksaw-book-store/' )
@@ -16,7 +18,7 @@ Encore
     })
     
     .addAliases({
-        '@': path.resolve( __dirname, '../../vendor/vankosoft/application/src/Vankosoft/ApplicationBundle/Resources/themes/default/assets' ),
+        '@': path.resolve( __dirname, defaultThemePath ),
         '@@': path.resolve( __dirname, '../../vendor/vankosoft/payment-bundle/lib/Resources/assets' )
     })
     
@@ -45,9 +47,14 @@ Encore
     /**
      * Copy Files
      */
-     .copyFiles({
-        from: './node_modules/ng2-pdfjs-viewer/pdfjs',
-        to: 'assets/pdfjs/[path][name].[ext]',
+    .copyFiles({
+        from: path.resolve( __dirname, defaultThemePath ) + '/images',
+        to: 'images/[path][name].[ext]',
+    })
+    
+    .copyFiles({
+       from: './node_modules/ng2-pdfjs-viewer/pdfjs',
+       to: 'assets/pdfjs/[path][name].[ext]',
     })
     
     .copyFiles({
@@ -66,6 +73,8 @@ Encore
     .addStyleEntry( 'css/app', './themes/BooksawBookStore/assets/css/app.scss' )
     .addEntry( 'js/app', './themes/BooksawBookStore/assets/js/app.js' )
     
+    .addEntry( 'js/static-page', './themes/BooksawBookStore/assets/js/pages/static-page.js' )
+    .addEntry( 'js/profile', './themes/BooksawBookStore/assets/js/pages/profile.js' )
     .addEntry( 'js/catalog', './themes/BooksawBookStore/assets/js/pages/catalog.js' )
     .addEntry( 'js/show-book', './themes/BooksawBookStore/assets/js/pages/show-book.js' )
     

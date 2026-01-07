@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Security\Http\Authentication\UserAuthenticatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 use Doctrine\Persistence\ManagerRegistry;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Resource\Factory\Factory;
@@ -22,6 +23,7 @@ class RegisterController extends BaseRegisterController
     
     public function __construct(
         ManagerRegistry $doctrine,
+        TranslatorInterface $translator,
 		ApplicationContextInterface $applicationContext,
         UserManager $userManager,
         RepositoryInterface $usersRepository,
@@ -35,6 +37,7 @@ class RegisterController extends BaseRegisterController
     ) {
         parent::__construct(
             $doctrine,
+            $translator,
             $applicationContext,
             $userManager,
             $usersRepository,
@@ -59,7 +62,19 @@ class RegisterController extends BaseRegisterController
             return $this->handleRegisterForm( $request, $mailer );
         }
         
+        $form   = $this->getForm();
+        $form->handleRequest( $request );
+        
+        if ( $form->isSubmitted() && $form->isValid() ) {
+            $redirectResponse = $this->handleRegisterForm( $form, $mailer );
+            
+            if ( $redirectResponse ) {
+                return $redirectResponse;
+            }
+        }
+        
         $params = [
+            'formErrors'    => $form->getErrors( true ),
             'shoppingCart'  => $this->getShoppingCart( $request ),
         ];
 

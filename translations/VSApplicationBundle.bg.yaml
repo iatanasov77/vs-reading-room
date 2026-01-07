@@ -4,6 +4,7 @@ vs_application:
         super_admin_panel: Админ Апанел
         
     menu:
+        about_us: About Us
         catalog_products: Books
         create_catalog_product: Create Book
         edit_catalog_product: Edit Book

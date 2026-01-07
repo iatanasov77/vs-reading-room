@@ -1,9 +1,9 @@
-<a href="javascript:void(0);" class="user-account for-buy">
+<a href="{{ path( 'app_login' ) }}" class="user-account for-buy">
     <i class="icon icon-user"></i>
     <span>{{ 'vs_application.menu.login' | trans( {},'VSApplicationBundle' ) }}</span>
 </a>
 {% if widget.params.enableRegistration %}
-    <a href="javascript:void(0);" class="user-account for-buy">
+    <a href="{{ path( 'vs_users_register_form' ) }}" class="user-account for-buy">
         <i class="icon icon-user"></i>
         <span>{{ 'vs_application.menu.register' | trans( {},'VSApplicationBundle' ) }}</span>
     </a>

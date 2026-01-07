@@ -51,10 +51,7 @@ services:
             - '@vs_users.manager.user'
             - '@vs_users.factory.avatar_image'
             - '@vs_cms.profile_uploader'
-            - '@vs_payment_payment'
-            - '@vs_catalog.repository.pricing_plan'
-            - '@vs_catalog.repository.pricing_plan_category'
-            - '@vs_catalog.repository.pricing_plan_subscription'
+            - '@vs_agent.agent'
             
     App\Controller\ReadingRoom\RegisterController:
         public: true
@@ -62,6 +59,7 @@ services:
         tags: ['controller.service_arguments']
         arguments:
             - '@doctrine'
+            - "@translator"
             - '@vs_application.context.application'
             - '@vs_users.manager.user'
             - '@vs_users.repository.users'
@@ -106,6 +104,7 @@ services:
             - '@vs_application.context.application'
             - '@twig'
             - '@doctrine'
+            - '@app_reading_room'
     
     App\Controller\ReadingRoom\DefaultController:
         tags: ['controller.service_arguments']

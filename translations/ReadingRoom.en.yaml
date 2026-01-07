@@ -50,6 +50,11 @@ reading_room:
             document_create: Create Document
             document_update: Edit Document
         
+        forgot_password:
+            recover: Recover
+            we_will_send: We will send a link to your Email to reset your password
+            email_not_found: This email not found !
+        
     template:
         application_title: VankoSoft Reading Room
         admin_menu_title: Reading Room
@@ -83,3 +88,33 @@ reading_room:
         related_products: Related Products
         you_may_also_like: You may also like
 
+        login:
+            username: Username
+            email: Email
+            password: Password
+            sign_in: Sign in
+            dont_have_an_account: "Don't have an account?"
+            sign_up: Sign up!
+            forgot_password: Forgot password?
+        
+        register:
+            i_agree_to_the: I agree to the
+            privacy_policy: Privacy policy
+            sign_in: Sign in!
+            already_have_an_account: "Already have an account?"
+            sign_up: Sign up
+        
+        my_profile:
+            my_profile: My Profile
+            username: Username
+            profile: Profile
+            subscription: Subscription
+            subscriptions: Subscriptions
+            settings: Settings
+            logout: Logout
+            no_choosed_plan: No Choosed plan
+            profile_details: Profile details
+            save: Save
+            change_password: Change password
+            change: Change
+            expire_at: Expire At

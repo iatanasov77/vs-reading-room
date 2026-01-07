@@ -1,0 +1,61 @@
+{% extends 'base-login.html.twig' %} 
+
+{% block content %}
+    <!-- authorization form -->
+    <form class="sign__form" method="post">
+        <a href="{{ path( 'app_home' ) }}" class="sign__logo">
+            {{ applicationTitle | trans( {},'ReadingRoom' ) }}
+        </a>
+        
+        {% if error %}
+            <ul class="sign__group sign__errors">
+                <li>{{ error.message }}</li>
+            </ul>
+        {% endif %}
+        
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+        
+        <div class="sign__group">
+            <input type="text" class="sign__input" placeholder="{{ 'reading_room.template.login.username' | trans( {},'ReadingRoom' ) }}"
+                autofocus id="username" name="_username" value="{{ last_username }}"
+            />
+        </div>
+    
+        <div class="sign__group">
+            <input type="password" class="sign__input" placeholder="{{ 'reading_room.template.login.password' | trans( {},'ReadingRoom' ) }}"
+                id="password" name="_password"
+            />
+        </div>
+    
+        <div class="sign__group sign__group--checkbox">
+            <input id="remember" type="checkbox" checked="checked"
+                name="_remember_me"
+            />
+            <label for="remember">{{ 'vs_application.form.login.remember_me' | trans( {},'VSApplicationBundle' ) }}</label>
+        </div>
+        
+        <button class="sign__btn" type="submit"><span>{{ 'reading_room.template.login.sign_in' | trans( {},'ReadingRoom' ) }}</span></button>
+        
+        {% if enableRegistration %}
+            <span class="sign__text">
+                {{ 'reading_room.template.login.dont_have_an_account' | trans( {},'ReadingRoom' ) }} 
+                <a href="{{ path( 'vs_users_register_form' ) }}">{{ 'reading_room.template.login.sign_up' | trans( {},'ReadingRoom' ) }}</a>
+            </span>
+        
+            <span class="sign__text"><a href="{{ path( 'vs_users_forgot_password_form' ) }}">{{ 'reading_room.template.login.forgot_password' | trans( {},'ReadingRoom' ) }}</a></span>
+        {% endif %}
+    </form>
+    <!-- end authorization form -->
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/static-page', null, 'BooksawBookStore' ) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {{ encore_entry_script_tags( 'js/static-page', null, 'BooksawBookStore' ) }}
+{% endblock %}
