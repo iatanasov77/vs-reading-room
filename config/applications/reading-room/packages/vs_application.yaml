@@ -91,6 +91,9 @@ vs_application:
                         routeParameters:
                             productSlug: string
                         display: false
+            about_us:
+                name: vs_application.menu.about_us
+                uri: "/pages/about-application"
             contact:
                 name: vs_application.menu.contact
                 route: vs_application_contact

@@ -5,6 +5,10 @@
 {% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ book.name }}{% endblock %}
 
 {% block content %}
+    <div class="breadcum-items align-right mt-2 me-2">
+        {{ knp_menu_render('breadcrumbs', {'template': 'Menu/breadcrumb.html.twig'}) }}
+    </div>
+    
     {% set viewBookmark = readingRoomSettings.viewBookmark or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
     {% set canOpenFile = readingRoomSettings.openFile or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
     {% set canDownload = readingRoomSettings.download or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}

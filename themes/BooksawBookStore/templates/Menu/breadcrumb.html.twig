@@ -4,16 +4,15 @@
     {% if app.request.attributes.get( '_route' ) != 'app_home' %}
         {% set breadcrumbs = knp_menu_get_breadcrumbs_array( item ) %}
         
-        <div class="breadcum-items align-right mt-2 me-2">
-            {% for link in breadcrumbs %}
-                {%- if loop.index == 1 %}
-                    <span class="item"><a href="/">{{ 'vs_application.menu.home' | trans( {},'VSApplicationBundle' ) }} /</a></span>
-                {%- elseif not loop.last %}
-                	<span class="item"><a href="{{ link.uri }}">{{ link.label | trans }} /</a></span>
-                {%- else %}
-                    <span class="item colored">{{ link.label | trans }}</span>
-                {%- endif %}
-            {%- endfor %}
-        </div>
+        {% for link in breadcrumbs %}
+            {%- if loop.index == 1 %}
+                <span class="item"><a href="/">{{ 'vs_application.menu.home' | trans( {},'VSApplicationBundle' ) }} /</a></span>
+            {%- elseif not loop.last %}
+            	<span class="item"><a href="{{ link.uri }}">{{ link.label | trans }} /</a></span>
+            {%- else %}
+                <span class="item colored">{{ link.label | trans }}</span>
+            {%- endif %}
+        {%- endfor %}
+        
     {% endif %}
 {% endblock %}

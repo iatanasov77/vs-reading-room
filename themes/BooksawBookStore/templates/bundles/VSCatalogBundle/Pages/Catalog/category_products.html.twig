@@ -4,6 +4,10 @@
 {% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_payment.template.products_index_title' | trans( {},'VSPaymentBundle' ) }}{% endblock %}
 
 {% block content %}
+    <div class="breadcum-items align-right mt-2 me-2">
+        {{ knp_menu_render('breadcrumbs', {'template': 'Menu/breadcrumb.html.twig'}) }}
+    </div>
+    
     <h3> {{ category.name }} <small class="pull-right"> {{ category.products.count }} {{ 'vs_catalog.template.products_are_available' | trans( {},'VSCatalogBundle' ) }} </small></h3>   
     <hr class="soft"/>
     <p>{{ category.description }}</p>
