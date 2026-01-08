@@ -63,43 +63,33 @@
                 <!-- details form -->
                 <div class="col-12 col-lg-6">
                     {{ form_start(profileEditForm, { 'action': path( 'vrr_profile_handle' ), 'attr': {'class': 'sign__form sign__form--profile'} }) }}
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="sign__title">{{ 'reading_room.template.my_profile.profile_details' | trans( {},'ReadingRoom' ) }}</h4>
-                            </div>
-            
-                            <div class="form-group">
-                               <label class="custom-control custom-checkbox" for="profile_form_autoBookmark">  
-                                    <input type="checkbox" id="profile_form_autoBookmark"
-                                        class="custom-control-input"
-                                        name="profile_form[autoBookmark]"
-                                        value="{{ user.autoBookmark }}"
-                                        {% if user.autoBookmark %}checked="checked"{% endif %}
-                                    />
-                                    <span class="custom-control-label">{{ profileEditForm.autoBookmark.vars.label | trans( {}, 'ReadingRoom' ) }}</span>
-                                </label>
-                            </div>
-                            
-                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                <div class="sign__group">
-                                    {{ form_label( profileEditForm.firstName, null, {'label_attr': {'class': 'sign__label'}} ) }}
-                                    {{ form_widget( profileEditForm.firstName, {'attr': {'class': 'sign__input'}, 'value': app.user.info.firstName} ) }}
-                                </div>
-                            </div>
-            
-                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                <div class="sign__group">
-                                    {{ form_label( profileEditForm.lastName, null, {'label_attr': {'class': 'sign__label'}} ) }}
-                                    {{ form_widget( profileEditForm.lastName, {'attr': {'class': 'sign__input'}, 'value': app.user.info.lastName} ) }}
-                                </div>
-                            </div>
-            
-                            <div class="col-12">
-                                <button class="sign__btn sign__btn--small" type="submit">
-                                    <span>{{ 'reading_room.template.my_profile.save' | trans( {},'ReadingRoom' ) }}</span>
-                                </button>
-                            </div>
+                        <h4 class="sign__title">{{ 'reading_room.template.my_profile.profile_details' | trans( {},'ReadingRoom' ) }}</h4>
+                        
+                        <div class="form-group mt-4">
+                           <label class="custom-control custom-checkbox" for="profile_form_autoBookmark">  
+                                <input type="checkbox" id="profile_form_autoBookmark"
+                                    class="custom-control-input"
+                                    name="profile_form[autoBookmark]"
+                                    value="{{ user.autoBookmark }}"
+                                    {% if user.autoBookmark %}checked="checked"{% endif %}
+                                />
+                                <span class="custom-control-label">{{ profileEditForm.autoBookmark.vars.label | trans( {}, 'ReadingRoom' ) }}</span>
+                            </label>
                         </div>
+                        
+                        <div class="form-group mt-4">
+                            {{ form_label( profileEditForm.firstName, null, {'label_attr': {'class': 'form-label'}} ) }}
+                            {{ form_widget( profileEditForm.firstName, {'attr': {'class': 'form-control'}, 'value': app.user.info.firstName} ) }}
+                        </div>
+        
+                        <div class="form-group mt-4">
+                            {{ form_label( profileEditForm.lastName, null, {'label_attr': {'class': 'form-label'}} ) }}
+                            {{ form_widget( profileEditForm.lastName, {'attr': {'class': 'form-control'}, 'value': app.user.info.lastName} ) }}
+                        </div>
+        
+                        <button class="btn btn-primary mt-4" style="width: 100px;" type="submit">
+                            <span>{{ 'reading_room.template.my_profile.save' | trans( {},'ReadingRoom' ) }}</span>
+                        </button>
                     {{ form_end(form, {'render_rest': false}) }}
                 </div>
                 <!-- end details form -->
@@ -107,38 +97,26 @@
                 <!-- password form -->
                 <div class="col-12 col-lg-6">
                     {{ form_start(changePasswordForm, { 'attr': {'class': 'sign__form sign__form--profile'} }) }}
-                        <div class="row">
-                            <div class="col-12">
-                                <h4 class="sign__title">{{ 'reading_room.template.my_profile.change_password' | trans( {},'ReadingRoom' ) }}</h4>
-                            </div>
-            
-                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                <div class="sign__group">
-                                    {{ form_label( changePasswordForm.oldPassword, null, {'label_attr': {'class': 'sign__label'}} ) }}
-                                    {{ form_widget( changePasswordForm.oldPassword, {'attr': {'class': 'sign__input'}} ) }}
-                                </div>
-                            </div>
-            
-                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                <div class="sign__group">
-                                    {{ form_label( changePasswordForm.password.first, null, {'label_attr': {'class': 'sign__label'}} ) }}
-                                    {{ form_widget( changePasswordForm.password.first, {'attr': {'class': 'sign__input'}} ) }}
-                                </div>
-                            </div>
-            
-                            <div class="col-12 col-md-6 col-lg-12 col-xl-6">
-                                <div class="sign__group">
-                                    {{ form_label( changePasswordForm.password.second, null, {'label_attr': {'class': 'sign__label'}} ) }}
-                                    {{ form_widget( changePasswordForm.password.second, {'attr': {'class': 'sign__input'}} ) }}
-                                </div>
-                            </div>
-            
-                            <div class="col-12">
-                                <button class="sign__btn sign__btn--small" type="submit">
-                                    <span>{{ 'reading_room.template.my_profile.change' | trans( {},'ReadingRoom' ) }}</span>
-                                </button>
-                            </div>
+                        <h4 class="sign__title">{{ 'reading_room.template.my_profile.change_password' | trans( {},'ReadingRoom' ) }}</h4>
+                        
+                        <div class="form-group mt-4">
+                            {{ form_label( changePasswordForm.oldPassword, null, {'label_attr': {'class': 'form-label'}} ) }}
+                            {{ form_widget( changePasswordForm.oldPassword, {'attr': {'class': 'form-control'}} ) }}
                         </div>
+        
+                        <div class="form-group mt-4">
+                            {{ form_label( changePasswordForm.password.first, null, {'label_attr': {'class': 'form-label'}} ) }}
+                            {{ form_widget( changePasswordForm.password.first, {'attr': {'class': 'form-control'}} ) }}
+                        </div>
+        
+                        <div class="form-group mt-4">
+                            {{ form_label( changePasswordForm.password.second, null, {'label_attr': {'class': 'form-label'}} ) }}
+                            {{ form_widget( changePasswordForm.password.second, {'attr': {'class': 'form-control'}} ) }}
+                        </div>
+        
+                        <button class="btn btn-primary mt-4" style="width: 100px;" type="submit">
+                            <span>{{ 'reading_room.template.my_profile.change' | trans( {},'ReadingRoom' ) }}</span>
+                        </button>
                     {{ form_end(form, {'render_rest': false}) }}
                 </div>
                 <!-- end password form -->
