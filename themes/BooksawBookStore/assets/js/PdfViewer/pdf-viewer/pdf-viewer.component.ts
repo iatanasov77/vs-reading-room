@@ -79,7 +79,7 @@ export class PdfViewerComponent implements OnInit
                 name: $( '#ReadBookContainer' ).attr( 'data-UserName' ),
                 email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
-            }
+            };
         }
         
         /*
@@ -87,11 +87,13 @@ export class PdfViewerComponent implements OnInit
             return "Component Destroyed !!!";
         });
         */
+        /*
         window.addEventListener( "beforeunload", function ( e ) {
             var confirmationMessage = "Component Destroyed !!!";
             e.returnValue = confirmationMessage;
             return confirmationMessage;
-        });​
+        });
+        */​
     }
     
     public beforePrint(): void
