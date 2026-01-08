@@ -34,6 +34,10 @@ vrr_profile_show:
     path:     /my-profile
     controller: App\Controller\ReadingRoom\ProfileController::showAction
     
+vrr_profile_handle:
+    path:     /my-profile/handle-form
+    controller: App\Controller\ReadingRoom\ProfileController::handleProfileFormAction
+    
 vs_users_after_verify:
     path:     /register-after-verify
     controller: App\Controller\ReadingRoom\RegisterController::afterVerifyAction

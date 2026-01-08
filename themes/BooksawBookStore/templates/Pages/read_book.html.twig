@@ -20,7 +20,7 @@
             data-UserId="{{ app.user ? app.user.id : 0 }}"
             data-UserName="{{ app.user ? app.user.info.fullName : '' }}"
             data-UserEmail="{{ app.user ? app.user.email : '' }}"
-            data-UserAutoBookmark="{{ is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' }}"
+            data-UserAutoBookmark="{{ app.user and app.user.autoBookmark ? 'true' : 'false' }}"
             
             data-locale="{{ localeCode | replace( {'_': '-'} ) }}"
             data-BookUrl="{{ path( 'app_reading_room_read', {'id': book.id, 'locale': localeCode} ) }}"

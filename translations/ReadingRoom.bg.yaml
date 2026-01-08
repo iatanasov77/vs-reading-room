@@ -9,7 +9,8 @@ reading_room:
         filter_by_genre_placeholder: '-- Choose a Book Genre --'
         filter_by_author: Filter By Author
         filter_by_author_placeholder: '-- Choose a Book Author --'
-            
+        auto_bookmark: Auto Bookmark
+        
         reading_room_settings:
             application: Application
             application_placeholder: '-- Select an Application --'
