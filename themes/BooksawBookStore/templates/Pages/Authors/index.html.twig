@@ -1,5 +1,8 @@
 {% extends "base.html.twig" %}
-                            
+
+{% block title %}{{ parent() }} :: {{ 'reading_room.template.list_authors' | trans( {},'ReadingRoom' ) }}{% endblock %}
+{% block pageTitle %}{{ 'reading_room.template.list_authors' | trans( {},'ReadingRoom' ) }}{% endblock %}
+
 {% block content %}
     <section id="popular-books" class="bookshelf py-5 my-5">
         <div class="container">

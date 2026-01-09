@@ -1,8 +1,7 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{ parent() }}{% endblock %}
-
-{% block pageTitle %}<i class="icon_genius"></i> {{ 'reading_room.template.author_details' | trans( {},'ReadingRoom' ) }}: {{ author.name }}{% endblock %}
+{% block title %}{{ parent() }} :: {{ 'reading_room.template.author_details' | trans( {},'ReadingRoom' ) }} :: {{ author.name }}{% endblock %}
+{% block pageTitle %}{{ 'reading_room.template.author_details' | trans( {},'ReadingRoom' ) }}: {{ author.name }}{% endblock %}
 
 {% block content %}
     {% if author.photos.first %}
