@@ -4,6 +4,12 @@
 
 {% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ book.name }}{% endblock %}
 
+{% block breadcrumbs %}
+    {{ parent() }}
+    <span class="item"><a href="{{ path( 'vs_catalog_catalog_latest_products' ) }}">{{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} /</a></span>
+    {{ book.name }}
+{% endblock %}
+
 {% block content %}
     {% set viewBookmark = readingRoomSettings.viewBookmark or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
     {% set canOpenFile = readingRoomSettings.openFile or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}

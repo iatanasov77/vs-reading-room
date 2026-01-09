@@ -35,7 +35,7 @@ class ReadingRoomController extends AbstractController
         $this->productRepository            = $productRepository;
     }
     
-    public function readBookAction( $productSlug, $locale, Request $request ): Response
+    public function readBookAction( $locale, $productSlug, Request $request ): Response
     {
         $book   = $this->productRepository->findOneBy( ['slug' => $productSlug] );
         
