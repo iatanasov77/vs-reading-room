@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{ parent() }}{% endblock %}
+{% block title %}{{ parent() }} :: {{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} :: {{ product.name }}{% endblock %}
 
 {% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ product.name }}{% endblock %}
 
