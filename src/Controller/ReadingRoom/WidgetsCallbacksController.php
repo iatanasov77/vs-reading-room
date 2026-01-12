@@ -34,6 +34,9 @@ class WidgetsCallbacksController extends AbstractController
                 $bookSuggestions    = new ArrayCollection();
                 foreach ( $book->getGenres() as $genre ) {
                     $bookSuggestions = new ArrayCollection( $bookSuggestions->toArray() + $genre->getBooks()->toArray() );
+                    if ( $bookSuggestions->contains( $book ) ) {
+                        $bookSuggestions->removeElement( $book );
+                    }
                 }
                 break;
             case AssociationStrategy::STRATEGY_RANDOM:

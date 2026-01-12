@@ -1,4 +1,4 @@
-{% for suggest in bookSuggestions %}
+{% for suggest in bookSuggestions | slice( 0, 4 ) %}
     {% if suggest.getPicture( 'product_thumbnail' ) %}
         {% set bookThumbnail = suggest.getPicture( 'product_thumbnail' ) %}
     {% endif %}
