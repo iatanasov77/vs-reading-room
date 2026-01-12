@@ -104,6 +104,9 @@ reading_room:
             sign_in: Sign in!
             already_have_an_account: "Already have an account?"
             sign_up: Sign up
+            
+            confirmation_email_hello: Hi! Please confirm your email !
+            confirmation_email_description: After confirmation successfull you can login with username part of email and password that you set.
         
         my_profile:
             my_profile: My Profile

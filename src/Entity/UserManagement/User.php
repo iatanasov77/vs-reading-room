@@ -40,7 +40,7 @@ class User extends BaseUser implements
     
     /** @var bool */
     #[ORM\Column(name: "auto_bookmark", type: "boolean", options: ["default" => 0, ])]
-    private $autoBookmark;
+    private $autoBookmark = 0;
     
     public function __construct()
     {
