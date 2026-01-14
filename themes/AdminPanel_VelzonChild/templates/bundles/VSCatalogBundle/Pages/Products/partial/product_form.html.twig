@@ -9,15 +9,8 @@
             {{ vs_form.errors( formErrors ) }}
         {% endif %}
 
-        {% if( item.id ) %}
-            {% set action = path( 'vs_catalog_product_update', {'id': item.id} ) %}
-            {% set method = "PUT" %}
-        {% else %}
-            {% set action = path( 'vs_catalog_product_create' ) %}
-            {% set method = "POST" %}
-        {% endif %}
-        
-        {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'action': action, 'method': method }) }}
+        {% if(item.id) %}{% set method = "PUT" %}{% else %}{% set method = "POST" %}{% endif %}
+        {{ form_start(form, { 'attr': {'class': 'form-horizontal '}, 'method': method }) }}
             {{ form_widget( form.tagsInputWhitelist, { 'value' : productTags | join(',') } ) }}
             {{ form_widget( form.productCategories ) }}
             {{ form_widget( form.bookAuthors ) }}
