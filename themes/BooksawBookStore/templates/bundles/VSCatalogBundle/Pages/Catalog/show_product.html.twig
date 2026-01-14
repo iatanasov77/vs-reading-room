@@ -1,8 +1,13 @@
 {% extends "base.html.twig" %}
 
-{% block title %}{{ parent() }}{% endblock %}
+{% block title %}{{ parent() }} :: {{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} :: {{ product.name }}{% endblock %}
+{% block pageTitle %}{{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ product.name }}{% endblock %}
 
-{% block pageTitle %}<i class="icon_genius"></i> {{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ product.name }}{% endblock %}
+{% block breadcrumbs %}
+    {{ parent() }}
+    <span class="item"><a href="{{ path( 'vs_catalog_catalog_latest_products' ) }}">{{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} /</a></span>
+    {{ product.name }}
+{% endblock %}
 
 {% block content %}
     {% if product.pictures.first %}
@@ -37,7 +42,7 @@
                         {% for localeCode in bookTranslations %}
                             {% set linkTitle = 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) ~ ' in ' ~ localeCode %}
                             
-                            <a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug, 'locale': localeCode} ) }}"
+                            <a href="{{ path( 'app_reading_room_read_book', {'locale': localeCode, 'productSlug': product.slug} ) }}"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="top"
                                 title="{{ linkTitle }}"

@@ -38,6 +38,10 @@ class User extends BaseUser implements
     #[ORM\OneToMany(targetEntity: Product::class, mappedBy: "user", indexBy: "id")]
     private $submittedBooks;
     
+    /** @var bool */
+    #[ORM\Column(name: "auto_bookmark", type: "boolean", options: ["default" => 0, ])]
+    private $autoBookmark = 0;
+    
     public function __construct()
     {
         $this->newsletterSubscriptions  = new ArrayCollection();
@@ -61,5 +65,17 @@ class User extends BaseUser implements
     public function getSubmittedBooks(): Collection
     {
         return $this->submittedBooks;
+    }
+    
+    public function getAutoBookmark()
+    {
+        return $this->autoBookmark;
+    }
+    
+    public function setAutoBookmark( $autoBookmark )
+    {
+        $this->autoBookmark = $autoBookmark;
+        
+        return $this;
     }
 }

@@ -77,20 +77,22 @@ vs_application:
                 name: vs_application.menu.catalog_products
                 route: vs_catalog_catalog_latest_products
 
-                childs:
+#                childs:
 #                     show_book:
-#                         name: vs_application.menu.catalog.show_book
+#                         #name: vs_application.menu.catalog.show_book
+#                         name: ""
 #                         route: vs_catalog_catalog_product_show
 #                         routeParameters:
 #                             categorySlug: string
 #                             productSlug: string
 #                         display: false
-                    read_book:
-                        name: vs_application.menu.catalog.read_book
-                        route: app_reading_room_read_book
-                        routeParameters:
-                            productSlug: string
-                        display: false
+#                     read_book:
+#                         name: vs_application.menu.catalog.read_book
+#                         route: app_reading_room_read_book
+#                         routeParameters:
+#                             locale: string
+#                             productSlug: string
+#                         display: false
             about_us:
                 name: vs_application.menu.about_us
                 uri: "/pages/about-application"

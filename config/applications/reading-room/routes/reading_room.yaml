@@ -9,11 +9,11 @@ app_reading_room_author_details:
         slug: ''
 
 app_reading_room_read_book:
-    path: /read-book/{productSlug}/{locale}
+    path: /read-book/{locale}/{productSlug}
     controller: App\Controller\ReadingRoom\ReadingRoomController::readBookAction
     defaults:
-        productSlug: ''
         locale: ''
+        productSlug: ''
         
 app_reading_room_read:
     path: /read-book-{id}-{locale}

@@ -9,6 +9,7 @@ reading_room:
         filter_by_genre_placeholder: '-- Choose a Book Genre --'
         filter_by_author: Filter By Author
         filter_by_author_placeholder: '-- Choose a Book Author --'
+        auto_bookmark: Auto Bookmark
         
         reading_room_settings:
             application: Application
@@ -103,6 +104,9 @@ reading_room:
             sign_in: Sign in!
             already_have_an_account: "Already have an account?"
             sign_up: Sign up
+            
+            confirmation_email_hello: Hi! Please confirm your email !
+            confirmation_email_description: After confirmation successfull you can login with username part of email and password that you set.
         
         my_profile:
             my_profile: My Profile
