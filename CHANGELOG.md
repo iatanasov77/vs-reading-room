@@ -1,3 +1,17 @@
+1.7.2	|	Release date: **14.01.2026**
+============================================
+* New Features:
+  - Extend Profile Form To Can User Set Your AutoBookmark Flag.
+* Bug-Fixes and Improvements:
+  - Improve Show Profile Template.
+  - Improve Read Book Route.
+  - Add Some Pages Header Titles.
+  - Improve Showing Book Suggestions.
+  - Fix User Registration.
+  - Litle CSS Fix on Application Profile Page.
+  - Some Fixes on AdminPanel Book Form.
+
+
 1.7.1	|	Release date: **07.01.2026**
 ============================================
 * New Features and Improvements:
