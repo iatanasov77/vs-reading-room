@@ -69,7 +69,7 @@ class ProductFileType extends AbstractType
                 
                 'constraints' => [
                     new File([
-                        'maxSize' => '10000k',
+                        'maxSize' => '100m',
 //                         'mimeTypes' => [
 //                             'image/gif',
 //                             'image/jpeg',

@@ -3,7 +3,11 @@
         {% set fileId = form.vars.value.code %}
         {% set fileCode = form.vars.value.code | split( '_' ) %}
         
+        {#
+        {% set originalName = 'Choose File' %}
+        #}
         {% set originalName = item.files[fileId].originalName %}
+        
         {% set fileWidgetClass = 'form-control fieldFile persistedPhoto' %}
         
         {% set fileLocale = form.vars.value.locale %}
@@ -18,7 +22,15 @@
     {% endif %}
     
     <div class="col-lg-2 mb-3">
-        {% set fileCodeValue = fileCode | join( '_' ) %}
+        {% if fileCode is not empty %}
+            {% if fileCode[1] == 'content' %}
+                {% set fileCodeValue = 'product_content' %}
+            {% else %}
+                {% set fileCodeValue = fileCode | join( '_' ) %}
+            {% endif %}
+        {% else %}
+            {% set fileCodeValue = '' %}
+        {% endif %}
         
         {{ form_widget(form.code, {
             'value' : fileCodeValue,

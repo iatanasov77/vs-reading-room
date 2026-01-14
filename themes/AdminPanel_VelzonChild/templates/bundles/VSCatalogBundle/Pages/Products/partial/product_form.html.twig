@@ -5,8 +5,11 @@
     <h5 class="card-header">{{ 'vs_payment.template.product_details' | trans( {},'VSPaymentBundle' ) }}</h5>
     <div class="card-body">
         
-        {% if formErrors is defined %}
-            {{ vs_form.errors( formErrors ) }}     
+        {% if formErrors is defined and formErrors is not empty %}
+            {{ dump( formErrors ) }}
+            {# 
+            {{ vs_form.errors( formErrors ) }}
+            #}
         {% endif %}
 
         {% if( item.id ) %}
