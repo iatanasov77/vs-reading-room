@@ -6,10 +6,7 @@
     <div class="card-body">
         
         {% if formErrors is defined and formErrors is not empty %}
-            {{ dump( formErrors ) }}
-            {# 
             {{ vs_form.errors( formErrors ) }}
-            #}
         {% endif %}
 
         {% if( item.id ) %}
