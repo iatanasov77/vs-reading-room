@@ -1,3 +1,12 @@
+1.7.3	|	Release date: **16.01.2026**
+============================================
+* New Features and Improvements:
+  - Imrove Some Admin Panel Templates.
+  - Update to Symfony 7
+* Bug-Fixes:
+  - Some Stupid Bug.
+
+
 1.7.2	|	Release date: **14.01.2026**
 ============================================
 * New Features:
