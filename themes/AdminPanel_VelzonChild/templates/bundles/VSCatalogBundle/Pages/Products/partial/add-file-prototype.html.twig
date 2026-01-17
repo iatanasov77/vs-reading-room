@@ -3,10 +3,11 @@
         {% set fileId = form.vars.value.code %}
         {% set fileCode = form.vars.value.code | split( '_' ) %}
         
-        {#
-        {% set originalName = 'Choose File' %}
-        #}
-        {% set originalName = item.files[fileId].originalName %}
+        {% if fileId %}
+            {% set originalName = item.files[fileId].originalName %}
+        {% else %}
+            {% set originalName = 'Choose File' %}
+        {% endif %}
         
         {% set fileWidgetClass = 'form-control fieldFile persistedPhoto' %}
         
@@ -22,7 +23,7 @@
     {% endif %}
     
     <div class="col-lg-2 mb-3">
-        {% if fileCode is not empty %}
+        {% if fileCode is not empty and ( fileCode | length >= 2 ) %}
             {% if fileCode[1] == 'content' %}
                 {% set fileCodeValue = 'product_content' %}
             {% else %}
