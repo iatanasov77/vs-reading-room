@@ -1,3 +1,9 @@
+1.7.4	|	Release date: **17.01.2026**
+============================================
+* Bug-Fixes:
+  - Fix AdminPanel Product Form Template When Has an Error.
+
+
 1.7.3	|	Release date: **16.01.2026**
 ============================================
 * New Features and Improvements:
