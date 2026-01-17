@@ -1,3 +1,14 @@
+1.7.5	|	Release date: **17.01.2026**
+============================================
+* New Features:
+  - Show Books for Author in Author Details Page.
+  - Add Links to Book Details in Related Sections of Author Details and Book Details.
+* Bug-Fixes and Improvements:
+  - Increase File Upload Max Size in AdminPanel.
+  - AdminPanel Add Pagination on Books Listing Page.
+  - Litle Fix on Create Book Author Form.
+
+
 1.7.4	|	Release date: **17.01.2026**
 ============================================
 * Bug-Fixes:
