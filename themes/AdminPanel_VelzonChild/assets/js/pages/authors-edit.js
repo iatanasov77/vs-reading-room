@@ -26,15 +26,6 @@ $( function ()
         $( this ).next( '.input-group-text' ).text( filename );
     });
     
-    let selectedGenres  = JSON.parse( $( '#book_author_form_authorGenres').val() );
-    EasyuiCombobox( $( '#book_author_form_genres' ), {
-        required: false,
-        multiple: true,
-        checkboxId: "genres",
-        values: selectedGenres,
-        debug: true
-    });
-    
     let selectedBooks  = JSON.parse( $( '#book_author_form_authorBooks').val() );
     EasyuiCombobox( $( '#book_author_form_books' ), {
         required: false,
@@ -44,6 +35,15 @@ $( function ()
         debug: true
     });
     VsRemoveDuplicates();
+    
+    let selectedGenres  = JSON.parse( $( '#book_author_form_authorGenres').val() );
+    EasyuiCombobox( $( '#book_author_form_genres' ), {
+        required: false,
+        multiple: true,
+        checkboxId: "genres",
+        values: selectedGenres,
+        debug: true
+    });
     
     $( '.persistedPhoto' ).removeAttr( 'required' );
     
