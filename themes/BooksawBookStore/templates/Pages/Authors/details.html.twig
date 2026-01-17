@@ -33,4 +33,54 @@
             </div>
         </div>
     </section>
+    
+    {% if author.books | length %}
+        <section id="related-products" class="bookshelf pb-5 mb-5">
+            <div class="container">
+                <div class="section-header align-center">
+                    <h2 class="section-title">{{ 'reading_room.form.author.books' | trans( {},'ReadingRoom' ) }}</h2>
+                </div>
+            </div>
+        
+            <div class="container">
+                {% for productsRow in author.books | batch( 4 ) %}
+                    <div class="row">
+                        <div class="inner-content">
+                            <div class="product-list">
+                                <div class="grid product-grid">
+                                    {% for product in productsRow %}
+                                        {% if product.getPicture( 'product_thumbnail' ) %}
+                                            {% set bookThumbnail = product.getPicture( 'product_thumbnail' ) %}
+                                        {% endif %}
+                                        
+                                        <div class="product-item">
+                                            <figure class="product-style">
+                                                <a href="{{ path( 'vs_catalog_catalog_product_show', {'categorySlug': 'latest', 'productSlug': product.slug} ) }}">
+                                                    <img src="{{ bookThumbnail.path | imagine_filter( 'index_page_thumbnail' ) }}"
+                                                        alt="Books"
+                                                        class="product-item"
+                                                    >
+                                                </a>
+                                                {#
+                                                <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
+                                                    Add to Cart
+                                                </button>
+                                                #}
+                                            </figure>
+                                            
+                                            <figcaption>
+                                                <a href="{{ path( 'vs_catalog_catalog_product_show', {'categorySlug': 'latest', 'productSlug': product.slug} ) }}">
+                                                    <h3>{{ product.name }}</h3>
+                                                </a>
+                                            </figcaption>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div><!--inner-content-->
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
 {% endblock %}
