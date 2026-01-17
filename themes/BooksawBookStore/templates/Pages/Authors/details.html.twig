@@ -55,10 +55,12 @@
                                         
                                         <div class="product-item">
                                             <figure class="product-style">
-                                                <img src="{{ bookThumbnail.path | imagine_filter( 'index_page_thumbnail' ) }}"
-                                                    alt="Books"
-                                                    class="product-item"
-                                                >
+                                                <a href="{{ path( 'vs_catalog_catalog_product_show', {'categorySlug': 'latest', 'productSlug': product.slug} ) }}">
+                                                    <img src="{{ bookThumbnail.path | imagine_filter( 'index_page_thumbnail' ) }}"
+                                                        alt="Books"
+                                                        class="product-item"
+                                                    >
+                                                </a>
                                                 {#
                                                 <button type="button" class="add-to-cart" data-product-tile="add-to-cart">
                                                     Add to Cart
@@ -67,7 +69,9 @@
                                             </figure>
                                             
                                             <figcaption>
-                                                <h3>{{ product.name }}</h3>
+                                                <a href="{{ path( 'vs_catalog_catalog_product_show', {'categorySlug': 'latest', 'productSlug': product.slug} ) }}">
+                                                    <h3>{{ product.name }}</h3>
+                                                </a>
                                             </figcaption>
                                         </div>
                                     {% endfor %}
