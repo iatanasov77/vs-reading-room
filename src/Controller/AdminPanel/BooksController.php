@@ -173,7 +173,7 @@ class BooksController extends ProductController
     private function getBookTranslations()
     {
         $translations   = [];
-        foreach ( $this->getRepository()->findAll() as $product ) {
+        foreach ( $this->resources as $product ) {
             foreach ( $product->getFiles() as $file ) {
                 if ( ! \str_starts_with( $file->getCode(), 'product_content' ) ) {
                     continue;
