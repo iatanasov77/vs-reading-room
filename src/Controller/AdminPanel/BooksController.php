@@ -56,7 +56,7 @@ class BooksController extends ProductController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $entity->setUser( $this->get( 'vs_users.security_bridge' )->getUser() );
         
