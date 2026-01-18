@@ -18,6 +18,7 @@ class BooksController extends ProductController
     protected function customData( Request $request, $entity = null ): array
     {
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations( false ) : [];
+        $boookTranslations   = $this->classInfo['action'] == 'indexAction' ? $this->getBookTranslations() : [];
         
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_catalog.product_category.taxonomy_code' )
@@ -51,6 +52,7 @@ class BooksController extends ProductController
             'filterCategory'    => $filterCategory,
             'filterGenre'       => $filterGenre,
             'filterAuthor'      => $filterAuthor,
+            'boookTranslations' => $boookTranslations,
         ];
     }
     
@@ -166,5 +168,20 @@ class BooksController extends ProductController
         $productFile->setLocale( $locale );
         
         $entity->addFile( $productFile );
+    }
+    
+    private function getBookTranslations()
+    {
+        $translations   = [];
+        foreach ( $this->getRepository()->findAll() as $product ) {
+            foreach ( $product->getFiles() as $file ) {
+                if ( ! \str_starts_with( $file->getCode(), 'product_content' ) ) {
+                    continue;
+                }
+                $translations[$product->getId()][] = $file->getLocale();
+            }
+        }
+        
+        return $translations;
     }
 }

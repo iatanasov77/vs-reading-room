@@ -131,6 +131,9 @@ class CatalogController extends BaseCatalogController
     {
         $translations   = [];
         foreach ( $entity->getFiles() as $file ) {
+            if ( ! \str_starts_with( $file->getCode(), 'product_content' ) ) {
+                continue;
+            }
             $translations[] = $file->getLocale();
         }
         

@@ -50,6 +50,7 @@ reading_room:
             document_placeholder: '-- Choose a Document --'
             document_create: Create Document
             document_update: Edit Document
+            book_translations: Book Translations
         
         forgot_password:
             recover: Recover
