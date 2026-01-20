@@ -74,6 +74,10 @@ export class PdfViewerComponent implements OnInit
         this.print          = $( '#ReadBookContainer' ).attr( 'data-print' );
         this.locale         = $( '#ReadBookContainer' ).attr( 'data-locale' );
         
+        const lang = this.locale.split( "-" );
+        this.translate.use( lang[0] );
+        //alert( lang[0] );
+        
         var userId          = $( '#ReadBookContainer' ).attr( 'data-UserId' );
         if ( userId > 0 ) {
             this.user = {
