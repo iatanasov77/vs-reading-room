@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { APP_BASE_HREF } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 // ----> Import PdfJsViewerModule here
 import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
@@ -19,6 +21,10 @@ const MATERIAL_IMPORTS = [
     MatButtonModule
 ];
 
+export function HttpLoaderFactory( http: HttpClient ) {
+    return new TranslateHttpLoader( http, '/build/booksaw-book-store/i18n/', '.json' );
+}
+
 @NgModule({
     declarations: [
         PdfViewerComponent
@@ -30,7 +36,15 @@ const MATERIAL_IMPORTS = [
         MatTableModule,
         MATERIAL_IMPORTS,
         
-        HttpClientModule
+        HttpClientModule,
+        TranslateModule.forRoot({
+            defaultLanguage: 'en',
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
     providers: [
         { provide: APP_BASE_HREF, useValue: window.location.pathname }
