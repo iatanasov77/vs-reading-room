@@ -6,7 +6,7 @@
 {% block breadcrumbs %}
     {{ parent() }}
     <span class="item"><a href="{{ path( 'vs_catalog_catalog_latest_products' ) }}">{{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} /</a></span>
-    {{ book.name }}
+    {{ book.name }} ({{ localeCode }})
 {% endblock %}
 
 {% block content %}

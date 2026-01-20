@@ -86,20 +86,7 @@ export class PdfViewerComponent implements OnInit
                 email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
             };
-        }
-        
-        /*
-        $( window ).on( 'beforeunload', function() {
-            return "Component Destroyed !!!";
-        });
-        */
-        /*
-        window.addEventListener( "beforeunload", function ( e ) {
-            var confirmationMessage = "Component Destroyed !!!";
-            e.returnValue = confirmationMessage;
-            return confirmationMessage;
-        });
-        */​
+        }​
     }
     
     public beforePrint(): void
