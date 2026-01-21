@@ -86,6 +86,10 @@
                         {% include '@VSCatalog/Pages/Products/partial/add-file-prototype.html.twig' with {'form': fileForm} %}
                     {% endfor %}
                 </div>
+                
+                <div class="form-text text-danger fs-6" id="VsReadingRoom_BookFile_Help" style="display: none;">
+                    {{ 'reading_room.form.product.html_book_upload_help'  | trans( {},'ReadingRoom' ) }}
+                </div>
             </fieldset>
             
             <fieldset class="border border-dark rounded p-3 fieldset-custom-data">

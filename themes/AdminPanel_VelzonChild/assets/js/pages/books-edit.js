@@ -53,6 +53,14 @@ function initForm()
         }
     });
     
+    $( '.filesContainer' ).on( 'change', '.book-type-select', function() {
+        if ( $( this ).val() == 'html' ) {
+            $( '#VsReadingRoom_BookFile_Help' ).show();
+        } else {
+            $( '#VsReadingRoom_BookFile_Help' ).hide();
+        }
+    });
+    
     $( '.filesContainer' ).on( 'change', '.fieldFile', function() {
         var filename = $( this ).val().split('\\').pop();
         $( this ).next( '.input-group-text' ).text( filename );
