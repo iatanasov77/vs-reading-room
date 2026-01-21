@@ -8,9 +8,16 @@ app_reading_room_author_details:
     defaults:
         slug: ''
 
-app_reading_room_read_book:
-    path: /read-book/{locale}/{productSlug}
-    controller: App\Controller\ReadingRoom\ReadingRoomController::readBookAction
+app_reading_room_read_pdf_book:
+    path: /read-pdf-book/{locale}/{productSlug}
+    controller: App\Controller\ReadingRoom\ReadingRoomController::readPdfBookAction
+    defaults:
+        locale: ''
+        productSlug: ''
+
+app_reading_room_read_html_book:
+    path: /read-html-book/{locale}/{productSlug}
+    controller: App\Controller\ReadingRoom\ReadingRoomController::readHtmlBookAction
     defaults:
         locale: ''
         productSlug: ''
@@ -18,6 +25,10 @@ app_reading_room_read_book:
 app_reading_room_read:
     path: /read-book-{id}-{locale}
     controller: App\Controller\ReadingRoom\ReadBookController::read
+
+app_reading_room_read_html:
+    path: /read-html-{id}-{locale}
+    controller: App\Controller\ReadingRoom\ReadBookController::readHtml
 
 app_reading_room_get_bookmark:
     path: /bookmarks/{bookId}/{bookLocale}/{userId}

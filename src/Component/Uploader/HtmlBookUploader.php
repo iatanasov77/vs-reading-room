@@ -6,10 +6,9 @@ use Webmozart\Assert\Assert;
 
 use Vankosoft\CmsBundle\Component\Uploader\AbstractFileUploader;
 use Vankosoft\CmsBundle\Component\Generator\FilePathGeneratorInterface;
-use Vankosoft\CmsBundle\Component\Generator\UploadedFilePathGenerator;
 use Vankosoft\CmsBundle\Model\Interfaces\FileInterface;
 
-class BookUploader extends AbstractFileUploader
+class HtmlBookUploader extends AbstractFileUploader
 {
     /** @var Filesystem */
     protected $filesystem;
@@ -22,15 +21,7 @@ class BookUploader extends AbstractFileUploader
         ?FilePathGeneratorInterface $filePathGenerator = null
     ) {
             $this->filesystem = $filesystem;
-            
-            if ( $filePathGenerator === null ) {
-                @trigger_error( sprintf(
-                    'Not passing an $filePathGenerator to %s constructor is deprecated since Sylius 1.6 and will be not possible in Sylius 2.0.',
-                    self::class
-                ), \E_USER_DEPRECATED );
-            }
-            
-            $this->filePathGenerator = $filePathGenerator ?? new UploadedFilePathGenerator();
+            $this->filePathGenerator = $filePathGenerator;
     }
     
     public function upload( FileInterface $filemanagerFile ): void

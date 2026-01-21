@@ -30,25 +30,26 @@
                     <div class="product-detail">
                         <h1>{{ product.name }}</h1>
                         
-                        {#
-                        {% if 'product_content' in product.files | keys %}
-                            <h4>
-                                <a href="{{ path( 'app_reading_room_read_book', {'productSlug': product.slug} ) }}">
-                                    {{ 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) }}
-                                </a>
-                            </h4>
-                        {% endif %}
-                        #}
-                        {% for localeCode in bookTranslations %}
+                        {% for localeCode, bookType in bookTranslations %}
                             {% set linkTitle = 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) ~ ' in ' ~ localeCode %}
                             
-                            <a href="{{ path( 'app_reading_room_read_book', {'locale': localeCode, 'productSlug': product.slug} ) }}"
-                                data-bs-toggle="tooltip"
-                                data-bs-placement="top"
-                                title="{{ linkTitle }}"
-                            >
-                                <i class="flag flag-{{ localeCode | split( '_' )[1] | lower }}"></i>
-                            </a>
+                            {% if bookType == 'html' %}
+                                <a href="{{ path( 'app_reading_room_read_html_book', {'locale': localeCode, 'productSlug': product.slug} ) }}"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="{{ linkTitle }}"
+                                >
+                                    <i class="flag flag-{{ localeCode | split( '_' )[1] | lower }}"></i>
+                                </a>
+                            {% else %}
+                                <a href="{{ path( 'app_reading_room_read_pdf_book', {'locale': localeCode, 'productSlug': product.slug} ) }}"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    title="{{ linkTitle }}"
+                                >
+                                    <i class="flag flag-{{ localeCode | split( '_' )[1] | lower }}"></i>
+                                </a>
+                            {% endif %}
                             {% if not loop.last %}&nbsp;{% endif %}
                         {% endfor %}
                         

@@ -134,7 +134,7 @@ class CatalogController extends BaseCatalogController
             if ( ! \str_starts_with( $file->getCode(), 'product_content' ) ) {
                 continue;
             }
-            $translations[] = $file->getLocale();
+            $translations[$file->getLocale()] = $file->getBookType();
         }
         
         return $translations;

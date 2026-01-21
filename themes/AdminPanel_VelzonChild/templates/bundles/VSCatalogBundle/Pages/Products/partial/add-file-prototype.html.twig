@@ -46,7 +46,13 @@
         }) }}
     </div>
     
-    <div class="col-lg-7 form-field-file  mb-3">
+    <div class="col-lg-2 mb-3">
+        {{ form_widget(form.bookType, {
+            'attr': {'class': 'form-select'}
+        }) }}
+    </div>
+    
+    <div class="col-lg-5 form-field-file  mb-3">
         {{ form_widget(form.file, {'attr': {
                 'class': fileWidgetClass,
                 'placeholder': originalName

@@ -12,6 +12,7 @@ use Symfony\Component\Validator\Constraints\File;
 
 use Vankosoft\ApplicationBundle\Component\Exception\FormInitializationException;
 use Vankosoft\CatalogBundle\Component\Product;
+use App\Component\ReadingRoom;
 
 class ProductFileType extends AbstractType
 {
@@ -24,14 +25,19 @@ class ProductFileType extends AbstractType
     /** @var RequestStack */
     protected $requestStack;
     
+    /** @var ReadingRoom */
+    protected $readingRoom;
+    
     public function __construct(
         string $dataClass,
         RequestStack $requestStack,
-        RepositoryInterface $localesRepository
+        RepositoryInterface $localesRepository,
+        ReadingRoom $readingRoom
     ) {
         $this->dataClass            = $dataClass;
         $this->requestStack         = $requestStack;
         $this->localesRepository    = $localesRepository;
+        $this->readingRoom          = $readingRoom;
     }
     
     public function buildForm( FormBuilderInterface $builder, array $options ): void
@@ -58,6 +64,12 @@ class ProductFileType extends AbstractType
                 'data'                  => $currentLocale,
                 'required'              => false,
                 'mapped'                => false,
+            ])
+            
+            ->add( 'bookType', ChoiceType::class, [
+                'label'                 => 'reading_room.form.product.book_type',
+                'translation_domain'    => 'ReadingRoom',
+                'choices'               => \array_flip( $this->readingRoom->bookTypes() ),
             ])
             
             ->add( 'file', FileType::class, [

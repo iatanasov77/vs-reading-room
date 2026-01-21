@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ parent() }} :: {{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} :: {{ book.name }}{% endblock %}
+{% block pageTitle %}{{ 'vs_catalog.template.show_product' | trans( {},'VSCatalogBundle' ) }}: {{ book.name }}{% endblock %}
+
+{% block breadcrumbs %}
+    {{ parent() }}
+    <span class="item"><a href="{{ path( 'vs_catalog_catalog_latest_products' ) }}">{{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} /</a></span>
+    {{ book.name }} ({{ localeCode }})
+{% endblock %}
+
+{% block content %}
+    {% set viewBookmark = readingRoomSettings.viewBookmark or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    {% set canOpenFile = readingRoomSettings.openFile or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    {% set canDownload = readingRoomSettings.download or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    {% set canPrint = readingRoomSettings.print or is_granted( 'ROLE_SUPER_ADMIN' ) ? 'true' : 'false' %}
+    
+    <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
+        <div id="ReadBookContainer"
+            class="justify-content-center ReadBookContainer"
+        >     
+            <iframe style="width: 100%; height: 100%" src="{{ path( 'app_reading_room_read_html', {'id': book.id, 'locale': localeCode} ) }}"></iframe>
+        </div>
+    </section>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    
+    {{ encore_entry_link_tags( 'js/read-book', null, 'BooksawBookStore' ) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    
+    {{ encore_entry_script_tags( 'js/read-book', null, 'BooksawBookStore'  ) }}
+{% endblock %}

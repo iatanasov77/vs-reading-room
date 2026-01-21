@@ -82,6 +82,30 @@ class ReadBookController extends AbstractController
         return $response;
     }
     
+    public function readHtml( $id, $locale, Request $request ): Response
+    {
+        $book           = $this->productRepository->find( $id );
+        $bookFiles      = $book->getFiles();
+        $contentFile    = $bookFiles[\sprintf( '%s_%s', Product::PRODUCT_FILE_TYPE_CONTENT, $locale )];
+        // var_dump( $contentFile->getType() ); die;
+        
+        $archiveFile = \sprintf( "%s/public/shared_media/gaufrette/html_books/%s",
+            //$this->htmlBooksDir,
+            $this->projectRootDir,
+            $contentFile->getPath()
+        );
+        $archiveFileName = \pathinfo( $archiveFile, PATHINFO_FILENAME );
+        
+        $filePath       = \sprintf(
+            "%s/public/shared_media/gaufrette/html_books/%s/www.projekt-gutenberg.org/gerstaec/arkansas/index.html",
+            $this->projectRootDir,
+            $archiveFileName
+        );
+        $response       = new Response( \file_get_contents( $filePath ) );
+        
+        return $response;
+    }
+    
     public function getBookmark( $bookId, $bookLocale, $userId, Request $request ): Response
     {
         $bookmark   = $this->bookmarkRepository->findOneBy([
