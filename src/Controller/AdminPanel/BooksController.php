@@ -10,6 +10,7 @@ use Vankosoft\CatalogBundle\Model\Interfaces\ProductInterface;
 use Vankosoft\CatalogBundle\Model\Interfaces\ProductFileInterface;
 use Vankosoft\CatalogBundle\Component\Product;
 use App\Controller\AdminPanel\Traits\FilterFormTrait;
+use App\Component\ReadingRoom;
 
 class BooksController extends ProductController
 {
@@ -18,6 +19,7 @@ class BooksController extends ProductController
     protected function customData( Request $request, $entity = null ): array
     {
         $translations   = $this->classInfo['action'] == 'indexAction' ? $this->getTranslations( false ) : [];
+        $boookTranslations   = $this->classInfo['action'] == 'indexAction' ? $this->getBookTranslations() : [];
         
         $taxonomy   = $this->get( 'vs_application.repository.taxonomy' )->findByCode(
             $this->getParameter( 'vs_catalog.product_category.taxonomy_code' )
@@ -51,10 +53,11 @@ class BooksController extends ProductController
             'filterCategory'    => $filterCategory,
             'filterGenre'       => $filterGenre,
             'filterAuthor'      => $filterAuthor,
+            'boookTranslations' => $boookTranslations,
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $entity->setUser( $this->get( 'vs_users.security_bridge' )->getUser() );
         
@@ -125,7 +128,17 @@ class BooksController extends ProductController
                     }
                 }
                 
-                $this->addBookFile( $entity, $files[$fileId], $file['file'], $fileCodeWithLocale, $fileLocale );
+                switch ( $formPost['files'][$fileId]['bookType'] ) {
+                    case ReadingRoom::BOOK_TYPE_PDF:
+                        $this->addPdfBookFile( $entity, $files[$fileId], $file['file'], $fileCodeWithLocale, $fileLocale );
+                        break;
+                    case ReadingRoom::BOOK_TYPE_HTML:
+                        $this->addHtmlBookFile( $entity, $files[$fileId], $file['file'], $fileCodeWithLocale, $fileLocale );
+                        break;
+                    default:
+                        throw new \Exception( 'Invalid Book File Type !' );
+                }
+                
             }
         }
         
@@ -142,7 +155,7 @@ class BooksController extends ProductController
         }
     }
     
-    protected function addBookFile(
+    protected function addPdfBookFile(
         ProductInterface &$entity,
         ProductFileInterface &$productFile,
         File $file,
@@ -154,7 +167,7 @@ class BooksController extends ProductController
         $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
         $productFile->setFile( $uploadedFile );
         
-        $this->get( 'vs_reading_room.book_uploader' )->upload( $productFile );
+        $this->get( 'vs_reading_room.pdf_book_uploader' )->upload( $productFile );
         $productFile->setFile( null ); // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
         
         if ( $code == Product::PRODUCT_FILE_TYPE_OTHER ) {
@@ -164,7 +177,77 @@ class BooksController extends ProductController
         }
         
         $productFile->setLocale( $locale );
+        $productFile->setBookType( ReadingRoom::BOOK_TYPE_PDF );
         
         $entity->addFile( $productFile );
+    }
+    
+    protected function addHtmlBookFile(
+        ProductInterface &$entity,
+        ProductFileInterface &$productFile,
+        File $file,
+        string $code,
+        string $locale
+    ): void {
+        $productFile->setOriginalName( $file->getClientOriginalName() );
+        
+        $uploadedFile   = new UploadedFile( $file->getRealPath(), $file->getBasename() );
+        $productFile->setFile( $uploadedFile );
+        
+        $this->get( 'vs_reading_room.html_book_uploader' )->upload( $productFile );
+        $productFile->setFile( null ); // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
+        
+        if ( $code == Product::PRODUCT_FILE_TYPE_OTHER ) {
+            $productFile->setCode( $code . '-' . \microtime() );
+        } else {
+            $productFile->setCode( $code );
+        }
+        
+        $productFile->setLocale( $locale );
+        $productFile->setBookType( ReadingRoom::BOOK_TYPE_HTML );
+        
+        $entity->addFile( $productFile );
+        
+        if ( ! $this->extractHtmlBook( $productFile ) ) {
+            throw new \RuntimeException( 'HTML Book Cannot be extracted !' );
+        }
+    }
+    
+    private function getBookTranslations(): array
+    {
+        $translations   = [];
+        foreach ( $this->resources as $product ) {
+            foreach ( $product->getFiles() as $file ) {
+                if ( ! \str_starts_with( $file->getCode(), 'product_content' ) ) {
+                    continue;
+                }
+                $translations[$product->getId()][] = $file->getLocale();
+            }
+        }
+        
+        return $translations;
+    }
+    
+    private function extractHtmlBook( ProductFileInterface $productFile ): bool
+    {
+        $archiveFile = \sprintf( "%s/%s",
+            $this->getParameter( 'vs_reading_room.filemanager_shared_media_gaufrette.html_books' ),
+            $productFile->getPath()
+        );
+        $archiveFileName = \pathinfo( $archiveFile, PATHINFO_FILENAME );
+        $this->get( 'vs_reading_room.html_book_uploader' )->getFilesystem()->createDirectory( $archiveFileName );
+        
+        $zip = new \ZipArchive;
+        if ( $zip->open( $archiveFile ) === TRUE ) {
+            $zip->extractTo( \sprintf( "%s/%s/",
+                $this->getParameter( 'vs_reading_room.filemanager_shared_media_gaufrette.html_books' ),
+                $archiveFileName
+            ));
+            $zip->close();
+            
+            return true;
+        }
+        
+        return false;
     }
 }

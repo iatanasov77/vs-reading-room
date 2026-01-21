@@ -45,11 +45,13 @@ reading_room:
             authors_placeholder: '-- Select Book Authors --'
             book_type: Book Type
             book_type_pdf: PDF
+            book_type_html: HTML
             book_type_vankosoft_document: Vankosoft Document
             document: Document
             document_placeholder: '-- Choose a Document --'
             document_create: Create Document
             document_update: Edit Document
+            book_translations: Book Translations
         
         forgot_password:
             recover: Recover

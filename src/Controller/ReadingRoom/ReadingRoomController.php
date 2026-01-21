@@ -35,13 +35,26 @@ class ReadingRoomController extends AbstractController
         $this->productRepository            = $productRepository;
     }
     
-    public function readBookAction( $locale, $productSlug, Request $request ): Response
+    public function readPdfBookAction( $locale, $productSlug, Request $request ): Response
     {
         $book   = $this->productRepository->findOneBy( ['slug' => $productSlug] );
         
-        return $this->render( 'Pages/read_book.html.twig', [
+        return $this->render( 'Pages/read_pdf_book.html.twig', [
             'book'                  => $book,
             'localeCode'            => $locale,
+            'readingRoomSettings'   => $this->readingRoom->settings(),
+            'shoppingCart'          => $this->getShoppingCart( $request ),
+        ]);
+    }
+    
+    public function readHtmlBookAction( $locale, $productSlug, Request $request ): Response
+    {
+        $book   = $this->productRepository->findOneBy( ['slug' => $productSlug] );
+        
+        return $this->render( 'Pages/read_html_book.html.twig', [
+            'book'                  => $book,
+            'localeCode'            => $locale,
+            //'bookPublicUrl'         => $this->readingRoom->getHtmlBookUrl( $book->getId(), $locale ),
             'readingRoomSettings'   => $this->readingRoom->settings(),
             'shoppingCart'          => $this->getShoppingCart( $request ),
         ]);

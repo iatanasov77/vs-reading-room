@@ -57,15 +57,12 @@ Encore
        to: 'assets/pdfjs/[path][name].[ext]',
     })
     
-    .copyFiles({
-        from: './themes/BooksawBookStore/assets/vendor/booksaw-book-store-html-template/images',
-        to: 'images/[path][name].[ext]',
-    })
-    
-    .copyFiles({
-        from: './themes/BooksawBookStore/assets/images',
-        to: 'images/[path][name].[ext]',
-    })
+    // Application Assets
+    .copyFiles([
+        {from: './themes/BooksawBookStore/assets/vendor/booksaw-book-store-html-template/images', to: 'images/[path][name].[ext]'},
+        {from: './themes/BooksawBookStore/assets/images', to: 'images/[path][name].[ext]'},
+        {from: './themes/BooksawBookStore/assets/i18n', to: 'i18n/[path][name].[ext]'},
+     ])
     
     /**
      * Add Entries

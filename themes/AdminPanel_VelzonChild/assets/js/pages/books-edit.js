@@ -156,7 +156,7 @@ $( function()
             });
         }
     });
-    
+    /*
     $( '#FormContainer' ).on( 'change', '#book_form_bookType', function( e ) {
         if ( $( this ).val() == 'vankosoft_document' ) {
             $( '#TocDocumentField' ).show();
@@ -164,4 +164,5 @@ $( function()
             $( '#TocDocumentField' ).hide();
         }
     });
+    */
 });

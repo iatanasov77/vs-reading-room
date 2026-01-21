@@ -17,6 +17,8 @@ parameters:
     # ReadingRoom Shared Media Directories
     vs_reading_room.filemanager_shared_media_gaufrette.books: "%kernel.project_dir%/public/shared_media/gaufrette/books"
     vs_reading_room.gaufrette.books.filesystem: vs_reading_room_books
+    vs_reading_room.filemanager_shared_media_gaufrette.html_books: "%kernel.project_dir%/public/shared_media/gaufrette/html_books"
+    vs_reading_room.gaufrette.html_books.filesystem: vs_reading_room_html_books
 
 services:
     _defaults:
@@ -32,9 +34,18 @@ services:
 #        arguments:
 #            - '@vs_application.app_pictures_uploader.filesystem'
 #            - '@vs_cms.file_path_generator'
-        
-    vs_reading_room.book_uploader:
-        class: App\Component\Uploader\BookUploader
+    
+    vs_reading_room.local_file_path_generator:
+        class: App\Component\Uploader\LocalFilePathGenerator
+    
+    vs_reading_room.pdf_book_uploader:
+        class: App\Component\Uploader\PdfBookUploader
         arguments:
             - '@oneup_flysystem.vs_reading_room_books_filesystem'
             - '@vs_cms.file_path_generator'
+    
+    vs_reading_room.html_book_uploader:
+        class: App\Component\Uploader\HtmlBookUploader
+        arguments:
+            - '@oneup_flysystem.vs_reading_room_html_books_filesystem'
+            - '@vs_reading_room.local_file_path_generator'

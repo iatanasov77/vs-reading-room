@@ -38,15 +38,6 @@
             {% include '@VSCatalog/Pages/Products/partial/product_form_category.html.twig' %}
             
             <div class="form-group">
-                {{ form_label(form.bookType, null, {
-                    'label_attr': {'class': 'col-form-label'}
-                    }) 
-                }}
-                
-                {{ form_widget(form.bookType, {'attr': {'class': 'form-select'}}) }}
-            </div>
-            
-            <div class="form-group">
                 {{ form_label(form.name, null, {
                     'label_attr': {'class': 'col-form-label'}
                     }) 
@@ -100,6 +91,7 @@
             <fieldset class="border border-dark rounded p-3 fieldset-custom-data">
                 <legend class="w-auto float-none ps-2 pe-2">{{ 'reading_room.form.product.custom-data' | trans( {},'ReadingRoom' ) }}</legend>
                 
+                {#
                 <div class="form-group" id="TocDocumentField">
                     {{ form_label(form.document, null, {
                         'label_attr': {'class': 'form-label'}
@@ -126,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                
+                #}
                 <div class="form-group">
                     {{ form_label(form.genres, null, {
                         'label_attr': {'class': 'col-form-label'}

@@ -92,6 +92,8 @@
         "rxjs": "^7.5.4",
         "zone.js": "~0.14.2",
         
+        "@ngx-translate/core": "^16.0",
+        "@ngx-translate/http-loader": "^16.0",
         "ng2-pdfjs-viewer": "~20.0"
     },
     "devDependencies": {

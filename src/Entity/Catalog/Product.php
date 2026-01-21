@@ -22,10 +22,6 @@ class Product extends BaseProduct
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: "submittedBooks")]
     private $user;
     
-    /** @var string */
-    #[ORM\Column(name: "book_type", type: "string", columnDefinition: "ENUM('pdf', 'vankosoft_document')", options: ["default" => "pdf", ])]
-    private $bookType;
-    
     /** @var DocumentInterface */
     #[ORM\OneToOne(targetEntity: Document::class, cascade: ["all"], orphanRemoval: true)]
     #[ORM\JoinColumn(name: "document_id", referencedColumnName: "id", nullable: true)]
@@ -61,21 +57,6 @@ class Product extends BaseProduct
     public function setUser($user)
     {
         $this->user = $user;
-        
-        return $this;
-    }
-    
-    public function getBookType(): string
-    {
-        return $this->bookType;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setBookType( string $bookType ): self
-    {
-        $this->bookType = $bookType;
         
         return $this;
     }

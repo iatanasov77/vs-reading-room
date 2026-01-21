@@ -1,4 +1,9 @@
 <div class="w-100 h-100 mt-5" style="width: 800px; height: 800px;">
+    
+    <button type="button" class="btn btn-primary book-btn mb-2" *ngIf="user && ! user.autoBookmark" (click)="clickCreateBookmark()">
+        {{ 'buttons.create_bookmark' | translate }}
+    </button>
+    
     <ng2-pdfjs-viewer #bigPdfViewer
         pdfSrc="{{ pdfUrl }}"
         viewerFolder="/build/booksaw-book-store/assets/pdfjs"

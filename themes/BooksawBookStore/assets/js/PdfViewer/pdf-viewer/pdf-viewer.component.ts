@@ -1,4 +1,5 @@
 import { Component, Inject, ViewChild, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
 
 // Services
@@ -42,6 +43,7 @@ export class PdfViewerComponent implements OnInit
     print: Boolean;
     
     constructor(
+        @Inject( TranslateService ) private translate: TranslateService,
         @Inject( PdfService ) private pdfService: PdfService,
     ) {
         this.bookId         = 0;
@@ -72,6 +74,10 @@ export class PdfViewerComponent implements OnInit
         this.print          = $( '#ReadBookContainer' ).attr( 'data-print' );
         this.locale         = $( '#ReadBookContainer' ).attr( 'data-locale' );
         
+        const lang = this.locale.split( "-" );
+        this.translate.use( lang[0] );
+        //alert( lang[0] );
+        
         var userId          = $( '#ReadBookContainer' ).attr( 'data-UserId' );
         if ( userId > 0 ) {
             this.user = {
@@ -80,20 +86,7 @@ export class PdfViewerComponent implements OnInit
                 email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
             };
-        }
-        
-        /*
-        $( window ).on( 'beforeunload', function() {
-            return "Component Destroyed !!!";
-        });
-        */
-        /*
-        window.addEventListener( "beforeunload", function ( e ) {
-            var confirmationMessage = "Component Destroyed !!!";
-            e.returnValue = confirmationMessage;
-            return confirmationMessage;
-        });
-        */​
+        }​
     }
     
     public beforePrint(): void
@@ -127,27 +120,36 @@ export class PdfViewerComponent implements OnInit
         //alert( `Book ID: ${this.bookId} User ID: ${this.userId}` );
         
         if ( this.user && this.user.autoBookmark ) {
-            const bookmark: IBookmark = {
-                dateCreated: new Date(), // Date.now(),
-                bookId: this.bookId,
-                bookLocale: this.bookLocale,
-                userId: this.user.id,
-                page: pageNumber
-            };
-            
-            this.pdfService.createBookmark( bookmark ).subscribe({
-                next: ( response: any ) => {
-                    // this.closeModal.emit();
-                },
-                error: ( err: any ) => {
-                    console.error( err );
-                }
-            });
+            this.createBookmark( pageNumber );
         }
     }
     
-    public createBookmark( bookmark: any ): void
+    public createBookmark( pageNumber: number ): void
     {
-        console.log( 'testCreateBookmark() successfully called. Bookmark # : ' + bookmark );
+        if ( ! this.user ) {
+            return;
+        }
+        
+        const bookmark: IBookmark = {
+            dateCreated: new Date(), // Date.now(),
+            bookId: this.bookId,
+            bookLocale: this.bookLocale,
+            userId: this.user.id,
+            page: pageNumber
+        };
+        
+        this.pdfService.createBookmark( bookmark ).subscribe({
+            next: ( response: any ) => {
+                // this.closeModal.emit();
+            },
+            error: ( err: any ) => {
+                console.error( err );
+            }
+        });
+    }
+    
+    public clickCreateBookmark(): void
+    {
+        this.createBookmark( this.bigPdfViewer.page );
     }
 }

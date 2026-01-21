@@ -62,6 +62,7 @@ services:
             - '../../../src/Tests/'
             - '../../../src/Controller/'
             - '../../../src/Widgets/'
+            - '../../../src/Component/'
             - '../../../src/ReadingRoomKernel.php'
         autowire: true
 

@@ -18,24 +18,8 @@
     <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
         <div id="ReadBookContainer"
             class="justify-content-center ReadBookContainer"
-            
-            data-BookId="{{ book.id }}"
-            data-BookLocale="{{ localeCode }}"
-            
-            data-UserId="{{ app.user ? app.user.id : 0 }}"
-            data-UserName="{{ app.user ? app.user.info.fullName : '' }}"
-            data-UserEmail="{{ app.user ? app.user.email : '' }}"
-            data-UserAutoBookmark="{{ app.user and app.user.autoBookmark ? 'true' : 'false' }}"
-            
-            data-locale="{{ localeCode | replace( {'_': '-'} ) }}"
-            data-BookUrl="{{ path( 'app_reading_room_read', {'id': book.id, 'locale': localeCode} ) }}"
-            data-BookFileName="{{ book.name }}"
-            data-openFile="{{ canOpenFile }}"
-            data-viewBookmark="{{ viewBookmark }}"
-            data-download="{{ canDownload }}"
-            data-print="{{ canPrint }}"
         >     
-            <app-pdf-viewer></app-pdf-viewer>
+            <iframe style="width: 100%; height: 100%" src="{{ path( 'app_reading_room_read_html', {'id': book.id, 'locale': localeCode} ) }}"></iframe>
         </div>
     </section>
 {% endblock %}

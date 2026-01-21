@@ -1,13 +1,14 @@
 services:
     _defaults:
-        autowire: true
+        autowire: false
         autoconfigure: true
-        
+    
     app_reading_room:
         class: App\Component\ReadingRoom
         public: true
         arguments:
             - '@vs_application.context.application'
             - '@translator'
-
-
+            - '@vs_catalog.repository.product'
+            - '@vs_reading_room.html_book_uploader'
+            - '%vs_reading_room.filemanager_shared_media_gaufrette.html_books%'

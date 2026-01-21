@@ -51,7 +51,7 @@ class BookAuthorController extends AbstractCrudController
         ];
     }
     
-    protected function prepareEntity( &$entity, &$form, Request $request )
+    protected function prepareEntity( &$entity, &$form, Request $request ): void
     {
         $formPost   = $request->request->all( 'book_author_form' );
         $formLocale = $formPost['locale'];
@@ -74,18 +74,6 @@ class BookAuthorController extends AbstractCrudController
         }
     }
     
-    private function getTranslations()
-    {
-        $translations   = [];
-        $transRepo      = $this->get( 'vs_application.repository.translation' );
-        
-        foreach ( $this->getRepository()->findAll() as $author ) {
-            $translations[$author->getId()] = \array_reverse( \array_keys( $transRepo->findTranslations( $author ) ) );
-        }
-        
-        return $translations;
-    }
-    
     private function createPhoto( BookAuthor &$author, BookAuthorPhoto &$authorPhoto, File $file ): void
     {
         $authorPhoto->setOriginalName( $file->getClientOriginalName() );
@@ -97,7 +85,7 @@ class BookAuthorController extends AbstractCrudController
         $authorPhoto->setFile( null ); // reset File Because: Serialization of 'Symfony\Component\HttpFoundation\File\UploadedFile' is not allowed
     }
     
-    private function removeAuthorPhotos( BookAuthor $author )
+    private function removeAuthorPhotos( BookAuthor $author ): void
     {
         $em         = $this->get( 'doctrine' )->getManager();
         $filesystem = new Filesystem();
@@ -113,7 +101,7 @@ class BookAuthorController extends AbstractCrudController
         }
     }
     
-    private function booksPost( BookAuthor &$entity, $formPost )
+    private function booksPost( BookAuthor &$entity, $formPost ): void
     {
         $books  = new ArrayCollection();
         $repo   = $this->get( 'vs_catalog.repository.product' );

@@ -15,6 +15,9 @@ oneup_flysystem:
         vs_reading_room_books:
             local:
                 location: "%vs_reading_room.filemanager_shared_media_gaufrette.books%"
+        vs_reading_room_html_books:
+            local:
+                location: "%vs_reading_room.filemanager_shared_media_gaufrette.html_books%"
     
     filesystems:
         vs_application_app_pictures:
@@ -27,3 +30,5 @@ oneup_flysystem:
             adapter: "%vs_cms.gaufrette.slider.filesystem%"
         vs_reading_room_books:
             adapter: "%vs_reading_room.gaufrette.books.filesystem%"
+        vs_reading_room_html_books:
+            adapter: "%vs_reading_room.gaufrette.html_books.filesystem%"

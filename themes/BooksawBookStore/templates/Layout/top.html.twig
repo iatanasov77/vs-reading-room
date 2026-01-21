@@ -1,5 +1,5 @@
 
-{% if app.request.attributes.get( '_route' ) != "app_reading_room_read_book" %}
+{% if app.request.attributes.get( '_route' ) != "app_reading_room_read_pdf_book" and app.request.attributes.get( '_route' ) != "app_reading_room_read_html_book" %}
     {% include 'Layout/top-content.html.twig' %}
 {% endif %}
 
