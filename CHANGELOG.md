@@ -1,3 +1,12 @@
+1.7.6	|	Release date: **21.01.2026**
+============================================
+* New Features:
+  - Show Book Translations in Admin Panel Books Listing Page.
+  - Add New Changes of AbstractCrudController in all Controllers that Extend it.
+  - Add Custom Buttons PDF Book Read Page.
+  - Make Possible to Upload Archived HTML Books.
+
+
 1.7.5	|	Release date: **17.01.2026**
 ============================================
 * New Features:
