@@ -172,6 +172,7 @@ services:
             - '@vs_application.repository.translation'
             - '@vs_application.repository.locale'
             - '@app_reading_room'
+            - '%vs_reading_room.items_per_page%'
         calls:
             - [ setContainer, [ '@service_container' ] ]
             
@@ -223,5 +224,6 @@ services:
         autowire: true
         arguments:
             - '@vs_reading_room.repository.book_author'
+            - '%vs_reading_room.items_per_page%'
         calls:
             - [ setContainer, [ '@service_container' ] ]

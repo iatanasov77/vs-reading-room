@@ -52,6 +52,7 @@ reading_room:
             document_create: Create Document
             document_update: Edit Document
             book_translations: Book Translations
+            html_book_upload_help: HTML Book Should be Uploaded in Zip Archive with index.html in the root of Archive.
         
         forgot_password:
             recover: Recover

@@ -1,3 +1,11 @@
+1.7.7	|	Release date: **22.01.2026**
+============================================
+* New Features and Improvements:
+  - Add a Help Message in Book Upload Form for HTML Books.
+* Bug-Fixes and Improvements:
+  - Fix and Improve Book Authors and Books Listing Pages Pagination.
+
+
 1.7.6	|	Release date: **21.01.2026**
 ============================================
 * New Features:

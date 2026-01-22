@@ -50,6 +50,10 @@
             </div>
         {% endfor %}
         
+        {% if authors.haveToPaginate() %}
+            {{ pagerfanta( authors, null, { 'proximity': 10 } ) }}
+        {% endif %}
+        {#
         {% if  authors.pageCount > 1 %}
             <div class="row">
                 <!-- paginator -->
@@ -59,12 +63,12 @@
                         <span class="section__paginator-pages">Showing {{ authors.count }} of {{ authors.getTotalItemCount }}</span>
                         <!-- end amount -->
         
-                        {{ knp_pagination_render(items, 'Layout/pagination.html.twig') }}
+                        {{ knp_pagination_render(authors, 'Partial/pagination.html.twig') }}
                     </div>
                 </div>
                 <!-- end paginator -->
             </div>
         {% endif %}
-        
+        #}
     </section>
 {% endblock %}
