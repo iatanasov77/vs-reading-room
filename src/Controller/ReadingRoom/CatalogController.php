@@ -54,7 +54,7 @@ class CatalogController extends BaseCatalogController
         $products   = $this->productRepository->findBy( [], ['updatedAt' => 'DESC'] );
         
         $resources  = new Pagerfanta( new ArrayAdapter( $products ) );
-        //$resources->setMaxPerPage( 2 );
+        $resources->setMaxPerPage( 8 );
         
         $currentPage    = $request->query->get( 'page' );
         if ( $currentPage ) {
@@ -83,7 +83,7 @@ class CatalogController extends BaseCatalogController
         $products   = $genre->getBooks()->getValues();
         
         $resources  = new Pagerfanta( new ArrayAdapter( $products ) );
-        //$resources->setMaxPerPage( 2 );
+        $resources->setMaxPerPage( 8 );
         
         $currentPage    = $request->query->get( 'page' );
         if ( $currentPage ) {
