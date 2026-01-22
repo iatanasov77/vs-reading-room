@@ -29,6 +29,9 @@ class CatalogController extends BaseCatalogController
     /** @var ReadingRoom **/
     private $readingRoom;
     
+    /** @var int **/
+    private $itemsPerPage;
+    
     public function __construct(
         RepositoryInterface $productCategoryRepository,
         RepositoryInterface $productRepository,
@@ -37,7 +40,8 @@ class CatalogController extends BaseCatalogController
         RepositoryInterface $genresRepository,
         RepositoryInterface $translationsRepository,
         RepositoryInterface $localesRepository,
-        ReadingRoom $readingRoom
+        ReadingRoom $readingRoom,
+        int $itemsPerPage
     ) {
         parent::__construct( $productCategoryRepository, $productRepository, $latestProductsLimit );
         
@@ -46,6 +50,7 @@ class CatalogController extends BaseCatalogController
         $this->translationsRepository   = $translationsRepository;
         $this->localesRepository        = $localesRepository;
         $this->readingRoom              = $readingRoom;
+        $this->itemsPerPage             = $itemsPerPage;
     }
     
     public function latestProductsAction( Request $request ): Response
@@ -54,7 +59,7 @@ class CatalogController extends BaseCatalogController
         $products   = $this->productRepository->findBy( [], ['updatedAt' => 'DESC'] );
         
         $resources  = new Pagerfanta( new ArrayAdapter( $products ) );
-        $resources->setMaxPerPage( 8 );
+        $resources->setMaxPerPage( $this->itemsPerPage );
         
         $currentPage    = $request->query->get( 'page' );
         if ( $currentPage ) {
@@ -83,7 +88,7 @@ class CatalogController extends BaseCatalogController
         $products   = $genre->getBooks()->getValues();
         
         $resources  = new Pagerfanta( new ArrayAdapter( $products ) );
-        $resources->setMaxPerPage( 8 );
+        $resources->setMaxPerPage( $this->itemsPerPage );
         
         $currentPage    = $request->query->get( 'page' );
         if ( $currentPage ) {

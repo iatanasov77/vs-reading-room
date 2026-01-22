@@ -15,17 +15,22 @@ class AuthorController extends AbstractController
     /** @var RepositoryInterface */
     private $authorsRepository;
     
+    /** @var int **/
+    private $itemsPerPage;
+    
     public function __construct(
-        RepositoryInterface $authorsRepository
+        RepositoryInterface $authorsRepository,
+        int $itemsPerPage
     ) {
         $this->authorsRepository    = $authorsRepository;
+        $this->itemsPerPage         = $itemsPerPage;
     }
     
     public function index( Request $request, PaginatorInterface $paginator ): Response
     {
         $authors   = $this->authorsRepository->findBy( [], ['updatedAt' => 'DESC'] );
         $resources  = new Pagerfanta( new ArrayAdapter( $authors ) );
-        $resources->setMaxPerPage( 8 );
+        $resources->setMaxPerPage( $this->itemsPerPage );
         
         $currentPage    = $request->query->get( 'page' );
         if ( $currentPage ) {
@@ -35,7 +40,7 @@ class AuthorController extends AbstractController
         $authors = $paginator->paginate(
             $this->authorsRepository->getQueryBuilder( 'bp' )->orderBy( 'bp.updatedAt', 'DESC' ),
             $request->query->getInt( 'page', 1 ) // page number,
-            8 // limit per page
+            $this->itemsPerPage // limit per page
         );
         */
         
