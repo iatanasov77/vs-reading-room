@@ -116,7 +116,7 @@ class CatalogController extends BaseCatalogController
         
         return $this->render( '@VSCatalog/Pages/Catalog/show_product.html.twig', [
             'product'           => $product,
-            'translations'      => $this->getTranslations( $product ),
+            //'translations'      => $this->getTranslations( $product ),
             'bookTranslations'  => $this->geBookTranslations( $product ),
             'shoppingCart'      => $this->getShoppingCart( $request ),
         ]);
@@ -133,10 +133,10 @@ class CatalogController extends BaseCatalogController
         return $translations;
     }
     
-    private function geBookTranslations( $entity ): array
+    private function geBookTranslations( ProductInterface $product ): array
     {
         $translations   = [];
-        foreach ( $entity->getFiles() as $file ) {
+        foreach ( $product->getFiles() as $file ) {
             if ( ! \str_starts_with( $file->getCode(), 'product_content' ) ) {
                 continue;
             }
