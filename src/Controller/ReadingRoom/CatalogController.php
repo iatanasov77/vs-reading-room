@@ -84,8 +84,8 @@ class CatalogController extends BaseCatalogController
     
     public function categoryProductsAction( $categorySlug, Request $request ): Response
     {
-        $genre      = $this->genresRepository->findByTaxonCode( $categorySlug );
-        $products   = $genre->getBooks()->getValues();
+        $category   = $this->productCategoryRepository->findByTaxonCode( $categorySlug );
+        $products   = $category->getProducts()->getValues();
         
         $resources  = new Pagerfanta( new ArrayAdapter( $products ) );
         $resources->setMaxPerPage( $this->itemsPerPage );
@@ -104,6 +104,7 @@ class CatalogController extends BaseCatalogController
         
         return $this->render( '@VSCatalog/Pages/Catalog/category_products.html.twig', [
             'readingRoomSettings'   => $this->readingRoom->settings(),
+            'products'              => $resources,
             'category'              => $category,
             'shoppingCart'          => $this->getShoppingCart( $request ),
         ]);
