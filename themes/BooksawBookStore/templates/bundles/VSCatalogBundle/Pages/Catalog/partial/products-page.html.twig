@@ -1,3 +1,5 @@
+{% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
+
  <div class="tab-content">
                     
     <div id="all-genre" data-tab-content class="active">
@@ -27,7 +29,7 @@
                             </figure>
                             <figcaption>
                                 <a href="{{ path( 'vs_catalog_catalog_product_show', {'categorySlug': 'latest', 'productSlug': product.slug} ) }}">
-                                    <h3>{{ product.name }}</h3>
+                                    <h3>{{ product.name }} {{ vs_translations.flags( translations[product.id] | keys ) }}</h3>
                                 </a>
                                 <span>
                                     {% for author in product.authors %}

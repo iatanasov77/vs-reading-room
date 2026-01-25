@@ -25,3 +25,7 @@ div.product-item figcaption span a:hover {
     font-size: 4.5em;
     margin-top: 1em !important;
 }
+
+i.flag:not(.icon) {
+    margin-right: -10px !important;
+}

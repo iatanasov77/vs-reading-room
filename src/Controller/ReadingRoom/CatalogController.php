@@ -38,8 +38,6 @@ class CatalogController extends BaseCatalogController
         int $latestProductsLimit,
         ManagerRegistry $doctrine,
         RepositoryInterface $genresRepository,
-        RepositoryInterface $translationsRepository,
-        RepositoryInterface $localesRepository,
         ReadingRoom $readingRoom,
         int $itemsPerPage
     ) {
@@ -47,8 +45,6 @@ class CatalogController extends BaseCatalogController
         
         $this->doctrine	                = $doctrine;
         $this->genresRepository         = $genresRepository;
-        $this->translationsRepository   = $translationsRepository;
-        $this->localesRepository        = $localesRepository;
         $this->readingRoom              = $readingRoom;
         $this->itemsPerPage             = $itemsPerPage;
     }
@@ -70,12 +66,14 @@ class CatalogController extends BaseCatalogController
             return $this->render( '@VSCatalog/Pages/Catalog/partial/products-page.html.twig', [
                 'readingRoomSettings'   => $this->readingRoom->settings(),
                 'products'              => $resources,
+                'translations'          => $this->getTranslations( $products ),
             ]);
         }
         
         return $this->render( '@VSCatalog/Pages/Catalog/latest_products.html.twig', [
             'readingRoomSettings'   => $this->readingRoom->settings(),
             'products'              => $resources,
+            'translations'          => $this->getTranslations( $products ),
             'shoppingCart'          => $this->getShoppingCart( $request ),
             'categories'            => $categories,
             'genres'                => $this->genresRepository->findAll(),
@@ -99,6 +97,7 @@ class CatalogController extends BaseCatalogController
             return $this->render( '@VSCatalog/Pages/Catalog/partial/products-page.html.twig', [
                 'readingRoomSettings'   => $this->readingRoom->settings(),
                 'products'              => $resources,
+                'translations'          => $this->getTranslations( $products ),
             ]);
         }
         
@@ -106,6 +105,7 @@ class CatalogController extends BaseCatalogController
             'readingRoomSettings'   => $this->readingRoom->settings(),
             'products'              => $resources,
             'category'              => $category,
+            'translations'          => $this->getTranslations( $products ),
             'shoppingCart'          => $this->getShoppingCart( $request ),
         ]);
     }
@@ -122,12 +122,11 @@ class CatalogController extends BaseCatalogController
         ]);
     }
     
-    private function getTranslations( ProductInterface $product ): array
+    private function getTranslations( array $products ): array
     {
         $translations   = [];
-        foreach ( \array_keys( $this->translationsRepository->findTranslations( $product ) ) as $localeCode ) {
-            $locale = $this->localesRepository->findOneBy( ['code' => $localeCode ] );
-            $translations[$localeCode]    = $locale->getTitle();
+        foreach ( $products as $product ) {
+            $translations[$product->getId()] = $this->geBookTranslations( $product );
         }
         
         return $translations;
