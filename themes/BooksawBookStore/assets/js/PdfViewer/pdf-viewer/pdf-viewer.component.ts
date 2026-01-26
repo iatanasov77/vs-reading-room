@@ -140,7 +140,7 @@ export class PdfViewerComponent implements OnInit
         
         this.pdfService.createBookmark( bookmark ).subscribe({
             next: ( response: any ) => {
-                // this.closeModal.emit();
+                //alert( 'Session Lifetime: ' + response?.sessionLifetime + ' Session IdleTime: ' + response?.sessionIdleTime );
             },
             error: ( err: any ) => {
                 console.error( err );
