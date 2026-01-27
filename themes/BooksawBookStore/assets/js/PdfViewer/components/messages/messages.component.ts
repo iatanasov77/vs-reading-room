@@ -82,7 +82,7 @@ declare global {
 })
 export class MessagesComponent implements OnChanges
 {
-    @Input() message: StatusMessage | null = StatusMessage.getDefault();
+    @Input() message: StatusMessage = StatusMessage.getDefault();
     // changing the coordinates will affect all animations coordinates.
     
     @Input() initial = 0;
@@ -107,6 +107,7 @@ export class MessagesComponent implements OnChanges
         if ( this.animating ) return;
         this.animating = true;
     
+        // alert( this.message.text );
         this.state = 'hidden';
         setTimeout( () => {
             this.state = 'initial';

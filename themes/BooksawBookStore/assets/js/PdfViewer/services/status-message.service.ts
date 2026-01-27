@@ -21,5 +21,6 @@ export class StatusMessageService
         const text = this.trans.instant( 'statusmessage.youarenotloggedin' );
         const msg = StatusMessage.info( text );
         this.appState.statusMessage.setValue( msg );
+        alert( msg.text );
     }
 }

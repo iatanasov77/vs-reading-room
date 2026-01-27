@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { Observable, Subscription, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
@@ -27,7 +27,7 @@ declare var $: any;
     styles: [cssString || 'Template Not Loaded !!!',],
     standalone: false
 })
-export class PdfViewerComponent implements OnInit
+export class PdfViewerComponent implements OnInit, OnDestroy
 {
     @ViewChild( 'bigPdfViewer' ) bigPdfViewer!: PdfJsViewerComponent;
     @ViewChild( 'messages' ) messages: ElementRef | undefined;
@@ -109,7 +109,13 @@ export class PdfViewerComponent implements OnInit
         }
         
         // For Debugging
-        this.statusMessageService.setNotLoggedIn();​
+        this.statusMessageService.setNotLoggedIn();
+        alert( 'AFTER' );​
+    }
+    
+    ngOnDestroy(): void
+    {
+        this.appStateService.messages.clearValue();
     }
     
     public beforePrint(): void
