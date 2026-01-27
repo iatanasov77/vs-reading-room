@@ -105,9 +105,10 @@ export class PdfViewerComponent implements OnInit
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
             };
         } else {
-            
+            this.statusMessageService.setNotLoggedIn();
         }
         
+        // For Debugging
         this.statusMessageService.setNotLoggedIn();​
     }
     
