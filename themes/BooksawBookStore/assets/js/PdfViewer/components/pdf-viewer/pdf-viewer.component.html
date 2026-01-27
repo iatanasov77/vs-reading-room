@@ -4,6 +4,14 @@
         {{ 'buttons.create_bookmark' | translate }}
     </button>
     
+    <div class="messages" #messages>
+        <app-messages
+            [initial]="width"
+            [shown]="messageCenter"
+            [message]="message$ | async"
+        ></app-messages>
+    </div>
+    
     <ng2-pdfjs-viewer #bigPdfViewer
         pdfSrc="{{ pdfUrl }}"
         viewerFolder="/build/booksaw-book-store/assets/pdfjs"

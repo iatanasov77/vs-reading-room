@@ -1,13 +1,20 @@
-import { Component, Inject, ViewChild, OnInit } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Observable, Subscription, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
 
+// App State
+import { AppStateService } from '../../state/app-state.service';
+import { StatusMessage } from '../../utils/status-message';
+import { Busy } from '../../state/busy';
+
 // Services
-import { PdfService } from '../services/pdf.service';
+import { PdfService } from '../../services/pdf.service';
+import { StatusMessageService } from '../../services/status-message.service';
 
 // Interfaces
-import { IUser } from '../interfaces/userInterface';
-import { IBookmark } from '../interfaces/bookmarkInterface';
+import { IUser } from '../../interfaces/userInterface';
+import { IBookmark } from '../../interfaces/bookmarkInterface';
 
 import templateString from './pdf-viewer.component.html'
 import cssString from './pdf-viewer.component.scss'
@@ -23,7 +30,14 @@ declare var $: any;
 export class PdfViewerComponent implements OnInit
 {
     @ViewChild( 'bigPdfViewer' ) bigPdfViewer!: PdfJsViewerComponent;
+    @ViewChild( 'messages' ) messages: ElementRef | undefined;
 
+    message$: Observable<StatusMessage>;
+    
+    width = 450;
+    height = 450;
+    messageCenter = 0;
+    
     pdfUrl: String;
     bookFileName: String;
     locale: String;
@@ -45,6 +59,8 @@ export class PdfViewerComponent implements OnInit
     constructor(
         @Inject( TranslateService ) private translate: TranslateService,
         @Inject( PdfService ) private pdfService: PdfService,
+        @Inject( StatusMessageService ) private statusMessageService: StatusMessageService,
+        @Inject( AppStateService ) private appStateService: AppStateService,
     ) {
         this.bookId         = 0;
         this.bookLocale     = 'en_US';
@@ -59,6 +75,8 @@ export class PdfViewerComponent implements OnInit
         this.viewBookmark   = false;
         this.download       = false;
         this.print          = false;
+        
+        this.message$ = this.appStateService.statusMessage.observe();
     }
     
     ngOnInit(): void
@@ -86,7 +104,11 @@ export class PdfViewerComponent implements OnInit
                 email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
             };
-        }​
+        } else {
+            
+        }
+        
+        this.statusMessageService.setNotLoggedIn();​
     }
     
     public beforePrint(): void

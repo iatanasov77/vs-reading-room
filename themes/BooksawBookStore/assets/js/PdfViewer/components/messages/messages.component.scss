@@ -1,0 +1,16 @@
+.message {
+    color: #bbb;
+    /*
+    position: absolute;
+    top: -5px;
+    opacity: 0;
+    z-index: 1;
+    */
+    
+    font-weight: 600;
+    white-space: nowrap;
+    
+    * {
+        margin-left: 8px;
+    }
+}
