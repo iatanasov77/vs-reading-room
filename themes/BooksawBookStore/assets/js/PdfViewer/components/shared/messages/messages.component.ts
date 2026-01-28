@@ -93,13 +93,9 @@ export class MessagesComponent implements OnChanges
     
     ngOnChanges( changes: SimpleChanges ): void
     {
-        //console.log( 'MessagesComponent Changes', changes );
         for ( const propName in changes ) {
-            const changedProp = changes[propName];
-            
             switch ( propName ) {
                 case 'message':
-                    //alert( changedProp.currentValue );
                     this.animate();
                     break;
             }
@@ -108,8 +104,6 @@ export class MessagesComponent implements OnChanges
     
     animate(): void
     {
-        if ( ! this.message.text ) return;
-        
         if ( this.animating ) return;
         this.animating = true;
     

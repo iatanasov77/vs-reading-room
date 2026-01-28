@@ -1,4 +1,4 @@
-<span class="message"
+<span class="message mb-2" *ngIf="message.text.length"
     [@showHide]="{ value: state, params: { shown: shown, initial: initial } }"
 >
     {{ message.text | translate }}<i [ngClass]="getIcon()"></i>

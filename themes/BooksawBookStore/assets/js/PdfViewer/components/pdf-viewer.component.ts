@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Observable, Observer, Subscription, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
@@ -125,19 +125,37 @@ export class PdfViewerComponent implements OnInit, OnDestroy
             };
         } else {
             this.statusMessageService.setNotLoggedIn();
-            
-            /*
-            const text = this.translate.instant( 'statusmessage.youarenotloggedin' );
-            const msg = StatusMessage.info( text );
-            this.appStateService.statusMessage.setValue( msg );
-            alert( text );
-            */
-        }​
+        }
+        
+        this.fireResize();​
     }
     
     ngOnDestroy(): void
     {
         this.appStateService.messages.clearValue();
+    }
+    
+    @HostListener( 'window:resize', ['$event'] )
+    onResize(): void
+    {
+        const _innerWidth   = window.innerWidth;
+        //const _innerWidth   = $( '#GameBoardContainer' ).width();
+        
+        this.width = Math.min( _innerWidth, 1024 );
+        const span = this.messages?.nativeElement as Element;
+        // console.log( span.getElementsByTagName( 'span' ) );
+        const spanWidth = span.getElementsByTagName( 'span' )[0].clientWidth;
+        // alert( spanWidth );
+        
+        this.messageCenter = this.width / 2 - spanWidth / 2;
+        // alert( this.messageCenter );
+    }
+    
+    fireResize(): void
+    {
+        setTimeout( () => {
+            this.onResize();
+        }, 1);
     }
     
     public beforePrint(): void
