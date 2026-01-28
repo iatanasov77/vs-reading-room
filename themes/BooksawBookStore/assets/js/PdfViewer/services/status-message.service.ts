@@ -1,7 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
-import { StatusMessage } from '../utils/status-message';
 
+import { StatusMessage } from '../utils/status-message';
 import { AppStateService } from '../state/app-state.service';
 
 @Injectable({
@@ -10,17 +9,12 @@ import { AppStateService } from '../state/app-state.service';
 export class StatusMessageService
 {
     constructor(
-        @Inject( TranslateService ) private trans: TranslateService,
         @Inject( AppStateService ) private appState: AppStateService,
-    ) {
-        this.trans.use( 'en' );
-    }
+    ) {}
     
     setNotLoggedIn(): void
     {
-        const text = this.trans.instant( 'statusmessage.youarenotloggedin' );
-        const msg = StatusMessage.info( text );
+        const msg = StatusMessage.info( 'statusmessage.youarenotloggedin' );
         this.appState.statusMessage.setValue( msg );
-        alert( msg.text );
     }
 }

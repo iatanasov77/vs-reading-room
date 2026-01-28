@@ -13,6 +13,7 @@ export class StatusMessage
     
     static info( text: string ): StatusMessage
     {
+        //alert( text );
         return new StatusMessage(text, MessageLevel.info);
     }
     

@@ -6,9 +6,9 @@
     
     <div class="messages" #messages>
         <app-messages
-            initial="width"
-            shown="messageCenter"
-            message="message$ | async"
+            [initial]="width"
+            [shown]="messageCenter"
+            [message]="message"
         ></app-messages>
     </div>
     

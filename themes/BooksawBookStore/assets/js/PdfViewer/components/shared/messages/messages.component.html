@@ -1,5 +1,5 @@
 <span class="message"
     [@showHide]="{ value: state, params: { shown: shown, initial: initial } }"
 >
-    {{ message?.text }}<i [ngClass]="getIcon()"></i>
+    {{ message.text | translate }}<i [ngClass]="getIcon()"></i>
 </span>

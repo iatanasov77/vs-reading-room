@@ -11,7 +11,7 @@ import {
     animate,
     transition
 } from '@angular/animations';
-import { StatusMessage, MessageLevel } from '../../utils/status-message';
+import { StatusMessage, MessageLevel } from '../../../utils/status-message';
 
 import cssString from './messages.component.scss';
 import templateString from './messages.component.html';
@@ -93,9 +93,13 @@ export class MessagesComponent implements OnChanges
     
     ngOnChanges( changes: SimpleChanges ): void
     {
+        //console.log( 'MessagesComponent Changes', changes );
         for ( const propName in changes ) {
+            const changedProp = changes[propName];
+            
             switch ( propName ) {
                 case 'message':
+                    //alert( changedProp.currentValue );
                     this.animate();
                     break;
             }
@@ -104,27 +108,34 @@ export class MessagesComponent implements OnChanges
     
     animate(): void
     {
+        if ( ! this.message.text ) return;
+        
         if ( this.animating ) return;
         this.animating = true;
     
-        // alert( this.message.text );
         this.state = 'hidden';
+        //alert( 'Hidden State: ' + this.message.text );
+        
         setTimeout( () => {
             this.state = 'initial';
+            //alert( 'Initial State: ' + this.message.text );
+            
             setTimeout( () => {
                 this.state = 'shown';
                 this.animating = false;
+                
+                //alert( 'Shown State: ' + this.message.text );
             }, 100 );
         }, 500 );
     }
     
     getIcon(): string
     {
-        if ( this.message?.level === MessageLevel.error ) {
+        if ( this.message.level === MessageLevel.error ) {
             return 'fas fa-exclamation-circle error-color';
         }
         
-        if ( this.message?.level === MessageLevel.warning ) {
+        if ( this.message.level === MessageLevel.warning ) {
             return 'fas fa-exclamation-triangle yellow';
         }
         

@@ -1,20 +1,20 @@
 import { Component, Inject, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription, map } from 'rxjs';
+import { Observable, Observer, Subscription, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
 
 // App State
-import { AppStateService } from '../../state/app-state.service';
-import { StatusMessage } from '../../utils/status-message';
-import { Busy } from '../../state/busy';
+import { AppStateService } from '../state/app-state.service';
+import { StatusMessage } from '../utils/status-message';
+import { Busy } from '../state/busy';
 
 // Services
-import { PdfService } from '../../services/pdf.service';
-import { StatusMessageService } from '../../services/status-message.service';
+import { PdfService } from '../services/pdf.service';
+import { StatusMessageService } from '../services/status-message.service';
 
 // Interfaces
-import { IUser } from '../../interfaces/userInterface';
-import { IBookmark } from '../../interfaces/bookmarkInterface';
+import { IUser } from '../interfaces/userInterface';
+import { IBookmark } from '../interfaces/bookmarkInterface';
 
 import templateString from './pdf-viewer.component.html'
 import cssString from './pdf-viewer.component.scss'
@@ -33,7 +33,11 @@ export class PdfViewerComponent implements OnInit, OnDestroy
     @ViewChild( 'messages' ) messages: ElementRef | undefined;
 
     message$: Observable<StatusMessage>;
+    message: StatusMessage;
     
+    timeLeft$: Observable<number>;
+    user$: Observable<IUser>;
+
     width = 450;
     height = 450;
     messageCenter = 0;
@@ -76,7 +80,22 @@ export class PdfViewerComponent implements OnInit, OnDestroy
         this.download       = false;
         this.print          = false;
         
+        this.message = StatusMessage.getDefault();
         this.message$ = this.appStateService.statusMessage.observe();
+        this.message$.subscribe( ( message ) => {
+            if ( message ) {
+                //alert( message.text );
+                this.message = message;
+            }
+        });
+        
+        this.user$ = this.appStateService.user.observe();
+        this.user$.subscribe( ( user ) => {
+            //alert( 'User: ' + user );
+            //if ( user ) this.introMuted = user.muteIntro;
+        });
+        
+        this.timeLeft$ = this.appStateService.moveTimer.observe();
     }
     
     ngOnInit(): void
@@ -106,11 +125,14 @@ export class PdfViewerComponent implements OnInit, OnDestroy
             };
         } else {
             this.statusMessageService.setNotLoggedIn();
-        }
-        
-        // For Debugging
-        this.statusMessageService.setNotLoggedIn();
-        alert( 'AFTER' );​
+            
+            /*
+            const text = this.translate.instant( 'statusmessage.youarenotloggedin' );
+            const msg = StatusMessage.info( text );
+            this.appStateService.statusMessage.setValue( msg );
+            alert( text );
+            */
+        }​
     }
     
     ngOnDestroy(): void

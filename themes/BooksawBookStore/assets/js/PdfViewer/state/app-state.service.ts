@@ -7,8 +7,10 @@ import { ErrorState } from './ErrorState';
 
 // Interfaces
 import { IUser } from '../interfaces/userInterface';
-import { StatusMessage } from '../interfaces/status-message';
 import MessageDto from '../interfaces/message/messageDto';
+
+// State
+import { StatusMessage } from '../utils/status-message';
 
 declare var $: any;
 
