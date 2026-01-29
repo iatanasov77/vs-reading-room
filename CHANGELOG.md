@@ -1,3 +1,15 @@
+1.7.8	|	Release date: **29.01.2026**
+============================================
+* New Features and Improvements:
+  - Improve Breadcrumb.
+  - Show Book Translations on Frontend Listing Page.
+  - Add Some Session Information into Create Bookmark Action Response.
+  - Add Status Message Component in PDF Viewer.
+  - Create a Login Question on Read Book Page.
+* Bug-Fixes:
+  - Some Fixes on Frontend Application Catalog Controller.
+
+
 1.7.7	|	Release date: **22.01.2026**
 ============================================
 * New Features and Improvements:
