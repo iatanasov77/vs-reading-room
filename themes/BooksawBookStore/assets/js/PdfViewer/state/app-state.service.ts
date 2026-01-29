@@ -42,7 +42,7 @@ export class AppStateService
         this.messages = new StateObject<MessageDto[]>();
         this.messages.setValue( [] );
         this.theme = new StateObject<string>();
-        this.theme.setValue( 'dark' );
+        this.theme.setValue( 'light' );
     }
     
     showBusy(): void
@@ -62,13 +62,13 @@ export class AppStateService
     
     changeTheme( theme: string ): void
     {
-        if ( ! theme || theme.length === 0 ) theme = 'dark';
+        if ( ! theme || theme.length === 0 ) theme = 'light';
         
         AppStateService.Themes.forEach( ( v ) => {
-            $( '#GameContainer' ).removeClass( v );
+            $( '#ReadBookContainer' ).removeClass( v );
         });
         
-        $( '#GameContainer' ).addClass( theme );
+        $( '#ReadBookContainer' ).addClass( theme );
         this.theme.setValue( theme );
     }
 }

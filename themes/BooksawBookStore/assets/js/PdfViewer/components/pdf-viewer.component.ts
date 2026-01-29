@@ -31,12 +31,15 @@ export class PdfViewerComponent implements OnInit, OnDestroy
 {
     @ViewChild( 'bigPdfViewer' ) bigPdfViewer!: PdfJsViewerComponent;
     @ViewChild( 'messages' ) messages: ElementRef | undefined;
-
+    
+    loginQuestion: boolean = false;
+    
     message$: Observable<StatusMessage>;
     message: StatusMessage;
     
     timeLeft$: Observable<number>;
     user$: Observable<IUser>;
+    themeName: string;
 
     width = 450;
     height = 450;
@@ -96,6 +99,7 @@ export class PdfViewerComponent implements OnInit, OnDestroy
         });
         
         this.timeLeft$ = this.appStateService.moveTimer.observe();
+        this.themeName = this.appStateService.user.getValue()?.theme ?? 'light';
     }
     
     ngOnInit(): void
@@ -121,10 +125,12 @@ export class PdfViewerComponent implements OnInit, OnDestroy
                 id: userId,
                 name: $( '#ReadBookContainer' ).attr( 'data-UserName' ),
                 email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
+                theme: this.themeName,
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
             };
         } else {
             this.statusMessageService.setNotLoggedIn();
+            this.loginQuestion = true;
         }
         
         this.fireResize();​
@@ -220,5 +226,15 @@ export class PdfViewerComponent implements OnInit, OnDestroy
     public clickCreateBookmark(): void
     {
         this.createBookmark( this.bigPdfViewer.page );
+    }
+    
+    async doLogin()
+    {
+        document.location = '/login';
+    }
+    
+    closeLoginQuestion(): void
+    {
+        this.loginQuestion = false;
     }
 }

@@ -3,10 +3,14 @@ import { CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MessagesComponent } from './messages/messages.component';
+import { ButtonComponent } from './button/button.component';
+import { LoginQuestionComponent } from './login-question/login-question.component';
 
 @NgModule({
     declarations: [
-        MessagesComponent
+        MessagesComponent,
+        ButtonComponent,
+        LoginQuestionComponent,
     ],
     imports: [
         CommonModule,
@@ -16,6 +20,8 @@ import { MessagesComponent } from './messages/messages.component';
     ],
     exports: [
         MessagesComponent,
+        ButtonComponent,
+        LoginQuestionComponent,
     ],
 })
 export class SharedModule { }

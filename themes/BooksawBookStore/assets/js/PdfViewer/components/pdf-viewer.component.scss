@@ -9,3 +9,22 @@
 .book-btn {
     height: 35px;
 }
+
+div.loginQuestion p {
+    color: #ccc;   
+}
+
+.loginQuestion {
+    margin: 0;
+    position: absolute;
+    top: 45%;
+    left: 45%;
+    transform: translate(-45%, -45%);
+    padding: 16px;
+    border-radius: 4px;
+    animation: _ngcontent-ng-c339902293_show_dialog_animation .5s ease-in forwards;
+}
+
+.app-colors {
+    background: var(--app-bg-color);
+}
