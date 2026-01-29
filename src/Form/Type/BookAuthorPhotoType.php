@@ -40,7 +40,6 @@ class BookAuthorPhotoType extends AbstractType
                             'image/gif',
                             'image/jpeg',
                             'image/png',
-                            'image/svg+xml',
                         ],
                         'mimeTypesMessage'  => 'Please upload a valid Photo',
                     ])

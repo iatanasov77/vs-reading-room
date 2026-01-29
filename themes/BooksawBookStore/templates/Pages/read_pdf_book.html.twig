@@ -6,7 +6,7 @@
 {% block breadcrumbs %}
     {{ parent() }}
     <span class="item"><a href="{{ path( 'vs_catalog_catalog_latest_products' ) }}">{{ 'vs_application.menu.catalog_products' | trans( {},'VSApplicationBundle' ) }} /</a></span>
-    {{ book.name }} ({{ localeCode }})
+    {{ book.name }} <i class="flag flag-{{ localeCode | split( '_' )[1] | lower }}"></i>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
     
     <section id="read-book" class="bookshelf py-1 my-1 mx-5 px-5">
         <div id="ReadBookContainer"
-            class="justify-content-center ReadBookContainer"
+            class="justify-content-center ReadBookContainer light"
             
             data-BookId="{{ book.id }}"
             data-BookLocale="{{ localeCode }}"

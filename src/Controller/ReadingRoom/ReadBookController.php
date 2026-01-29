@@ -156,12 +156,27 @@ class ReadBookController extends AbstractController
         $em->persist( $bookmark );
         $em->flush();
         
+        $maxIdleTime = null;
+        $idleTime = null;
+        $session = $request->getSession();
+        
+        if ( $session->start() ) {
+            $idleTime = time() - $session->getMetadataBag()->getLastUsed();
+            $maxIdleTime = $session->getMetadataBag()->getLifetime();
+            if ( $idleTime > $maxIdleTime ) {
+                
+            }
+        }
+        
         return new JsonResponse([
             'dateCreated'   => $bookmark->getUpdatedAt(),
             'bookId'        => $bookmark->getBookId(),
             'bookLocale'    => $bookmark->getLocale(),
             'userId'        => $bookmark->getUserId(),
             'page'          => $bookmark->getPage(),
+            
+            'sessionLifetime'   => $maxIdleTime,
+            'sessionIdleTime'   => $idleTime,
         ]);
     }
     

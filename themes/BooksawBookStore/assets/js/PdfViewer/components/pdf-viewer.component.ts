@@ -1,9 +1,16 @@
-import { Component, Inject, ViewChild, OnInit } from '@angular/core';
+import { Component, Inject, ViewChild, ElementRef, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Observable, Observer, Subscription, map } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PdfJsViewerComponent } from "ng2-pdfjs-viewer";
 
+// App State
+import { AppStateService } from '../state/app-state.service';
+import { StatusMessage } from '../utils/status-message';
+import { Busy } from '../state/busy';
+
 // Services
 import { PdfService } from '../services/pdf.service';
+import { StatusMessageService } from '../services/status-message.service';
 
 // Interfaces
 import { IUser } from '../interfaces/userInterface';
@@ -20,10 +27,24 @@ declare var $: any;
     styles: [cssString || 'Template Not Loaded !!!',],
     standalone: false
 })
-export class PdfViewerComponent implements OnInit
+export class PdfViewerComponent implements OnInit, OnDestroy
 {
     @ViewChild( 'bigPdfViewer' ) bigPdfViewer!: PdfJsViewerComponent;
+    @ViewChild( 'messages' ) messages: ElementRef | undefined;
+    
+    loginQuestion: boolean = false;
+    
+    message$: Observable<StatusMessage>;
+    message: StatusMessage;
+    
+    timeLeft$: Observable<number>;
+    user$: Observable<IUser>;
+    themeName: string;
 
+    width = 450;
+    height = 450;
+    messageCenter = 0;
+    
     pdfUrl: String;
     bookFileName: String;
     locale: String;
@@ -45,6 +66,8 @@ export class PdfViewerComponent implements OnInit
     constructor(
         @Inject( TranslateService ) private translate: TranslateService,
         @Inject( PdfService ) private pdfService: PdfService,
+        @Inject( StatusMessageService ) private statusMessageService: StatusMessageService,
+        @Inject( AppStateService ) private appStateService: AppStateService,
     ) {
         this.bookId         = 0;
         this.bookLocale     = 'en_US';
@@ -59,6 +82,24 @@ export class PdfViewerComponent implements OnInit
         this.viewBookmark   = false;
         this.download       = false;
         this.print          = false;
+        
+        this.message = StatusMessage.getDefault();
+        this.message$ = this.appStateService.statusMessage.observe();
+        this.message$.subscribe( ( message ) => {
+            if ( message ) {
+                //alert( message.text );
+                this.message = message;
+            }
+        });
+        
+        this.user$ = this.appStateService.user.observe();
+        this.user$.subscribe( ( user ) => {
+            //alert( 'User: ' + user );
+            //if ( user ) this.introMuted = user.muteIntro;
+        });
+        
+        this.timeLeft$ = this.appStateService.moveTimer.observe();
+        this.themeName = this.appStateService.user.getValue()?.theme ?? 'light';
     }
     
     ngOnInit(): void
@@ -84,9 +125,43 @@ export class PdfViewerComponent implements OnInit
                 id: userId,
                 name: $( '#ReadBookContainer' ).attr( 'data-UserName' ),
                 email: $( '#ReadBookContainer' ).attr( 'data-UserEmail' ),
+                theme: this.themeName,
                 autoBookmark: ( $( '#ReadBookContainer' ).attr( 'data-UserAutoBookmark' ) == "true" )
             };
-        }​
+        } else {
+            this.statusMessageService.setNotLoggedIn();
+            this.loginQuestion = true;
+        }
+        
+        this.fireResize();​
+    }
+    
+    ngOnDestroy(): void
+    {
+        this.appStateService.messages.clearValue();
+    }
+    
+    @HostListener( 'window:resize', ['$event'] )
+    onResize(): void
+    {
+        const _innerWidth   = window.innerWidth;
+        //const _innerWidth   = $( '#GameBoardContainer' ).width();
+        
+        this.width = Math.min( _innerWidth, 1024 );
+        const span = this.messages?.nativeElement as Element;
+        // console.log( span.getElementsByTagName( 'span' ) );
+        const spanWidth = span.getElementsByTagName( 'span' )[0].clientWidth;
+        // alert( spanWidth );
+        
+        this.messageCenter = this.width / 2 - spanWidth / 2;
+        // alert( this.messageCenter );
+    }
+    
+    fireResize(): void
+    {
+        setTimeout( () => {
+            this.onResize();
+        }, 1);
     }
     
     public beforePrint(): void
@@ -140,7 +215,7 @@ export class PdfViewerComponent implements OnInit
         
         this.pdfService.createBookmark( bookmark ).subscribe({
             next: ( response: any ) => {
-                // this.closeModal.emit();
+                //alert( 'Session Lifetime: ' + response?.sessionLifetime + ' Session IdleTime: ' + response?.sessionIdleTime );
             },
             error: ( err: any ) => {
                 console.error( err );
@@ -151,5 +226,15 @@ export class PdfViewerComponent implements OnInit
     public clickCreateBookmark(): void
     {
         this.createBookmark( this.bigPdfViewer.page );
+    }
+    
+    async doLogin()
+    {
+        document.location = '/login';
+    }
+    
+    closeLoginQuestion(): void
+    {
+        this.loginQuestion = false;
     }
 }

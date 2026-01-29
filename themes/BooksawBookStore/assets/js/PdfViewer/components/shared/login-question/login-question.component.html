@@ -1,0 +1,13 @@
+<p>
+    {{ 'loginquestion.youarenotloggedin' | translate }}<br />{{
+        'loginquestion.doyouwanttologin' | translate
+    }}
+</p>
+<div class="buttons">
+    <app-button (click)="doLogin( $event )">
+        {{ 'loginquestion.login' | translate }}
+    </app-button>&nbsp;
+    <app-button (click)="close( $event )">
+        {{ 'loginquestion.close' | translate }}
+    </app-button>
+</div>

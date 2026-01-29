@@ -1,5 +1,25 @@
 {
     "buttons": {
         "create_bookmark": "Създай Отметка"
+    },
+    
+    "statusmessage": {
+        "unknownstate": "Unknown State",
+        "youarenotloggedin": "You are NOT Logged in"
+    },
+
+    "theme": {
+        "dark": "Dark",
+        "light": "Light",
+        "blue": "Blue",
+        "pink": "Pink",
+        "green": "Green"
+    },
+
+    "loginquestion": {
+        "youarenotloggedin": "You are NOT Logged in.",
+        "doyouwanttologin": "Do you want to login?",
+        "login": "Login",
+        "close": "Close"
     }
 }

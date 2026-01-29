@@ -4,8 +4,17 @@
         {{ 'buttons.create_bookmark' | translate }}
     </button>
     
+    <div class="messages" #messages>
+        <app-messages
+            [initial]="width"
+            [shown]="messageCenter"
+            [message]="message"
+        ></app-messages>
+    </div>
+    
     <ng2-pdfjs-viewer #bigPdfViewer
         pdfSrc="{{ pdfUrl }}"
+        theme="{{ themeName }}"
         viewerFolder="/build/booksaw-book-store/assets/pdfjs"
         locale="{{ locale }}"
         page="{{ page }}"
@@ -26,4 +35,11 @@
         (onAfterPrint)="afterPrint()"
     >
     </ng2-pdfjs-viewer>
+    
+    <div *ngIf="loginQuestion" class="loginQuestion app-colors">
+        <app-login-question
+            (onDoLogin)="doLogin()"
+            (onClose)="closeLoginQuestion()"
+        ></app-login-question>
+    </div>
 </div>
