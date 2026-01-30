@@ -1,7 +1,10 @@
 {% import "@VSApplication/Macros/translations.html.twig" as vs_translations %}
 
- <div class="tab-content">
-                    
+{% if products.haveToPaginate() %}
+    {{ pagerfanta( products, null, { 'proximity': 10 } ) }}
+{% endif %}
+
+ <div class="tab-content">           
     <div id="all-genre" data-tab-content class="active">
     
         {% for productsRow in products | batch( 4 ) %}
@@ -58,7 +61,6 @@
         {% endfor %}
 
     </div>
-    
 </div>
 
 {% if products.haveToPaginate() %}
