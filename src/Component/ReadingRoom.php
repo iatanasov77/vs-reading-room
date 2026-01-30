@@ -14,6 +14,9 @@ final class ReadingRoom
     const BOOK_TYPE_HTML = 'html';
     const BOOK_TYPE_VANKOSOFT_DOCUMENT = 'vankosoft_document';
     
+    const BOOK_TRANSLATION_EN_US = 'en_US';
+    const BOOK_TRANSLATION_BG_BG = 'bg_BG';
+    
     /** @var TranslatorInterface */
     private $translator;
     
@@ -71,6 +74,14 @@ final class ReadingRoom
             self::BOOK_TYPE_PDF                 => $this->translator->trans( 'reading_room.form.product.book_type_pdf', [], 'ReadingRoom' ),
             self::BOOK_TYPE_HTML                => $this->translator->trans( 'reading_room.form.product.book_type_html', [], 'ReadingRoom' ),
             //self::BOOK_TYPE_VANKOSOFT_DOCUMENT  => $this->translator->trans( 'reading_room.form.product.book_type_vankosoft_document', [], 'ReadingRoom' ),
+        ];
+    }
+    
+    public function bookTranslations(): array
+    {
+        return [
+            self::BOOK_TRANSLATION_EN_US    => $this->translator->trans( 'reading_room.form.product.book_translation_en', [], 'ReadingRoom' ),
+            self::BOOK_TRANSLATION_BG_BG    => $this->translator->trans( 'reading_room.form.product.book_translation_bg', [], 'ReadingRoom' ),
         ];
     }
     

@@ -116,6 +116,7 @@ class CatalogController extends BaseCatalogController
         
         return $this->render( '@VSCatalog/Pages/Catalog/show_product.html.twig', [
             'product'           => $product,
+            'translationNames'  => $this->readingRoom->bookTranslations(),
             //'translations'      => $this->getTranslations( $product ),
             'bookTranslations'  => $this->geBookTranslations( $product ),
             'shoppingCart'      => $this->getShoppingCart( $request ),

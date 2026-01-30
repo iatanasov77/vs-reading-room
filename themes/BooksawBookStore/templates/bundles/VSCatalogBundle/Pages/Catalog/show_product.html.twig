@@ -31,7 +31,7 @@
                         <h1>{{ product.name }}</h1>
                         
                         {% for localeCode, bookType in bookTranslations %}
-                            {% set linkTitle = 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) ~ ' in ' ~ localeCode %}
+                            {% set linkTitle = 'reading_room.template.read_book' | trans( {},'ReadingRoom' ) ~ ' in ' ~ translationNames[localeCode] %}
                             
                             {% if bookType == 'html' %}
                                 <a href="{{ path( 'app_reading_room_read_html_book', {'locale': localeCode, 'productSlug': product.slug} ) }}"
