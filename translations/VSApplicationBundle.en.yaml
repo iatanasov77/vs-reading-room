@@ -12,7 +12,8 @@ vs_application:
         list_books_genres: Book Genres
         create_book_genre: Create New Genre
         edit_book_genre: Edit Genre
-        list_authors: Book Authors
+        # list_authors: Book Authors
+        list_authors: Authors
         create_new_author: Create New Author
         edit_author: Edit Author
         show_author: Show Author
