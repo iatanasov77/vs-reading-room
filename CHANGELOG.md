@@ -1,3 +1,14 @@
+1.8.0	|	Release date: **04.02.2026**
+============================================
+* New Features and Improvements:
+  - Add a Pagination and On Top of Frontend Listing Pages.
+  - Improve Frontend Show Book Page.
+  - Align Language Flags on Read Book Breadcrumbs.
+  - Rename a Menu Title.
+* Bug-Fixes:
+  - Fix PDF Reader Component.
+
+
 1.7.8	|	Release date: **29.01.2026**
 ============================================
 * New Features and Improvements:

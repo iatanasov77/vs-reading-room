@@ -149,7 +149,12 @@ export class PdfViewerComponent implements OnInit, OnDestroy
         
         this.width = Math.min( _innerWidth, 1024 );
         const span = this.messages?.nativeElement as Element;
-        // console.log( span.getElementsByTagName( 'span' ) );
+        
+        //console.log( span.getElementsByTagName( 'span' ) );
+        if ( ! span.getElementsByTagName( 'span' )[0] ) {
+            return;
+        }
+        
         const spanWidth = span.getElementsByTagName( 'span' )[0].clientWidth;
         // alert( spanWidth );
         
