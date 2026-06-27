@@ -133,7 +133,8 @@ export class PdfViewerComponent implements OnInit, OnDestroy
             this.loginQuestion = true;
         }
         
-        this.fireResize();​
+        this.fireResize();
+        $( 'body' ).addClass( 'fix-body' );​
     }
     
     ngOnDestroy(): void
