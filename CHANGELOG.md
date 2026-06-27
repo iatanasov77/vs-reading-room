@@ -1,3 +1,12 @@
+1.8.1	|	Release date: **27.06.2026**
+============================================
+* New Features:
+  - Update to Vankosoft Core Library 1.14
+  - Some CSS Fix of Frontend Theme.
+  - Update PhpUnit Version.
+  - Some Fixes About New Veersion of Vankosoft Core.
+
+
 1.8.0	|	Release date: **04.02.2026**
 ============================================
 * New Features and Improvements:
