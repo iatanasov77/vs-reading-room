@@ -1,3 +1,9 @@
+1.8.2	|	Release date: **03.08.2026**
+============================================
+* New Features:
+  - Remove Restriction of Doctrine DBAL Version.
+
+
 1.8.1	|	Release date: **27.06.2026**
 ============================================
 * New Features:
